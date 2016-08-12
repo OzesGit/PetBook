@@ -24,7 +24,7 @@ public class AdoptSearchActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adopt_search);
 
-        GlobalData.setAreasIfNotSet();
+        GlobalData.getInstance().setAreasIfNotSet();
 
         TextView tvTitle = (TextView) findViewById(R.id.tvTitle);
         strSelectedAnimal = getIntent().getStringExtra("petType");
