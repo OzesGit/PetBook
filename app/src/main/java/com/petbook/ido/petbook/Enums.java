@@ -19,8 +19,8 @@ public class Enums {
     public enum DEALS_WITH {
         CHILDREN,
         DOGS,
-        CATS,
-        NO_ONE
+        CATS
+
     }
 
     public enum CONDITIONS {
