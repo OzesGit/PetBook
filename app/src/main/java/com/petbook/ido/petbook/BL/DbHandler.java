@@ -1,22 +1,15 @@
 package com.petbook.ido.petbook.BL;
 
 import android.content.Context;
-import android.content.res.AssetManager;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 /**
  * Created by Omri on 12/08/2016.
  */
 public class DbHandler extends SQLiteOpenHelper {
+    private static DbHandler Instance;
+
     private static String DATABASE_PATH = "/data/data/petbook/databases/";
     private static String DATABASE_NAME = "pets1.db";
     private static SQLiteDatabase myDataBase;
@@ -40,6 +33,14 @@ public class DbHandler extends SQLiteOpenHelper {
         mContext = context;
         SQLiteDatabase db = getWritableDatabase();
         this.onCreate(db);
+    }
+
+    public static DbHandler getInstance(Context context)
+    {
+        if( Instance == null){
+            Instance = new DbHandler(context);
+        }
+        return (Instance);
     }
 
     @Override

@@ -1,15 +1,6 @@
 package com.petbook.ido.petbook;
 
-import android.provider.CalendarContract;
-import android.support.annotation.NonNull;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Dictionary;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
 
 /**
@@ -19,7 +10,6 @@ public class GlobalData {
 
     public static Map<Integer,String> mpAreas = new HashMap<Integer, String>();
     private static GlobalData gldInstance;
-
 
     public GlobalData(){
 

@@ -21,8 +21,9 @@
         <activity android:name=".PetSelectionActivity" />
         <activity
             android:name=".AdoptSearchActivity"
-            android:label="@string/title_activity_adopt"></activity>
+            android:label="@string/title_activity_adopt" />
         <activity android:name=".HandOverPetActivity" />
+        <activity android:name=".ResultListActivity"></activity>
     </application>
 
 </manifest>

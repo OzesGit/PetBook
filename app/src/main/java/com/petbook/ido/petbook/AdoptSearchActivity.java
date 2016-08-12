@@ -7,6 +7,8 @@ import android.telephony.TelephonyManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -21,6 +23,9 @@ public class AdoptSearchActivity extends ActionBarActivity {
     private RadioButton rbFemale;
     private int nAreaCode;
     private int nGender;
+    private int nAge;
+    private String android_id;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +52,6 @@ public class AdoptSearchActivity extends ActionBarActivity {
                 strSelectedArea = parent.getItemAtPosition(position).toString();
 
                 nAreaCode = GlobalData.getInstance().getAreaID(strSelectedArea);
-
-                // TODO; Search where to put this shit
-                String android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
             }
 
             @Override
@@ -86,11 +88,29 @@ public class AdoptSearchActivity extends ActionBarActivity {
     }
 
     public void onClickSearch(View view) {
-        // area
-        //
-        //
-        //0
-        //
+
+        String strCondition = "";
+
+        Boolean isKids = ((CheckBox)findViewById(R.id.cbKids)).isChecked();
+        Boolean isDogs = ((CheckBox)findViewById(R.id.cbDogs)).isChecked();
+        Boolean isCats = ((CheckBox)findViewById(R.id.cbCats)).isChecked();
+
+        EditText edMinAge = (EditText) findViewById(R.id.etAge);
+        EditText edMaxAge = (EditText) findViewById(R.id.etMaxAge);
+
+        android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+
+        int nMinAge = 999;
+        int nMaxAge = 999;
+
+        if(!edMinAge.getText().toString().equals("")){
+            nMinAge = Integer.parseInt(edMinAge.getText().toString());
+        }
+
+        if(!edMaxAge.getText().toString().equals("")){
+            nMaxAge = Integer.parseInt(edMaxAge.getText().toString());
+        }
+
         if (!rbMale.isChecked() &&
             !rbFemale.isChecked()) {
             nGender = Enums.Gender.UNKNOWN.ordinal();
@@ -101,5 +121,20 @@ public class AdoptSearchActivity extends ActionBarActivity {
         else {
             nGender = Enums.Gender.FEMALE.ordinal();
         }
+
+        if(isKids){
+            strCondition = "0";
+        }
+
+        if(isDogs){
+            strCondition += "1";
+        }
+
+        if(isCats){
+            strCondition += "2";
+        }
+
+
+
     }
 }

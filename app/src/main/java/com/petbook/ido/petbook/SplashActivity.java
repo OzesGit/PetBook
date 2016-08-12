@@ -2,17 +2,18 @@ package com.petbook.ido.petbook;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+
+import com.petbook.ido.petbook.BL.DbHandler;
 
 public class SplashActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        DbHandler.getInstance(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 

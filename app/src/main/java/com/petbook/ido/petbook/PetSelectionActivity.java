@@ -1,31 +1,21 @@
 package com.petbook.ido.petbook;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.DrawableRes;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.Display;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.Toast;
 
 import com.petbook.ido.petbook.BL.DataLoader;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
-import java.util.Dictionary;
-import java.util.List;
 import java.util.Map;
 
 public class PetSelectionActivity extends ActionBarActivity {
