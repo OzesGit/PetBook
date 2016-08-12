@@ -1,5 +1,7 @@
 package com.petbook.ido.petbook;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -15,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.Toast;
 
 import com.petbook.ido.petbook.BL.DataLoader;
 
@@ -29,6 +32,8 @@ public class PetSelectionActivity extends ActionBarActivity {
     private TableLayout tblLayout;
     private ScrollView scrlScroll;
     private double btnHegihtPercent = 0.25;
+    private Boolean isAdopt;
+    private String strType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +43,8 @@ public class PetSelectionActivity extends ActionBarActivity {
         LoadAnimalTypeList();
         scrlScroll.addView(tblLayout);
         setContentView(scrlScroll);
+        isAdopt = getIntent().getBooleanExtra("isAdopt", false);
+        strType = getIntent().getStringExtra("Type");
     }
 
     private void LoadAnimalTypeList() {
@@ -56,12 +63,27 @@ public class PetSelectionActivity extends ActionBarActivity {
         }
     }
 
-    private Button CreateAnimalTypeButton(String strText,String strKey){
+    private Button CreateAnimalTypeButton(final String strText,String strKey){
         Display display = getWindowManager().getDefaultDisplay();
         Button btn = new Button(this);
         btn.setText(strText);
         btn.setHeight((int) (display.getHeight() * btnHegihtPercent));
         btn.setWidth(display.getWidth() / 3);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Button clickedBtn = (Button)v;
+
+                String strType = clickedBtn.getText().toString();
+                Intent intent = new Intent(getApplicationContext(), AdoptSearchActivity.class);
+                intent.putExtra("petType", strType);
+
+                if (isAdopt)
+                {
+                    startActivity(intent);
+                }
+            }
+        });
 
         try {
             AssetManager asmMng = getAssets();
