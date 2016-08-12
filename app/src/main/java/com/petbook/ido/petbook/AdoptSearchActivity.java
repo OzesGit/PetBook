@@ -1,7 +1,9 @@
 package com.petbook.ido.petbook;
 
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
+import android.telephony.TelephonyManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,13 +13,14 @@ import android.widget.TextView;
 
 public class AdoptSearchActivity extends ActionBarActivity {
 
-    Spinner spinner;
-    ArrayAdapter<CharSequence> adapter;
-    String strSelectedArea;
-    String strSelectedAnimal;
-    RadioButton rbMale;
-    RadioButton rbFemale;
-
+    private Spinner spinner;
+    private ArrayAdapter<CharSequence> adapter;
+    private String strSelectedArea;
+    private String strSelectedAnimal;
+    private RadioButton rbMale;
+    private RadioButton rbFemale;
+    private int nAreaCode;
+    private int nGender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,11 @@ public class AdoptSearchActivity extends ActionBarActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 strSelectedArea = parent.getItemAtPosition(position).toString();
+
+                nAreaCode = GlobalData.getInstance().getAreaID(strSelectedArea);
+
+                // TODO; Search where to put this shit
+                String android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
             }
 
             @Override
@@ -78,5 +86,20 @@ public class AdoptSearchActivity extends ActionBarActivity {
     }
 
     public void onClickSearch(View view) {
+        // area
+        //
+        //
+        //0
+        //
+        if (!rbMale.isChecked() &&
+            !rbFemale.isChecked()) {
+            nGender = Enums.Gender.UNKNOWN.ordinal();
+        }
+        else if(rbMale.isChecked()) {
+            nGender = Enums.Gender.MALE.ordinal();
+        }
+        else {
+            nGender = Enums.Gender.FEMALE.ordinal();
+        }
     }
 }

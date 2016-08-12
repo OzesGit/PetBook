@@ -48,4 +48,16 @@ public class GlobalData {
         }
     }
 
+    public int getAreaID(String strName)
+    {
+        for ( Integer nKey : mpAreas.keySet() ) {
+            if (mpAreas.get(nKey).equals(strName))
+            {
+                return nKey.intValue();
+            }
+        }
+
+        return 0;
+    }
+
 }
