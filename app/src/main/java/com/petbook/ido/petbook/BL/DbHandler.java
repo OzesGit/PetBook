@@ -125,6 +125,37 @@ public class DbHandler extends SQLiteOpenHelper {
         return lstRet;
     }
 
+    public List<Pet> getSearchedPets(String strAndroidID, int nGender, int nType, String strCond )
+    {
+        String strQuery = GET_ALL_PETS;
+
+
+
+        strQuery += " WHERE androidid = "+ strAndroidID + " AND " +
+                           "gender = "+ nGender + " AND " +
+                           "type = "+ nType + " AND ";
+
+        if(strCond.length() == 0)
+        {
+            strQuery += "( conditions = 012 OR conditions = 01 OR " +
+                        "conditions = 02 OR conditions = 12 OR " +
+                        "conditions = 1 OR conditions = 2 OR conditions = 0 )";
+        }
+        else if(strCond.length() == 1)
+        {
+            if(strCond == "0"){
+                strQuery += "( conditions = 012 OR conditions = 01 OR condition = 02 OR condition = 0)";
+            }
+            else if(strCond == "1"){
+                strQuery += "( conditions = 1 OR conditions = 012 OR conditions = 01 )";
+            }
+        }
+
+
+        return null;
+    }
+
+
     public int GetNextSeq(String strColName){
         SQLiteDatabase db = getWritableDatabase();
         String strCommand = "SELECT MAX(" + strColName + ") FROM Pets";
