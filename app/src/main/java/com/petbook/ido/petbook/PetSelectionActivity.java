@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
@@ -26,14 +27,17 @@ import java.util.Map;
 
 public class PetSelectionActivity extends ActionBarActivity {
     private TableLayout tblLayout;
+    private ScrollView scrlScroll;
     private double btnHegihtPercent = 0.25;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        scrlScroll = new ScrollView(this);
         tblLayout = new TableLayout(this);
         LoadAnimalTypeList();
-        setContentView(tblLayout);
+        scrlScroll.addView(tblLayout);
+        setContentView(scrlScroll);
     }
 
     private void LoadAnimalTypeList() {
