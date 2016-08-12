@@ -13,6 +13,21 @@ import java.util.ListIterator;
  */
 public class GlobalData {
 
-    public static List<String> strText = new ArrayList<>();
+    public static List<String> strAreas = new ArrayList<>();
+
+    public static void setAreasIfNotSet()
+    {
+        if(strAreas.size() == 0)
+        {
+            strAreas.add("צפון");
+            strAreas.add("חדרה זכרון ועמקים");
+            strAreas.add("השרון");
+            strAreas.add("מרכז");
+            strAreas.add("ירושלים");
+            strAreas.add("יהודה ושומרון");
+            strAreas.add("שפלה ומישור חוף דרומי");
+            strAreas.add("דרום");
+        }
+    }
 
 }
