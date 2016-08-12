@@ -40,4 +40,10 @@ public class PetItemControl extends LinearLayout{
             this.imgPhoto.setImageDrawable(myIcon);
         }
     }
+
+    public PetItemControl(Context context,Pet ptPet)
+    {
+        this(context,ptPet.getName(),ptPet.getPicture());
+    }
+
 }
