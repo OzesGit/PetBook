@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Pets>
     <pet>
-
+        <Name>עמרי</Name>
+        <Type>1</Type>
+        <Gender>2</Gender>
+        <Age>15</Age>
+        <DealsWith>0</DealsWith>
+        <Conditions>1</Conditions>
+        <Location></Location>
+        <PhoneNumber>0546522601</PhoneNumber>
+        <Email>omri96david@gmail.com</Email>
+        <Notes>Puppy</Notes>
+        <Picture></Picture>
+    </pet>
+    <pet>
+        <Name>עוז</Name>
+        <Type>0</Type>
+        <Gender>1</Gender>
+        <Age>1</Age>
+        <DealsWith>0</DealsWith>
+        <Conditions>2</Conditions>
+        <Location></Location>
+        <PhoneNumber>0546522601</PhoneNumber>
+        <Email>booboo@gmail.com</Email>
+        <Notes></Notes>
+        <Picture></Picture>
+    </pet>
+    <pet>
+        <Name>עידו</Name>
+        <Type>0</Type>
+        <Gender>2</Gender>
+        <Age>8</Age>
+        <DealsWith>0</DealsWith>
+        <Conditions>0</Conditions>
+        <Location></Location>
+        <PhoneNumber>0546522601</PhoneNumber>
+        <Email>lala@gmail.com</Email>
+        <Notes>Cool</Notes>
+        <Picture></Picture>
     </pet>
 </Pets>
