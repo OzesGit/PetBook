@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.petbook.ido.petbook.Enums;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -125,15 +127,33 @@ public class DbHandler extends SQLiteOpenHelper {
         return lstRet;
     }
 
-    public List<Pet> getSearchedPets(String strAndroidID, int nGender, int nType, String strCond )
+    public List<Pet> getSearchedPets(String strAndroidID,
+                                     int nGender,
+                                     int nType,
+                                     String strCond,
+                                     int nAreaID,
+                                     int nMinAge,
+                                     int nMaxAge)
     {
         String strQuery = GET_ALL_PETS;
 
-
-
         strQuery += " WHERE androidid = "+ strAndroidID + " AND " +
-                           "gender = "+ nGender + " AND " +
-                           "type = "+ nType + " AND ";
+                    "type = "+ nType + " AND " +
+                    "location = "+ nAreaID + " AND ";
+
+        if (nGender != Enums.Gender.UNKNOWN.ordinal())
+        {
+            strQuery += "gender = "+ nGender + " AND ";
+        }
+
+        if (nMinAge != 999) {
+            strQuery += "age >= " + nMinAge + " AND ";
+        }
+
+        if (nMaxAge != 999){
+            strQuery += "age <= " + nMaxAge + " AND ";
+        }
+
 
         if(strCond.length() == 0)
         {
