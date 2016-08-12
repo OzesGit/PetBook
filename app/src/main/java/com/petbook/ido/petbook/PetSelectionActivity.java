@@ -71,7 +71,6 @@ public class PetSelectionActivity extends ActionBarActivity {
                 {
                     intent = new Intent(getApplicationContext(), AdoptSearchActivity.class);
                     intent.putExtra("petType", strType);
-                    intent.putExtra("petEnum", strKey);
                 }
                 else
                 {

@@ -126,6 +126,10 @@ public class DbHandler extends SQLiteOpenHelper {
                     p.setAndroidId("28cdf996ff8a378f");
                 }
 
+                if(nIndex == 2 || nIndex == 5){
+                    p.setAndroidId("f1acb85ca5dd31f5");
+                }
+
                 lstRet.add(p);
 
                 Res.moveToNext();
@@ -143,9 +147,10 @@ public class DbHandler extends SQLiteOpenHelper {
                                      int nMinAge,
                                      int nMaxAge)
     {
+        List<Pet> lstRet = new ArrayList<Pet>();
         String strQuery = GET_ALL_PETS;
 
-        strQuery += " WHERE androidid = "+ strAndroidID + " AND " +
+        strQuery += " WHERE androidid = '"+ strAndroidID + "' AND " +
                     "type = "+ nType + " AND " +
                     "location = "+ nAreaID + " AND ";
 
@@ -171,25 +176,25 @@ public class DbHandler extends SQLiteOpenHelper {
         }
         else if(strCond.length() == 1)
         {
-            if(strCond == "0"){
+            if(strCond.equals("0")){
                 strQuery += "( conditions = '012' OR conditions = '01' OR condition = '02' OR condition = '0' )";
             }
-            else if(strCond == "1"){
+            else if(strCond.equals("1")){
                 strQuery += "( conditions = '1' OR conditions = '012' OR conditions = '01' OR condition = '12' )";
             }
-            else if(strCond == "2"){
+            else if(strCond.equals("2")){
                 strQuery += "( conditions = '2' OR conditions = '12' OR conditions = '02' OR conditions = '012' )";
             }
         }
         else if(strCond.length() == 2)
         {
-            if(strCond == "01"){
-                strQuery += "( conditions = '01' OR conditions = '012 )";
+            if(strCond.equals("01")){
+                strQuery += "( conditions = '01' OR conditions = '012' )";
             }
-            else if(strCond == "02"){
+            else if(strCond.equals("02")){
                 strQuery += "( conditions = '02' OR conditions = '012' )";
             }
-            else if(strCond == "12"){
+            else if(strCond.equals("12")){
                 strQuery += "( conditions = '12' OR conditions = '012' )";
             }
         }
@@ -198,8 +203,33 @@ public class DbHandler extends SQLiteOpenHelper {
             strQuery += "( conditions = '012' )";
         }
 
+        Cursor Res = db.rawQuery(strQuery, null);
 
-        return null;
+        if(Res.getCount() != 0) {
+            Res.moveToFirst();
+
+            for (int nIndex = 0; nIndex < Res.getCount(); nIndex++)
+            {
+                Pet p = new Pet();
+                p.setName(Res.getString((0)));
+                p.setId(Res.getInt((1)));
+                p.setAndroidId(Res.getString((2)));
+                p.setGender(Res.getInt((3)));
+                p.setType(Res.getInt((4)));
+                p.setCondition(Res.getString((5)));
+                p.setPhoneNumber(Res.getString((6)));
+                p.setLocation(Res.getInt((7)));
+                p.setEmail(Res.getString((8)));
+                p.setNotes(Res.getString((9)));
+                p.setAge(Res.getInt((11)));
+
+                lstRet.add(p);
+            }
+
+        }
+
+
+        return lstRet;
     }
 
 

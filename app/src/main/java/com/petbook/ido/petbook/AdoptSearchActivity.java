@@ -13,6 +13,10 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.petbook.ido.petbook.BL.DbHandler;
+
+import javax.microedition.khronos.opengles.GL;
+
 public class AdoptSearchActivity extends ActionBarActivity {
 
     private Spinner spinner;
@@ -37,7 +41,7 @@ public class AdoptSearchActivity extends ActionBarActivity {
 
         TextView tvTitle = (TextView) findViewById(R.id.tvTitle);
         strSelectedAnimal = getIntent().getStringExtra("petType");
-        nAnimalType = getIntent().getIntExtra("petEnum", 999);
+        nAnimalType = GlobalData.getInstance().getTypeID(strSelectedAnimal);
         tvTitle.setText("חפש " + strSelectedAnimal + " לאימוץ");
 
         spinner = (Spinner) findViewById(R.id.spinner);
@@ -136,7 +140,7 @@ public class AdoptSearchActivity extends ActionBarActivity {
             strCondition += "2";
         }
 
-
+        DbHandler.getInstance(this.getApplicationContext()).getSearchedPets(android_id,nGender,nAnimalType,strCondition,nAreaCode,nMinAge,nMaxAge);
 
     }
 }
