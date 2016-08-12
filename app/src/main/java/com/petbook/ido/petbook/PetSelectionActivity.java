@@ -7,6 +7,8 @@ import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 
 import com.petbook.ido.petbook.BL.DataLoader;
 
@@ -15,34 +17,37 @@ import java.util.List;
 import java.util.Map;
 
 public class PetSelectionActivity extends ActionBarActivity {
-    private LinearLayout llLayout;
+    private TableLayout tblLayout;
     private double btnHegihtPercent = 0.15;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LoadAnimalTypeList();
-        llLayout.setOrientation(LinearLayout.VERTICAL);
-        setContentView(llLayout);
-
-//        setContentView(R.layout.activity_pet_selection);
+        setContentView(tblLayout);
     }
 
     private void LoadAnimalTypeList() {
-        Map<String,String> mpAnimalList = DataLoader.GetAnimalTypeList();
+        Map<String, String> mpAnimalList = DataLoader.GetAnimalTypeList();
+        TableRow row = new TableRow(this);
+        int colCount = 0;
+        for (String strKey : mpAnimalList.keySet()) {
+            row.addView(CreateAnimalTypeButton(mpAnimalList.get(strKey)));
 
-        for (String strKey : mpAnimalList .keySet()) {
-            CreateAnimalTypeButton(mpAnimalList .get(strKey));
+            if(colCount%3==0)
+            {
+                tblLayout.addView(row);
+            }
         }
     }
 
-    private void CreateAnimalTypeButton(String strText){
+    private Button CreateAnimalTypeButton(String strText) {
         Display display = getWindowManager().getDefaultDisplay();
         Button btn = new Button(this);
         btn.setText(strText);
-        btn.setHeight((int)(display.getHeight() * btnHegihtPercent));
+        btn.setHeight((int) (display.getHeight() * btnHegihtPercent));
 
-        llLayout.addView(btn);
+        return btn;
     }
 
 }
