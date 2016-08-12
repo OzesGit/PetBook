@@ -9,4 +9,22 @@ public class Enums {
         FEMALE,
         UNKNOWN
     }
+    public enum Type {
+        DOG,
+        CAT,
+        TURTLE
+    }
+    public enum DEALS_WITH {
+        CHILDREN,
+        DOGS,
+        CATS,
+        NO_ONE
+    }
+    public enum CONDITIONS {
+        CLOSEDAPPARTMENT,
+        OPENAPPARTMENT,
+        YARD,
+        NO_MATTER
+    }
+
 }
