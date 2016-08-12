@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MenuActivity extends ActionBarActivity {
 
@@ -33,5 +34,9 @@ public class MenuActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onClickAmuta(View view) {
+        // TODO: Redirect to amuta screen
     }
 }

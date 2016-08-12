@@ -9,4 +9,76 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.petbook.ido.petbook.SearchActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="מסך הזדהות"
+        android:textSize="35dp"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        android:layout_width="140dp"
+        android:layout_height="120dp"
+        android:id="@+id/ibAmuta"
+        android:layout_marginTop="61dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentEnd="true"
+        android:onClick="onClickAmuta"/>
+
+    <ImageButton
+        android:layout_width="140dp"
+        android:layout_height="120dp"
+        android:id="@+id/ibGuest"
+        android:layout_alignTop="@+id/ibAmuta"
+        android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:layout_width="140dp"
+        android:layout_height="120dp"
+        android:id="@+id/ibVet"
+        android:layout_marginTop="49dp"
+        android:layout_below="@+id/ibAmuta"
+        android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        android:layout_width="140dp"
+        android:layout_height="120dp"
+        android:id="@+id/ibStore"
+        android:layout_alignTop="@+id/ibVet"
+        android:layout_alignEnd="@+id/ibGuest" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:text="עמותה"
+        android:layout_above="@+id/ibGuest"
+        android:layout_alignEnd="@+id/textView" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText2"
+        android:text="אורח"
+        android:layout_above="@+id/ibGuest"
+        android:layout_alignEnd="@+id/ibGuest" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText3"
+        android:text="וטרינר"
+        android:layout_above="@+id/ibStore"
+        android:layout_alignEnd="@+id/textView" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText4"
+        android:text="חנות"
+        android:layout_above="@+id/ibStore"
+        android:layout_alignEnd="@+id/ibStore" />
 </RelativeLayout>
