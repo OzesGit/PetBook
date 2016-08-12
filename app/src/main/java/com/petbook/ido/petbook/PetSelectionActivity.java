@@ -1,5 +1,6 @@
 package com.petbook.ido.petbook;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Layout;
@@ -21,9 +22,14 @@ public class PetSelectionActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        llLayout = new LinearLayout(this);
         LoadAnimalTypeList();
         llLayout.setOrientation(LinearLayout.VERTICAL);
         setContentView(llLayout);
+
+        Intent intent = this.getIntent();
+        String strType = intent.getStringExtra("Type");
+        Boolean isAdopt = intent.getBooleanExtra("isAdopt", false);
 
 //        setContentView(R.layout.activity_pet_selection);
     }
