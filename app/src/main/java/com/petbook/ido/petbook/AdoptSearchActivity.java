@@ -25,6 +25,7 @@ public class AdoptSearchActivity extends ActionBarActivity {
     private int nGender;
     private int nAge;
     private String android_id;
+    private int nAnimalType;
 
 
     @Override
@@ -36,6 +37,7 @@ public class AdoptSearchActivity extends ActionBarActivity {
 
         TextView tvTitle = (TextView) findViewById(R.id.tvTitle);
         strSelectedAnimal = getIntent().getStringExtra("petType");
+        nAnimalType = getIntent().getIntExtra("petEnum", 999);
         tvTitle.setText("חפש " + strSelectedAnimal + " לאימוץ");
 
         spinner = (Spinner) findViewById(R.id.spinner);

@@ -28,6 +28,7 @@ public class DbHandler extends SQLiteOpenHelper {
     private static String DATABASE_NAME = "pets1.db";
     private static SQLiteDatabase myDataBase;
     private static Context mContext;
+    private SQLiteDatabase db;
     private static String DROP_TABLES = "DROP TABLE Pets";
     private static String CREATE_TABLES = "CREATE TABLE `Pets` (\n" +
             "\t`name`\tTEXT,\n" +
@@ -49,7 +50,7 @@ public class DbHandler extends SQLiteOpenHelper {
     public DbHandler(Context context) {
         super(context, DATABASE_NAME, null, 1);
         mContext = context;
-        SQLiteDatabase db = getWritableDatabase();
+        db = this.getWritableDatabase();
         this.onCreate(db);
     }
 

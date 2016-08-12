@@ -13,9 +13,10 @@ public class SplashActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        DbHandler.getInstance(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        DbHandler.getInstance(this.getApplicationContext());
+
 
         final ImageView iv = (ImageView) findViewById(R.id.imageView);
         final Animation an = AnimationUtils.loadAnimation(getBaseContext(), R.anim.rotate);

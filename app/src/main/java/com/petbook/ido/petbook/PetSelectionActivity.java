@@ -53,7 +53,7 @@ public class PetSelectionActivity extends ActionBarActivity {
         }
     }
 
-    private Button CreateAnimalTypeButton(final String strText,String strKey){
+    private Button CreateAnimalTypeButton(final String strText, final String strKey){
         Display display = getWindowManager().getDefaultDisplay();
         Button btn = new Button(this);
         btn.setText(strText);
@@ -71,12 +71,15 @@ public class PetSelectionActivity extends ActionBarActivity {
                 {
                     intent = new Intent(getApplicationContext(), AdoptSearchActivity.class);
                     intent.putExtra("petType", strType);
+                    intent.putExtra("petEnum", strKey);
                 }
                 else
                 {
                     intent = new Intent(getApplicationContext(), HandOverPetActivity.class);
                     intent.putExtra("petType", strType);
+                    intent.putExtra("petEnum", strKey);
                 }
+
                 startActivity(intent);
             }
         });
