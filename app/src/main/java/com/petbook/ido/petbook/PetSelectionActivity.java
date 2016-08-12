@@ -75,13 +75,19 @@ public class PetSelectionActivity extends ActionBarActivity {
                 Button clickedBtn = (Button)v;
 
                 String strType = clickedBtn.getText().toString();
-                Intent intent = new Intent(getApplicationContext(), AdoptSearchActivity.class);
-                intent.putExtra("petType", strType);
+                Intent intent;
 
                 if (isAdopt)
                 {
-                    startActivity(intent);
+                    intent = new Intent(getApplicationContext(), AdoptSearchActivity.class);
+                    intent.putExtra("petType", strType);
                 }
+                else
+                {
+                    intent = new Intent(getApplicationContext(), HandOverPetActivity.class);
+                    intent.putExtra("petType", strType);
+                }
+                startActivity(intent);
             }
         });
 

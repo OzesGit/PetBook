@@ -9,4 +9,33 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.petbook.ido.petbook.HandOverPetActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="שם"
+        android:id="@+id/NameTextView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="מין"
+        android:id="@+id/GenderTextView"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/NameTextView"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:ems="10"
+        android:id="@+id/editText5"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="20dp"
+        android:layout_toStartOf="@+id/NameTextView" />
 </RelativeLayout>
