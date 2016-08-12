@@ -31,7 +31,12 @@ public class DataLoader {
         dicAnimalTypes.put("3","חתול");
         dicAnimalTypes.put("4","כלב");
         dicAnimalTypes.put("5","חתול");
-        dicAnimalTypes.put("6","חתול");
+        dicAnimalTypes.put("63","חתול");
+        dicAnimalTypes.put("332","כלב");
+        dicAnimalTypes.put("2133","חתול");
+        dicAnimalTypes.put("4564","כלב");
+        dicAnimalTypes.put("16885","חתול");
+        dicAnimalTypes.put("64","חתול");
 
         return dicAnimalTypes;
     }

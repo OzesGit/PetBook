@@ -4,4 +4,18 @@
     <string name="title_pet_list">Pets</string>
     <string name="title_pet_detail">Pet Detail</string>
     <string name="title_activity_adopt">AdoptActivity</string>
+
+    <string-array name="Areas">
+
+        <item>צפון</item>
+        <item>חדרה זכרון ועמקים</item>
+        <item>השרון</item>
+        <item>מרכז</item>
+        <item>ירושלים</item>
+        <item>יהודה ושומרון</item>
+        <item>שפלה ומישור חוף דרומי</item>
+        <item>דרום</item>
+
+    </string-array>
+
 </resources>
