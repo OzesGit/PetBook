@@ -9,22 +9,36 @@ public class Enums {
         FEMALE,
         UNKNOWN
     }
+
     public enum Type {
         DOG,
         CAT,
         TURTLE
     }
+
     public enum DEALS_WITH {
         CHILDREN,
         DOGS,
         CATS,
         NO_ONE
     }
+
     public enum CONDITIONS {
         CLOSEDAPPARTMENT,
         OPENAPPARTMENT,
         YARD,
         NO_MATTER
+    }
+
+    public enum LOCATIONS {
+        NORTH,
+        HADERA_NORTH_AMAKIM,
+        HASHARON,
+        MERKAZ,
+        JERUSALEM,
+        YEHUDA_AND_SHOMRON,
+        SHFELA_AND_MISHOR_HOF_SOUTH,
+        SOUTH
     }
 
 }

@@ -4,29 +4,32 @@ import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Dictionary;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map;
 
 /**
  * Created by Ido on 8/12/2016.
  */
 public class GlobalData {
 
-    public static List<String> strAreas = new ArrayList<>();
+    public static Map<Integer,String> mpAreas = new HashMap<Integer, String>();
 
     public static void setAreasIfNotSet()
     {
-        if(strAreas.size() == 0)
+        if(mpAreas.size() == 0)
         {
-            strAreas.add("צפון");
-            strAreas.add("חדרה זכרון ועמקים");
-            strAreas.add("השרון");
-            strAreas.add("מרכז");
-            strAreas.add("ירושלים");
-            strAreas.add("יהודה ושומרון");
-            strAreas.add("שפלה ומישור חוף דרומי");
-            strAreas.add("דרום");
+            mpAreas.put(Enums.LOCATIONS.NORTH.ordinal(),"צפון");
+            mpAreas.put(Enums.LOCATIONS.HADERA_NORTH_AMAKIM.ordinal(),"חדרה זכרון ועמקים");
+            mpAreas.put(Enums.LOCATIONS.HASHARON.ordinal(),"השרון");
+            mpAreas.put(Enums.LOCATIONS.MERKAZ.ordinal(),"מרכז");
+            mpAreas.put(Enums.LOCATIONS.JERUSALEM.ordinal(),"ירושלים");
+            mpAreas.put(Enums.LOCATIONS.YEHUDA_AND_SHOMRON.ordinal(),"יהודה ושומרון");
+            mpAreas.put(Enums.LOCATIONS.SHFELA_AND_MISHOR_HOF_SOUTH.ordinal(),"שפלה ומישור חוף דרומי");
+            mpAreas.put(Enums.LOCATIONS.SOUTH.ordinal(),"דרום");
         }
     }
 
