@@ -1,6 +1,7 @@
 package com.petbook.ido.petbook;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -40,17 +41,28 @@ public class MenuActivity extends Activity {
 
     public void onClickAmuta(View view) {
 
+        rbAdopt.setVisibility(RadioButton.INVISIBLE);
+        rbGive.setVisibility (RadioButton.INVISIBLE);
+
+        String strType = "Amuta";
+        GoToSelection(strType, false);
+
+    }
+
+    public void onClickGuest(View view) {
+
         if (rbAdopt.isShown() &&
-            rbGive.isShown())
+                rbGive.isShown())
         {
-            if (!rbAdopt.isChecked() == false &&
-                !rbGive.isChecked() == false )
+            if (!rbAdopt.isChecked() && !rbGive.isChecked())
             {
                 Toast.makeText(MenuActivity.this, "עליך לבחור אחת מהאופציות", Toast.LENGTH_SHORT).show();
             }
             else
             {
                 // TODO: Redirect to amuta screen
+                String strType = "Guest";
+                GoToSelection(strType, rbAdopt.isChecked());
             }
         }
         else
@@ -58,12 +70,6 @@ public class MenuActivity extends Activity {
             rbAdopt.setVisibility(RadioButton.VISIBLE);
             rbGive.setVisibility (RadioButton.VISIBLE);
         }
-    }
-
-    public void onClickGuest(View view) {
-
-        rbAdopt.setVisibility(RadioButton.INVISIBLE);
-        rbGive.setVisibility (RadioButton.INVISIBLE);
 
     }
 
@@ -72,11 +78,27 @@ public class MenuActivity extends Activity {
         rbAdopt.setVisibility(RadioButton.INVISIBLE);
         rbGive.setVisibility (RadioButton.INVISIBLE);
 
+        String strType = "Vet";
+        GoToSelection(strType, false);
+
     }
 
     public void onClickStore(View view) {
         rbAdopt.setVisibility(RadioButton.INVISIBLE);
         rbGive.setVisibility (RadioButton.INVISIBLE);
+
+        String strType = "Store";
+        GoToSelection(strType, false);
+    }
+
+    private void GoToSelection(String strType, Boolean isAdopt) {
+
+        Intent intent = new Intent(getApplicationContext(), PetSelectionActivity.class);
+        intent.putExtra("Type", strType);
+        intent.putExtra("isAdopt", isAdopt);
+
+        this.startActivity(intent);
+
     }
 
     public void onClickRadio(View view) {

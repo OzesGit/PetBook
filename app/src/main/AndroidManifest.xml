@@ -19,7 +19,6 @@
         </activity>
         <activity android:name=".MenuActivity" />
         <activity android:name=".PetSelectionActivity" />
-        <activity android:name=".HandOverPetActivity"></activity>
     </application>
 
 </manifest>
