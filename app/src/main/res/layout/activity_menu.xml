@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="מסך הזדהות"
+        android:text="מי אני?"
         android:textSize="35dp"
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
@@ -67,35 +67,64 @@
         android:background="#000000"
         android:scaleType="fitXY" />
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editText"
         android:text="עמותה"
         android:layout_above="@+id/ibGuest"
-        android:layout_alignEnd="@+id/textView" />
+        android:layout_alignEnd="@+id/textView"
+        android:textSize="20dp" />
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editText2"
         android:text="אורח"
         android:layout_above="@+id/ibGuest"
-        android:layout_alignEnd="@+id/ibGuest" />
+        android:layout_alignEnd="@+id/ibGuest"
+        android:textSize="20dp" />
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editText3"
         android:text="וטרינר"
         android:layout_above="@+id/ibStore"
-        android:layout_alignEnd="@+id/textView" />
+        android:layout_alignEnd="@+id/textView"
+        android:textSize="20dp" />
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editText4"
         android:text="חנות"
         android:layout_above="@+id/ibStore"
-        android:layout_alignEnd="@+id/ibStore" />
+        android:layout_alignEnd="@+id/ibStore"
+        android:textSize="20dp" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="רוצה למסור"
+        android:id="@+id/rbGive"
+        android:visibility="invisible"
+        android:layout_above="@+id/rbAdopt"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:onClick="onClickRadio"/>
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="רוצה לאמץ"
+        android:id="@+id/rbAdopt"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:visibility="invisible"
+        android:layout_alignParentRight="true"
+        android:onClick="onClickRadio"/>
+
 </RelativeLayout>
