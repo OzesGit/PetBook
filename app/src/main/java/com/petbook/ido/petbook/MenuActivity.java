@@ -54,8 +54,7 @@ public class MenuActivity extends Activity {
         if (rbAdopt.isShown() &&
                 rbGive.isShown())
         {
-            if (!rbAdopt.isChecked() == false &&
-                    !rbGive.isChecked() == false )
+            if (!rbAdopt.isChecked() && !rbGive.isChecked())
             {
                 Toast.makeText(MenuActivity.this, "עליך לבחור אחת מהאופציות", Toast.LENGTH_SHORT).show();
             }
