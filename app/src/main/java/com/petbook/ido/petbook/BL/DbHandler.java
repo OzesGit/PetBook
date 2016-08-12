@@ -21,6 +21,7 @@ import java.util.Random;
  * Created by Omri on 12/08/2016.
  */
 public class DbHandler extends SQLiteOpenHelper {
+    private static DbHandler Instance;
     private static String DATABASE_PATH = "/data/data/petbook/databases/";
     private static String DATABASE_NAME = "pets1.db";
     private static SQLiteDatabase myDataBase;
@@ -48,6 +49,14 @@ public class DbHandler extends SQLiteOpenHelper {
         mContext = context;
         SQLiteDatabase db = getWritableDatabase();
         this.onCreate(db);
+    }
+
+    public static DbHandler getInstance(Context context)
+    {
+        if( Instance == null){
+            Instance = new DbHandler(context);
+        }
+        return (Instance);
     }
 
     @Override
