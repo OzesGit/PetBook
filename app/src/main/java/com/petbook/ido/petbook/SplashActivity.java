@@ -12,15 +12,6 @@ public class SplashActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        for (int nIndex = 0; nIndex < 5; nIndex++)
-        {
-            try {
-                Thread.sleep(300);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
 
-        this.startActivity(new Intent(getApplicationContext(), MenuActivity.class));
     }
 }
