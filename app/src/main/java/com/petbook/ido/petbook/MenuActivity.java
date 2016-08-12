@@ -10,6 +10,10 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.petbook.ido.petbook.BL.DbHandler;
+
+import java.io.IOException;
+
 public class MenuActivity extends Activity {
 
     RadioButton rbGive;
@@ -22,6 +26,7 @@ public class MenuActivity extends Activity {
 
         rbGive = (RadioButton) findViewById(R.id.rbGive);
         rbAdopt = (RadioButton) findViewById(R.id.rbAdopt);
+        DbHandler hnd = new DbHandler(this);
     }
 
     @Override
