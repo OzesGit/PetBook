@@ -24,8 +24,14 @@ public class DataLoader {
         // In the future - get the animal types from a DB/XML...
         // IN the midtime - GET IT FROM A STATIC LIST !!! MUAHAHA
         Map<String,String> dicAnimalTypes = new HashMap<String,String>();
-        dicAnimalTypes.put("Dog","כלב");
-        dicAnimalTypes.put("Cat","חתול");
+        dicAnimalTypes.put("dog","כלב");
+        dicAnimalTypes.put("cat","חתול");
+        dicAnimalTypes.put("1","חתול");
+        dicAnimalTypes.put("2","כלב");
+        dicAnimalTypes.put("3","חתול");
+        dicAnimalTypes.put("4","כלב");
+        dicAnimalTypes.put("5","חתול");
+        dicAnimalTypes.put("6","חתול");
 
         return dicAnimalTypes;
     }
