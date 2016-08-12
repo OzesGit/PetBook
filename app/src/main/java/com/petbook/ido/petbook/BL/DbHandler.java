@@ -77,7 +77,6 @@ public class DbHandler extends SQLiteOpenHelper {
     }
 
     private void insertMUCHAnimals(){
-        SQLiteDatabase db = getWritableDatabase();
         String newPetInsertCommand;
 
         for(int i = 0; i < 100; i++){
@@ -104,7 +103,6 @@ public class DbHandler extends SQLiteOpenHelper {
     }
 
     public List<Pet> getAllPets(){
-        SQLiteDatabase db = getWritableDatabase();
         Cursor Res = db.rawQuery(this.GET_ALL_PETS,null);
         List<Pet> lstRet = new ArrayList<Pet>();
         if(Res.getCount() != 0) {
@@ -206,7 +204,6 @@ public class DbHandler extends SQLiteOpenHelper {
 
 
     public int GetNextSeq(String strColName){
-        SQLiteDatabase db = getWritableDatabase();
         String strCommand = "SELECT MAX(" + strColName + ") FROM Pets";
         Cursor Res = db.rawQuery(strCommand,null);
 
