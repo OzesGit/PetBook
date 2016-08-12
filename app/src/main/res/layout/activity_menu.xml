@@ -23,17 +23,26 @@
         android:layout_width="140dp"
         android:layout_height="120dp"
         android:id="@+id/ibAmuta"
+        android:src="@drawable/amuta"
         android:layout_marginTop="61dp"
         android:layout_below="@+id/textView"
         android:layout_alignParentEnd="true"
-        android:onClick="onClickAmuta"/>
+        android:onClick="onClickAmuta"
+        android:contentDescription="עמותה"
+        android:background="#000000"
+        android:adjustViewBounds="false"
+        android:scaleType="fitXY" />
 
     <ImageButton
         android:layout_width="140dp"
         android:layout_height="120dp"
         android:id="@+id/ibGuest"
+        android:src="@drawable/guest"
         android:layout_alignTop="@+id/ibAmuta"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:onClick="onClickGuest"
+        android:scaleType="fitXY"
+        android:background="#0" />
 
     <ImageButton
         android:layout_width="140dp"
@@ -41,14 +50,16 @@
         android:id="@+id/ibVet"
         android:layout_marginTop="49dp"
         android:layout_below="@+id/ibAmuta"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="onClickVet"/>
 
     <ImageButton
         android:layout_width="140dp"
         android:layout_height="120dp"
         android:id="@+id/ibStore"
         android:layout_alignTop="@+id/ibVet"
-        android:layout_alignEnd="@+id/ibGuest" />
+        android:layout_alignEnd="@+id/ibGuest"
+        android:onClick="onClickStore"/>
 
     <EditText
         android:layout_width="wrap_content"

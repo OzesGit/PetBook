@@ -39,4 +39,13 @@ public class MenuActivity extends ActionBarActivity {
     public void onClickAmuta(View view) {
         // TODO: Redirect to amuta screen
     }
+
+    public void onClickGuest(View view) {
+    }
+
+    public void onClickVet(View view) {
+    }
+
+    public void onClickStore(View view) {
+    }
 }
