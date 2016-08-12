@@ -7,7 +7,7 @@
         <Age>15</Age>
         <DealsWith>0</DealsWith>
         <Conditions>1</Conditions>
-        <Location></Location>
+        <Location>3</Location>
         <PhoneNumber>0546522601</PhoneNumber>
         <Email>omri96david@gmail.com</Email>
         <Notes>Puppy</Notes>
@@ -20,7 +20,7 @@
         <Age>1</Age>
         <DealsWith>0</DealsWith>
         <Conditions>2</Conditions>
-        <Location></Location>
+        <Location>5</Location>
         <PhoneNumber>0546522601</PhoneNumber>
         <Email>booboo@gmail.com</Email>
         <Notes></Notes>
@@ -33,7 +33,7 @@
         <Age>8</Age>
         <DealsWith>0</DealsWith>
         <Conditions>0</Conditions>
-        <Location></Location>
+        <Location>3</Location>
         <PhoneNumber>0546522601</PhoneNumber>
         <Email>lala@gmail.com</Email>
         <Notes>Cool</Notes>
