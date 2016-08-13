@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="מי אני?"
+        android:text="כניסה:"
         android:textSize="35dp"
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
@@ -134,9 +134,9 @@
         android:src="@drawable/personal_area"
         android:background="#000000"
         android:scaleType="fitXY"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/editText2"
-        android:layout_above="@+id/editText2"
-        android:onClick="onClickPersonalArea"/>
+        android:onClick="onClickPersonalArea"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/ibVet" />
 
 </RelativeLayout>
