@@ -45,8 +45,8 @@ public class DbHandler extends SQLiteOpenHelper {
             "\t`email`\tTEXT,\n" +
             "\t`notes`\tTEXT,\n" +
             "\t`picture`\tBLOB,\n" +
-            "\t`age`\tINTEGER\n" +
-            //"\t`isvirgin`\tINTEGER\n" +
+            "\t`age`\tINTEGER,\n" +
+            "\t`isvirgin`\tINTEGER\n" +
             ");";
     private static String CREATE_SAVED_SEARCHES = "CREATE TABLE `SavedSearches` (\n" +
             "\t`androidid`\tTEXT,\n" +
@@ -78,7 +78,7 @@ public class DbHandler extends SQLiteOpenHelper {
         return (Instance);
     }
 
-    private  void DropTables(){
+    private void DropTables(){
         try {
             db.execSQL(this.DROP_TABLES);
             commit(db);
@@ -121,8 +121,8 @@ public class DbHandler extends SQLiteOpenHelper {
                 p.setNotes(Res.getString((9)));
                 p.setAge(Res.getInt((11)));
 
-                //boolean bToSet = Res.getInt(12) == 0 ? false : true;
-                //p.setVirgin(bToSet);
+                boolean bToSet = Res.getInt(12) == 0 ? false : true;
+                p.setVirgin(bToSet);
 
                 // FOR OZ !!!
                 if(nIndex == 0 || nIndex == 7){
@@ -163,8 +163,8 @@ public class DbHandler extends SQLiteOpenHelper {
             Values += "'ozomdi" + i + "/@gmail.com'" + ",";
             Values +=  i + ",";
             Values +=  i + ",";
-            Values += (int)(Math.random() * 10);/* + ",";
-            Values += (int)(Math.random() * 2)*/;
+            Values += (int)(Math.random() * 10) + ",";
+            Values += (int)(Math.random() * 2);
 
             Values += ")";
 
@@ -182,8 +182,8 @@ public class DbHandler extends SQLiteOpenHelper {
                 Values += "'ozomdi" + i + "/@gmail.com'" + ",";
                 Values +=  i + ",";
                 Values +=  i + ",";
-                Values += 10;/* + ",";
-                Values += (int)(Math.random() * 2)*/;
+                Values += 10 + ",";
+                Values += (int)(Math.random() * 2);
 
                 Values += ")";
             }
@@ -201,8 +201,8 @@ public class DbHandler extends SQLiteOpenHelper {
                 Values += "'ozomdi" + i + "/@gmail.com'" + ",";
                 Values +=  i + ",";
                 Values +=  i + ",";
-                Values += 10 /*+ ","*/;
-                //Values += (int)(Math.random() * 2);
+                Values += 10 + ",";
+                Values += (int)(Math.random() * 2);
 
                 Values += ")";
             }
