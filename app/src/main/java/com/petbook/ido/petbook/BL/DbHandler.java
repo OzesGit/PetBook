@@ -134,7 +134,7 @@ public class DbHandler extends SQLiteOpenHelper {
             Values += GetNextSeq("id") + ",";
             Values += 0 + ",";
             Values += (int)(Math.random() * 3) + ",";
-            Values += (int)(Math.random() * 3) + ",";
+            Values += (int)(Math.random() * 8) + ",";
             Values += (int)(Math.random() * 4) + ",";
             Values += "'05284932" + (int)(Math.random() * 10) + "',";
             Values += (int)(Math.random() * 8) + ",";
@@ -202,55 +202,54 @@ public class DbHandler extends SQLiteOpenHelper {
         String strQuery = GET_ALL_PETS;
 
         strQuery += " WHERE type = "+ nType + " AND " +
-                    "location = "+ nAreaID + " AND ";
+                    "location = "+ nAreaID;
 
         if (nGender != Enums.Gender.UNKNOWN.ordinal())
         {
-            strQuery += "gender = "+ nGender + " AND ";
+            strQuery += " AND gender = "+ nGender;
         }
 
         if (nMinAge != 999) {
-            strQuery += "age >= " + nMinAge + " AND ";
+            strQuery += " AND age >= " + nMinAge;
         }
 
         if (nMaxAge != 999){
-            strQuery += "age <= " + nMaxAge + " AND ";
+            strQuery += " AND age <= " + nMaxAge;
         }
 
-
-        if(strCond.length() == 0)
+        /*if(strCond.length() == 0)
         {
             strQuery += "( conditions = '012' OR conditions = '01' OR " +
                         "conditions = '02' OR conditions = '12' OR " +
                         "conditions = '1' OR conditions = '2' OR conditions = '0' )";
         }
-        else if(strCond.length() == 1)
+        else*/ if(strCond.length() == 1)
         {
             if(strCond.equals("0")){
-                strQuery += "( conditions = '012' OR conditions = '01' OR condition = '02' OR condition = '0' )";
+                strQuery += " AND ( conditions = '012' OR conditions = '01' OR condition = '02' OR condition = '0' )";
             }
             else if(strCond.equals("1")){
-                strQuery += "( conditions = '1' OR conditions = '012' OR conditions = '01' OR condition = '12' )";
+                strQuery += " AND ( conditions = '1' OR conditions = '012' OR conditions = '01' OR condition = '12' )";
             }
             else if(strCond.equals("2")){
-                strQuery += "( conditions = '2' OR conditions = '12' OR conditions = '02' OR conditions = '012' )";
+                strQuery += " AND ( conditions = '2' OR conditions = '12' OR conditions = '02' OR conditions = '012' )";
             }
         }
         else if(strCond.length() == 2)
         {
             if(strCond.equals("01")){
-                strQuery += "( conditions = '01' OR conditions = '012' )";
+                strQuery += " AND ( conditions = '01' OR conditions = '012' )";
             }
             else if(strCond.equals("02")){
-                strQuery += "( conditions = '02' OR conditions = '012' )";
+                strQuery += " AND ( conditions = '02' OR conditions = '012' )";
             }
             else if(strCond.equals("12")){
-                strQuery += "( conditions = '12' OR conditions = '012' )";
+                strQuery += " AND ( conditions = '12' OR conditions = '012' )";
             }
         }
         else if(strCond.length() == 3)
         {
-            strQuery += "( conditions = '012' )";
+            strQuery += " AND ( conditions = '012' )";
         }
 
         Cursor Res = db.rawQuery(strQuery, null);

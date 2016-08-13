@@ -1,5 +1,6 @@
 package com.petbook.ido.petbook;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.provider.Settings;
@@ -17,7 +18,7 @@ import com.petbook.ido.petbook.BL.Pet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResultListActivity extends ActionBarActivity {
+public class ResultListActivity extends Activity {
     private List<PetItemControl> petsControls;
     ScrollView scrlScrol;
     LinearLayout llLayout;
@@ -38,6 +39,7 @@ public class ResultListActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent t = new Intent(getApplicationContext(),AdoptSearchActivity.class);
+                t.putExtra("petType",getIntent().getStringExtra("petType"));
                 startActivity(t);
             }
         });
@@ -45,10 +47,14 @@ public class ResultListActivity extends ActionBarActivity {
         llLayoutBtn.addView(btnSearch);
         llLayoutBtn.addView(scrlScrol);
         setContentView(llLayoutBtn);
-        // By default - get all pets
-        SetPetsView(DbHandler.getInstance(this.getApplicationContext()).GetPetsByTypes(GlobalData.getInstance().getTypeID(getIntent().getStringExtra("Type"))));
 
-
+        if (getIntent().getBooleanExtra("Filter",false) == true){
+            SetPetsView(GlobalData.getInstance().getLstChosenPets());
+        }
+        else {
+            // By default - get all pets
+            SetPetsView(DbHandler.getInstance(this.getApplicationContext()).GetPetsByTypes(GlobalData.getInstance().getTypeID(getIntent().getStringExtra("petType"))));
+        }
     }
 
     private void SetPetsView(List<Pet> pets){

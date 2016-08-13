@@ -21,7 +21,7 @@ public class GlobalData {
     public static List<Pet> lstChosenPets = new ArrayList<Pet>();
 
     public GlobalData(){
-
+        this.setAnimalTypes();
     }
 
     public static GlobalData getInstance(){
@@ -47,13 +47,18 @@ public class GlobalData {
         }
     }
 
-    public void setAnimalTypes()
+    private void setAnimalTypes()
     {
         if(mpTypes.size() == 0)
         {
             mpTypes.put(Enums.Type.DOG.ordinal(), "כלב");
             mpTypes.put(Enums.Type.CAT.ordinal(), "חתול");
             mpTypes.put(Enums.Type.TURTLE.ordinal(), "צב");
+            mpTypes.put(Enums.Type.DONKEY.ordinal(), "חמור");
+            mpTypes.put(Enums.Type.PEACOC.ordinal(), "טווס");
+            mpTypes.put(Enums.Type.HORSE.ordinal(), "סוס");
+            mpTypes.put(Enums.Type.HAMUS.ordinal(), "חמוס");
+            mpTypes.put(Enums.Type.TURKEY.ordinal(), "תרנגול");
         }
     }
 
@@ -81,6 +86,11 @@ public class GlobalData {
         return 0;
     }
 
+    public String getTypeName(int nKey)
+    {
+        return mpTypes.get(nKey);
+    }
+
     public void setLstChosenPets(List<Pet> lstPet){
         lstChosenPets = lstPet;
     }
@@ -106,4 +116,6 @@ public class GlobalData {
         }
         return  d;
     }
+
+
 }

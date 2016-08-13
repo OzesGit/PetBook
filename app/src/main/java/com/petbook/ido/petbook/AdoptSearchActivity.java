@@ -150,12 +150,14 @@ public class AdoptSearchActivity extends ActionBarActivity {
         {
             GlobalData.getInstance().setLstChosenPets(lstPet);
             Intent intent = new Intent(getApplicationContext(), ResultListActivity.class);
-
+            intent.putExtra("Filter",true);
             this.startActivity(intent);
         }
         else
         {
+            Intent intent = new Intent(getApplicationContext(), Popup.class);
 
+            this.startActivity(intent);
         }
     }
 }
