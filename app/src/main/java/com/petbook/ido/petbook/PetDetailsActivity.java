@@ -15,12 +15,13 @@ public class PetDetailsActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_details);
 
-        int nId = Integer.parseInt(this.getIntent().getStringExtra("petId"));
+        int nId = this.getIntent().getIntExtra("petId",-1);
 
         this.InitFields(nId);
     }
 
     private void InitFields(int nId){
+
         this.CurrPet = DbHandler.getInstance(null).getPetById(nId);
     }
 
