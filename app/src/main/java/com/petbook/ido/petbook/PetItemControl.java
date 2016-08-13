@@ -24,6 +24,7 @@ public class PetItemControl extends LinearLayout{
     private Pet currPet;
     private ImageView imgPhoto;
     private TextView txtName;
+    private int textSize = 25;
 
     public PetItemControl(Context context) {
         super(context);
@@ -32,9 +33,11 @@ public class PetItemControl extends LinearLayout{
         this.txtName = new TextView(context);
         this.imgPhoto.setLeft(0);
         this.txtName.setTextAlignment(TEXT_ALIGNMENT_CENTER);
+        this.txtName.setTextSize(textSize);
 
         this.addView(this.imgPhoto);
         this.addView(this.txtName);
+
     }
 
     public PetItemControl(Context context,String name,Bitmap btmpImage)
