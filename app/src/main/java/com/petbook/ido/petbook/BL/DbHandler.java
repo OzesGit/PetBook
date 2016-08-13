@@ -150,7 +150,7 @@ public class DbHandler extends SQLiteOpenHelper {
     }
 
     public void insertPet(Pet pet){
-        String values = "(%s, %d, %s, %d, %d, %d, %s, %d, %s, %s, %s, %d, %d, %s)";
+        String values = "('%s', %d, '%s', %d, %d, %d, '%s', %d, '%s', '%s', '%s', %d, %d, '%s')";
         int nToSet = pet.getIsVirgin() ? 1 : 0;
         values = String.format(values,
                 pet.getName(),
