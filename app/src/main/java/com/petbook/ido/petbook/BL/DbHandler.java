@@ -32,8 +32,8 @@ public class DbHandler extends SQLiteOpenHelper {
     private static SQLiteDatabase myDataBase;
     private static Context mContext;
     private SQLiteDatabase db;
-    private static String DROP_TABLES = "DROP TABLE Pets";
-    private static String CREATE_TABLES = "CREATE TABLE `Pets` (\n" +
+    private static String DROP_TABLES = "DROP TABLE `Pets`;";
+    private static String CREATE_PETS = "CREATE TABLE `Pets` (\n" +
             "\t`name`\tTEXT,\n" +
             "\t`id`\tINTEGER NOT NULL,\n" +
             "\t`androidid`\tTEXT,\n" +
@@ -46,7 +46,19 @@ public class DbHandler extends SQLiteOpenHelper {
             "\t`notes`\tTEXT,\n" +
             "\t`picture`\tBLOB,\n" +
             "\t`age`\tINTEGER\n" +
+            //"\t`isvirgin`\tINTEGER\n" +
             ");";
+    private static String CREATE_SAVED_SEARCHES = "CREATE TABLE `SavedSearches` (\n" +
+            "\t`androidid`\tTEXT,\n" +
+            "\t`phonenum`\tTEXT,\n" +
+            "\t`age`\tINTEGER,\n" +
+            "\t`gender`\tINTEGER,\n" +
+            "\t`areacode`\tINTEGER,\n" +
+            "\t`animaltype`\tINTEGER,\n" +
+            "\t`condition`\tTEXT,\n" +
+            "\tPRIMARY KEY(androidid,phonenum)\n" +
+            ");";
+
     private static String INSERT_PET = "INSERT INTO Pets Values ";
     private static String GET_ALL_PETS = "SELECT * FROM Pets";
     //, SQLiteDatabase.CursorFactory factory, int version
@@ -54,6 +66,7 @@ public class DbHandler extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, 1);
         mContext = context;
         this.db = this.getWritableDatabase();
+        this.DropTables();
         insertMUCHAnimals();
     }
 
@@ -65,8 +78,7 @@ public class DbHandler extends SQLiteOpenHelper {
         return (Instance);
     }
 
-    @Override
-    public void onCreate(SQLiteDatabase db) {
+    private  void DropTables(){
         try {
             db.execSQL(this.DROP_TABLES);
             commit(db);
@@ -75,12 +87,19 @@ public class DbHandler extends SQLiteOpenHelper {
 
         }
         try {
-            db.execSQL(this.CREATE_TABLES);
+            db.execSQL(this.CREATE_PETS);
+            commit(db);
+            db.execSQL(this.CREATE_SAVED_SEARCHES);
             commit(db);
         }
         catch (Exception ex){
 
         }
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+
     }
 
     private List<Pet> ExecutePetQuery(String command){
@@ -101,6 +120,9 @@ public class DbHandler extends SQLiteOpenHelper {
                 p.setEmail(Res.getString((8)));
                 p.setNotes(Res.getString((9)));
                 p.setAge(Res.getInt((11)));
+
+                //boolean bToSet = Res.getInt(12) == 0 ? false : true;
+                //p.setVirgin(bToSet);
 
                 // FOR OZ !!!
                 if(nIndex == 0 || nIndex == 7){
@@ -141,7 +163,8 @@ public class DbHandler extends SQLiteOpenHelper {
             Values += "'ozomdi" + i + "/@gmail.com'" + ",";
             Values +=  i + ",";
             Values +=  i + ",";
-            Values += (int)(Math.random() * 10);
+            Values += (int)(Math.random() * 10);/* + ",";
+            Values += (int)(Math.random() * 2)*/;
 
             Values += ")";
 
@@ -159,7 +182,8 @@ public class DbHandler extends SQLiteOpenHelper {
                 Values += "'ozomdi" + i + "/@gmail.com'" + ",";
                 Values +=  i + ",";
                 Values +=  i + ",";
-                Values += 10;
+                Values += 10;/* + ",";
+                Values += (int)(Math.random() * 2)*/;
 
                 Values += ")";
             }
@@ -177,7 +201,8 @@ public class DbHandler extends SQLiteOpenHelper {
                 Values += "'ozomdi" + i + "/@gmail.com'" + ",";
                 Values +=  i + ",";
                 Values +=  i + ",";
-                Values += 10;
+                Values += 10 /*+ ","*/;
+                //Values += (int)(Math.random() * 2);
 
                 Values += ")";
             }

@@ -20,7 +20,15 @@ public class Pet {
     private String Notes;
     private Bitmap Picture;
     private int Age;
+    private boolean isVirgin;
 
+    public boolean isVirgin() {
+        return isVirgin;
+    }
+
+    public void setVirgin(boolean virgin) {
+        isVirgin = virgin;
+    }
 
     public int getAge() {
         return Age;
