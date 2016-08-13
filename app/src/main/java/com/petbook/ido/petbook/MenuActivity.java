@@ -19,6 +19,7 @@ public class MenuActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
+
         btnAdopt = (Button) findViewById(R.id.btnAdopt);
         btnDeliver = (Button) findViewById(R.id.btnDeliver);
     }
