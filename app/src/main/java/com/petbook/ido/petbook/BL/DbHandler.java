@@ -172,6 +172,34 @@ public class DbHandler extends SQLiteOpenHelper {
         db.execSQL(this.INSERT_PET + values);
     }
 
+    public Pet getPetById(int nId){
+        String command = "SELECT * FROM Pets WHERE id = " + nId;
+        Cursor Res = db.rawQuery(command, null);
+        Pet p = null;
+
+        if(Res.getCount() != 0) {
+            Res.moveToFirst();
+            p = new Pet();
+            p.setName(Res.getString((0)));
+            p.setId(Res.getInt((1)));
+            p.setAndroidId(Res.getString((2)));
+            p.setGender(Res.getInt((3)));
+            p.setType(Res.getInt((4)));
+            p.setCondition(Res.getInt((5)));
+            p.setPhoneNumber(Res.getString((6)));
+            p.setLocation(Res.getInt((7)));
+            p.setEmail(Res.getString((8)));
+            p.setNotes(Res.getString((9)));
+            p.setAge(Res.getInt((11)));
+
+            boolean bToSet = Res.getInt(12) == 0 ? false : true;
+            p.setIsVirgin(bToSet);
+            p.setDealsWith(Res.getString((13)));
+        }
+
+        return p;
+    }
+
     private void insertMUCHAnimals(){
         String newPetInsertCommand;
 
