@@ -12,7 +12,14 @@
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="200dp"
-        android:id="@+id/imageView2"
+        android:id="@+id/imgPetImage"
         android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView3"
+        android:layout_alignTop="@+id/imgPetImage"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

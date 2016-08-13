@@ -9,5 +9,12 @@ public class PetDetailsActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_details);
+
+        this.InitFields();
     }
+
+    private void InitFields(){
+
+    }
+
 }

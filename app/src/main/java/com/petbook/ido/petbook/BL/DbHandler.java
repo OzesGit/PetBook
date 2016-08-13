@@ -48,9 +48,11 @@ public class DbHandler extends SQLiteOpenHelper {
             "\t`notes`\tTEXT,\n" +
             "\t`picture`\tBLOB,\n" +
             "\t`age`\tINTEGER,\n" +
+            "\t`isvirgin`\tINTEGER,\n" +
+            "\t`dealswith`\tTEXT,\n" +
             "\tPRIMARY KEY(id)\n" +
             ") ";
-
+            //"\t`isvirgin`\tINTEGER\n" +;
     private static String CREATE_SAVED_SEARCHES = "CREATE TABLE `SavedSearches` (\n" +
             "\t`phonenum`\tTEXT,\n" +
             "\t`id`\tINTEGER,\n" +
@@ -116,15 +118,16 @@ public class DbHandler extends SQLiteOpenHelper {
                 p.setAndroidId(Res.getString((2)));
                 p.setGender(Res.getInt((3)));
                 p.setType(Res.getInt((4)));
-                p.setCondition(Res.getString((5)));
+                p.setCondition(Res.getInt((5)));
                 p.setPhoneNumber(Res.getString((6)));
                 p.setLocation(Res.getInt((7)));
                 p.setEmail(Res.getString((8)));
                 p.setNotes(Res.getString((9)));
                 p.setAge(Res.getInt((11)));
 
-                //boolean bToSet = Res.getInt(12) == 0 ? false : true;
-                //p.setVirgin(bToSet);
+                boolean bToSet = Res.getInt(12) == 0 ? false : true;
+                p.setVirgin(bToSet);
+                p.setDealsWith(Res.getString((13)));
 
                 // FOR OZ !!!
                 if(nIndex == 0 || nIndex == 7){
@@ -147,6 +150,29 @@ public class DbHandler extends SQLiteOpenHelper {
 
     }
 
+    public void insertPet(Pet pet){
+        String values = "('%s', %d, '%s', %d, %d, %d, '%s', %d, '%s', '%s', %s, %d, %d, '%s')";
+        int nToSet = pet.isVirgin() ? 1 : 0;
+        values = String.format(values,
+                pet.getName(),
+                pet.getId(),
+                pet.getAndroidId(),
+                pet.getGender(),
+                pet.getType(),
+                pet.getCondition(),
+                pet.getPhoneNumber(),
+                pet.getLocation(),
+                pet.getEmail(),
+                pet.getNotes(),
+                pet.getPicture(),
+                pet.getAge(),
+                nToSet,
+                pet.getDealsWith());
+
+
+        db.execSQL(this.INSERT_PET + values);
+    }
+
     private void insertMUCHAnimals(){
         String newPetInsertCommand;
 
@@ -165,8 +191,9 @@ public class DbHandler extends SQLiteOpenHelper {
             Values += "'ozomdi" + i + "/@gmail.com'" + ",";
             Values +=  i + ",";
             Values +=  i + ",";
-            Values += (int)(Math.random() * 10);/* + ",";
-            Values += (int)(Math.random() * 2)*/;
+            Values += (int)(Math.random() * 10) + ",";
+            Values += (int)(Math.random() * 2) + ",";
+            Values += (int)(Math.random() * 4);
 
             Values += ")";
 
@@ -184,8 +211,9 @@ public class DbHandler extends SQLiteOpenHelper {
                 Values += "'ozomdi" + i + "/@gmail.com'" + ",";
                 Values +=  i + ",";
                 Values +=  i + ",";
-                Values += 10;/* + ",";
-                Values += (int)(Math.random() * 2)*/;
+                Values += 10 + ",";
+                Values += (int)(Math.random() * 2) + ",";
+                Values += (int)(Math.random() * 4);
 
                 Values += ")";
             }
@@ -203,8 +231,9 @@ public class DbHandler extends SQLiteOpenHelper {
                 Values += "'ozomdi" + i + "/@gmail.com'" + ",";
                 Values +=  i + ",";
                 Values +=  i + ",";
-                Values += 10 /*+ ","*/;
-                //Values += (int)(Math.random() * 2);
+                Values += 10 + ",";
+                Values += (int)(Math.random() * 2) +",";
+                Values += (int)(Math.random() * 4);
 
                 Values += ")";
             }
@@ -291,12 +320,16 @@ public class DbHandler extends SQLiteOpenHelper {
                 p.setAndroidId(Res.getString((2)));
                 p.setGender(Res.getInt((3)));
                 p.setType(Res.getInt((4)));
-                p.setCondition(Res.getString((5)));
+                p.setCondition(Res.getInt((5)));
                 p.setPhoneNumber(Res.getString((6)));
                 p.setLocation(Res.getInt((7)));
                 p.setEmail(Res.getString((8)));
                 p.setNotes(Res.getString((9)));
                 p.setAge(Res.getInt((11)));
+
+                boolean bToSet = Res.getInt(12) == 0 ? false : true;
+                p.setVirgin(bToSet);
+                p.setDealsWith(Res.getString((13)));
 
                 lstRet.add(p);
             }
@@ -323,7 +356,7 @@ public class DbHandler extends SQLiteOpenHelper {
             p.setAndroidId(Res.getString((2)));
             p.setGender(Res.getInt((3)));
             p.setType(Res.getInt((4)));
-            p.setCondition(Res.getString((5)));
+            p.setCondition(Res.getInt((5)));
             p.setPhoneNumber(Res.getString((6)));
             p.setLocation(Res.getInt((7)));
             p.setEmail(Res.getString((8)));
@@ -352,7 +385,6 @@ public class DbHandler extends SQLiteOpenHelper {
 
         db.execSQL(strQuery);
     }
-
 
     public void LoadDbFromDropBox()
     {
