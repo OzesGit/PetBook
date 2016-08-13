@@ -4,6 +4,7 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 
 import com.petbook.ido.petbook.BL.Pet;
+import com.petbook.ido.petbook.BL.SearchData;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +20,7 @@ public class GlobalData {
     public static Map<Integer,String> mpTypes = new HashMap<Integer, String>();
     private static GlobalData gldInstance;
     public static List<Pet> lstChosenPets = new ArrayList<Pet>();
+    public static SearchData sdCurrSearch;
 
     public GlobalData(){
         this.setAnimalTypes();
@@ -31,6 +33,22 @@ public class GlobalData {
 
         return gldInstance;
     }
+
+    public void setSearchData(int nGender,
+                              int nType,
+                              String strCond,
+                              int nAreaID,
+                              int nMinAge,
+                              int nMaxAge)
+    {
+        sdCurrSearch = new SearchData(nGender,
+                                      nType,
+                                      strCond,
+                                      nAreaID,
+                                      nMinAge,
+                                      nMaxAge);
+    }
+
 
     public void setAreasIfNotSet()
     {

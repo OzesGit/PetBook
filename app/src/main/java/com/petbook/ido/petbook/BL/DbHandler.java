@@ -215,8 +215,7 @@ public class DbHandler extends SQLiteOpenHelper {
         return ExecutePetQuery(this.GET_ALL_PETS);
     }
 
-    public List<Pet> getSearchedPets(
-                                     int nGender,
+    public List<Pet> getSearchedPets(int nGender,
                                      int nType,
                                      String strCond,
                                      int nAreaID,

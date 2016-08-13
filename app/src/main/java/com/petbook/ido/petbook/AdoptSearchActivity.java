@@ -159,6 +159,7 @@ public class AdoptSearchActivity extends Activity {
         else
         {
             Intent intent = new Intent(getApplicationContext(), Popup.class);
+            GlobalData.getInstance().setSearchData(nGender, nAnimalType, strCondition, nAreaCode, nMinAge, nMaxAge);
 
             this.startActivity(intent);
         }
