@@ -169,7 +169,6 @@ public class DbHandler extends SQLiteOpenHelper {
                 nToSet,
                 pet.getDealsWith());
 
-
         db.execSQL(this.INSERT_PET + values);
     }
 
