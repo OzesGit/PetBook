@@ -28,9 +28,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="מין"
         android:id="@+id/genderTextView"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/nameTextView"
-        android:layout_alignRight="@+id/nameTextView" />
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/pickImagebutton"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -76,35 +76,20 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="גיל"
         android:id="@+id/textView4"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="33dp"
         android:layout_below="@+id/genderTextView"
-        android:layout_alignParentRight="true" />
-
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/agesSpinner"
-        android:layout_alignTop="@+id/textView4"
-        android:layout_alignRight="@+id/radioMale" />
+        android:layout_alignParentEnd="true" />
 
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/agesSpinner"
         android:layout_alignParentRight="true"
-        android:id="@+id/imageArea">
+        android:id="@+id/imageArea"
+        android:layout_alignTop="@+id/textView4">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="תמונה"
-        android:id="@+id/pickImagebutton"
-        android:layout_alignParentRight="true"
-        android:onClick="pickImage" />
-
-    <ImageButton
+        <ImageButton
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/imageButton"
@@ -129,19 +114,20 @@
         android:layout_height="wrap_content"
         android:text="כן"
         android:id="@+id/surgeryYes"
-        android:layout_alignBottom="@+id/surgeryTextView"
-        android:layout_toLeftOf="@+id/surgeryTextView"
         android:onClick="onClickSurgery"
-        android:checked="true" />
+        android:checked="true"
+        android:layout_alignBaseline="@+id/surgeryTextView"
+        android:layout_alignBottom="@+id/surgeryTextView"
+        android:layout_alignStart="@+id/radioUnknown" />
 
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="לא"
         android:id="@+id/surgeryNo"
-        android:layout_alignBottom="@+id/surgeryTextView"
-        android:layout_toLeftOf="@+id/surgeryYes"
-        android:onClick="onClickSurgery" />
+        android:onClick="onClickSurgery"
+        android:layout_alignTop="@+id/surgeryTextView"
+        android:layout_toStartOf="@+id/surgeryYes" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -158,8 +144,9 @@
         android:layout_height="wrap_content"
         android:text="ילדים"
         android:id="@+id/kidsCheckBox"
-        android:layout_alignTop="@+id/dealsWithTextView"
-        android:layout_alignRight="@+id/radioFemale" />
+        android:layout_alignBaseline="@+id/dealsWithTextView"
+        android:layout_alignBottom="@+id/dealsWithTextView"
+        android:layout_alignEnd="@+id/radioFemale" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -183,19 +170,20 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="תנאים"
         android:id="@+id/conditionsTextView"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="26dp"
         android:layout_below="@+id/catsCheckBox"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentEnd="true" />
 
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="דירה סגורה בלבד"
         android:id="@+id/closedApartmentRadio"
-        android:layout_alignTop="@+id/conditionsTextView"
-        android:layout_alignRight="@+id/radioFemale"
         android:onClick="onClickConditions"
-        android:checked="true" />
+        android:checked="true"
+        android:layout_alignBaseline="@+id/conditionsTextView"
+        android:layout_alignBottom="@+id/conditionsTextView"
+        android:layout_alignEnd="@+id/kidsCheckBox" />
 
     <RadioButton
         android:layout_width="wrap_content"
@@ -209,7 +197,7 @@
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="חדר"
+        android:text="חצר"
         android:id="@+id/roomRadio"
         android:layout_below="@+id/openApartmentRadio"
         android:layout_alignRight="@+id/closedApartmentRadio"
@@ -238,8 +226,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/locationsSpinner"
-        android:layout_alignTop="@+id/locationsTextView"
-        android:layout_alignRight="@+id/radioFemale" />
+        android:layout_alignBaseline="@+id/locationsTextView"
+        android:layout_alignBottom="@+id/locationsTextView"
+        android:layout_alignStart="@+id/pickImagebutton" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -300,11 +289,29 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="שליחה"
+        android:text="שמור"
         android:id="@+id/submitbutton"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/commentsTextView"
         android:layout_alignParentRight="true"
         android:onClick="submit" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/txtAge"
+        android:layout_above="@+id/surgeryYes"
+        android:layout_toStartOf="@+id/mailTextView" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="תמונה"
+        android:id="@+id/pickImagebutton"
+        android:onClick="pickImage"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/nameEditText" />
 
 </RelativeLayout></ScrollView>
