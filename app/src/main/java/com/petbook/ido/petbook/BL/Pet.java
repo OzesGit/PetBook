@@ -13,7 +13,7 @@ public class Pet {
     private String AndroidId;
     private int Gender;
     private int Type;
-    private String Condition;
+    private int Condition;
     private String PhoneNumber;
     private int Location;
     private String Email;
@@ -21,6 +21,16 @@ public class Pet {
     private Bitmap Picture;
     private int Age;
     private boolean isVirgin;
+    private String dealsWith;
+
+    public String getDealsWith() {
+        return dealsWith;
+    }
+
+    public void setDealsWith(String dealsWith) {
+        this.dealsWith = dealsWith;
+    }
+
 
     public boolean isVirgin() {
         return isVirgin;
@@ -77,11 +87,11 @@ public class Pet {
         PhoneNumber = phoneNumber;
     }
 
-    public String getCondition() {
+    public int getCondition() {
         return Condition;
     }
 
-    public void setCondition(String condition) {
+    public void setCondition(int condition) {
         Condition = condition;
     }
 
