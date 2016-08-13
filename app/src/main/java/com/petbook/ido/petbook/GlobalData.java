@@ -165,7 +165,7 @@ public class GlobalData {
         switch (nType) {
             case (0): { d = src.getDrawable(R.drawable.dog); break;}
             case (1):{ d = src.getDrawable(R.drawable.cat); break;}
-//            case (2):{ d = src.getDrawable(R.drawable.turtle); break;}
+            case (2):{ d = src.getDrawable(R.drawable.turtle); break;}
             case (3):{ d = src.getDrawable(R.drawable.donkey); break;}
             case (4):{ d = src.getDrawable(R.drawable.peacock); break;}
             case (5):{ d = src.getDrawable(R.drawable.turkey); break;}
