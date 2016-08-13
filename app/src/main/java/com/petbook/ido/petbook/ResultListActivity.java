@@ -39,9 +39,16 @@ public class ResultListActivity extends Activity {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent t = new Intent(getApplicationContext(),AdoptSearchActivity.class);
-                t.putExtra("petType",getIntent().getStringExtra("petType"));
-                startActivity(t);
+                if(GlobalData.getInstance().getFromWhere().equals("search"))
+                {
+                    finish();
+                }
+                else
+                {
+                    Intent t = new Intent(getApplicationContext(),AdoptSearchActivity.class);
+                    t.putExtra("petType",getIntent().getStringExtra("petType"));
+                    startActivity(t);
+                }
             }
         });
         scrlScrol.addView(llLayout);

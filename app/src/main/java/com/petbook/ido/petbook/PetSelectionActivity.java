@@ -81,6 +81,7 @@ public class PetSelectionActivity extends Activity {
                 {
                     intent = new Intent(getApplicationContext(), ResultListActivity.class);
                     intent.putExtra("petType", strType);
+                    GlobalData.getInstance().setWhereSelection();
                 }
                 else
                 {

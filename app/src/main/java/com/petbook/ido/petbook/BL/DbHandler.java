@@ -307,6 +307,35 @@ public class DbHandler extends SQLiteOpenHelper {
         return lstRet;
     }
 
+    public List<Pet> getOwnedPet(String strAndroidID)
+    {
+        List<Pet> lstRet = new ArrayList<Pet>();
+        String strQuery = "SELECT * FROM Pets WHERE androidid = " + strAndroidID;
+
+        Cursor Res = db.rawQuery(strQuery, null);
+        Res.moveToFirst();
+
+        for(int nIndex = 0; nIndex < Res.getCount(); nIndex++)
+        {
+            Pet p = new Pet();
+            p.setName(Res.getString((0)));
+            p.setId(Res.getInt((1)));
+            p.setAndroidId(Res.getString((2)));
+            p.setGender(Res.getInt((3)));
+            p.setType(Res.getInt((4)));
+            p.setCondition(Res.getString((5)));
+            p.setPhoneNumber(Res.getString((6)));
+            p.setLocation(Res.getInt((7)));
+            p.setEmail(Res.getString((8)));
+            p.setNotes(Res.getString((9)));
+            p.setAge(Res.getInt((11)));
+
+            lstRet.add(p);
+        }
+
+        return lstRet;
+    }
+
     public void addSearchSaved(SearchData searchData)
     {
         int nId = this.GetNextSeqForOz("id");

@@ -41,9 +41,7 @@ public class Popup extends Activity {
 
     public void onClickBack(View view) {
 
-        Intent intent = new Intent(getApplicationContext(), AdoptSearchActivity.class);
-
-        startActivity(intent);
+        finish();
 
     }
 }

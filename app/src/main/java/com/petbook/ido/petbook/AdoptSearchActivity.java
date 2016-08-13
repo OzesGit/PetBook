@@ -154,6 +154,7 @@ public class AdoptSearchActivity extends Activity {
             GlobalData.getInstance().setLstChosenPets(lstPet);
             Intent intent = new Intent(getApplicationContext(), ResultListActivity.class);
             intent.putExtra("Filter",true);
+            GlobalData.getInstance().setWhereSearch();
             this.startActivity(intent);
         }
         else

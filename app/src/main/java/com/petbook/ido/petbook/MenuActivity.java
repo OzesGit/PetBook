@@ -3,11 +3,17 @@ package com.petbook.ido.petbook;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.Toast;
+
+import com.petbook.ido.petbook.BL.DbHandler;
+import com.petbook.ido.petbook.BL.Pet;
+
+import java.util.List;
 
 public class MenuActivity extends Activity {
 
@@ -97,6 +103,17 @@ public class MenuActivity extends Activity {
     }
 
     public void onClickPersonalArea(View view) {
+        String strAndroidID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+
+        List<Pet> lstPet = DbHandler.getInstance(this.getApplicationContext()).getOwnedPet(strAndroidID);
+
+        if(lstPet.size() > 0)
+        {
+            Intent intent = new Intent(this.getApplicationContext(), ResultListActivity.class);
+
+
+            this.startActivity(intent);
+        }
 
     }
 }
