@@ -20,6 +20,7 @@ public class Pet {
     private String Notes;
     private Bitmap Picture;
     private int Age;
+    private int Areacode;
     private boolean isVirgin;
     private String dealsWith;
 
@@ -30,7 +31,13 @@ public class Pet {
     public void setDealsWith(String dealsWith) {
         this.dealsWith = dealsWith;
     }
+    public int getAreacode() {
+        return Areacode;
+    }
 
+    public void setAreacode(int areacode) {
+        Areacode = areacode;
+    }
 
     public boolean getIsVirgin() {
         return isVirgin;
