@@ -13,7 +13,12 @@ public class Enums {
     public enum Type {
         DOG,
         CAT,
-        TURTLE
+        TURTLE,
+        DONKEY,
+        PEACOC,
+        TURKEY,
+        HORSE,
+        HAMUS
     }
 
     public enum Age {

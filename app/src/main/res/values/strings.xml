@@ -3,7 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_pet_list">Pets</string>
     <string name="title_pet_detail">Pet Detail</string>
-    <string name="title_activity_adopt">AdoptActivity</string>
+    <string name="title_activity_adopt">ממסך חיפוש</string>
 
     <string-array name="Areas">
 

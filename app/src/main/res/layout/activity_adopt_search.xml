@@ -35,10 +35,10 @@
         android:layout_height="wrap_content"
         android:text="זכר"
         android:id="@+id/rbMale"
+        android:onClick="onClickGender"
+        android:checked="false"
         android:layout_alignTop="@+id/tvGender"
-        android:layout_toStartOf="@+id/tvGender"
-        android:layout_marginEnd="58dp"
-        android:onClick="onClickGender"/>
+        android:layout_toStartOf="@+id/tvArea" />
 
     <RadioButton
         android:layout_width="wrap_content"
@@ -129,8 +129,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
-        android:layout_alignTop="@+id/tvArea"
-        android:layout_alignParentStart="true" />
+        android:layout_alignBottom="@+id/tvArea"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/rbMale" />
 
     <Button
         android:layout_width="wrap_content"
@@ -141,5 +142,15 @@
         android:layout_toStartOf="@+id/rbFemale"
         android:clickable="true"
         android:onClick="onClickSearch" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="לא ידוע"
+        android:id="@+id/rbUnknown"
+        android:onClick="onClickGender"
+        android:checked="false"
+        android:layout_alignTop="@+id/rbFemale"
+        android:layout_alignStart="@+id/button" />
 
 </RelativeLayout>

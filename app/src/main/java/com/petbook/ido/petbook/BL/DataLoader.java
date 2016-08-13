@@ -26,18 +26,12 @@ public class DataLoader {
         Map<String,String> dicAnimalTypes = new HashMap<String,String>();
         dicAnimalTypes.put("dog","כלב");
         dicAnimalTypes.put("cat","חתול");
-        dicAnimalTypes.put("1","חתול");
-        dicAnimalTypes.put("2","כלב");
-        dicAnimalTypes.put("3","חתול");
-        dicAnimalTypes.put("4","כלב");
-        dicAnimalTypes.put("5","חתול");
-        dicAnimalTypes.put("63","חתול");
-        dicAnimalTypes.put("332","כלב");
-        dicAnimalTypes.put("2133","חתול");
-        dicAnimalTypes.put("4564","כלב");
-        dicAnimalTypes.put("16885","חתול");
-        dicAnimalTypes.put("64","חתול");
-
+        dicAnimalTypes.put("turkey","תרנגול");
+        dicAnimalTypes.put("turtle","צב");
+        dicAnimalTypes.put("donkey","חמור");
+        dicAnimalTypes.put("horse","סוס");
+        dicAnimalTypes.put("peacock","טווס");
+        dicAnimalTypes.put("humus","חמוס");
         return dicAnimalTypes;
     }
 

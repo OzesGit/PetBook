@@ -1,5 +1,8 @@
 package com.petbook.ido.petbook;
 
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+
 import com.petbook.ido.petbook.BL.Pet;
 
 import java.util.ArrayList;
@@ -18,7 +21,7 @@ public class GlobalData {
     public static List<Pet> lstChosenPets = new ArrayList<Pet>();
 
     public GlobalData(){
-
+        this.setAnimalTypes();
     }
 
     public static GlobalData getInstance(){
@@ -44,13 +47,18 @@ public class GlobalData {
         }
     }
 
-    public void setAnimalTypes()
+    private void setAnimalTypes()
     {
         if(mpTypes.size() == 0)
         {
             mpTypes.put(Enums.Type.DOG.ordinal(), "כלב");
             mpTypes.put(Enums.Type.CAT.ordinal(), "חתול");
             mpTypes.put(Enums.Type.TURTLE.ordinal(), "צב");
+            mpTypes.put(Enums.Type.DONKEY.ordinal(), "חמור");
+            mpTypes.put(Enums.Type.PEACOC.ordinal(), "טווס");
+            mpTypes.put(Enums.Type.HORSE.ordinal(), "סוס");
+            mpTypes.put(Enums.Type.HAMUS.ordinal(), "חמוס");
+            mpTypes.put(Enums.Type.TURKEY.ordinal(), "תרנגול");
         }
     }
 
@@ -78,6 +86,11 @@ public class GlobalData {
         return 0;
     }
 
+    public String getTypeName(int nKey)
+    {
+        return mpTypes.get(nKey);
+    }
+
     public void setLstChosenPets(List<Pet> lstPet){
         lstChosenPets = lstPet;
     }
@@ -85,6 +98,23 @@ public class GlobalData {
     public List<Pet> getLstChosenPets()
     {
         return lstChosenPets;
+    }
+
+    public Drawable getImageByAnimalName(Resources src, int strType)
+    {
+        Drawable d = null;
+        switch (strType) {
+            case (1): { d = src.getDrawable(R.drawable.dog); break;}
+            case (2):{ d = src.getDrawable(R.drawable.cat); break;}
+            case (3):{ d = src.getDrawable(R.drawable.turkey); break;}
+//            case (4):{ d = src.getDrawable(R.drawable.turtle); break;}
+            case (5):{ d = src.getDrawable(R.drawable.donkey); break;}
+            case (6):{ d = src.getDrawable(R.drawable.horse); break;}
+            case (7):{ d = src.getDrawable(R.drawable.peacock); break;}
+            case (8):{ d = src.getDrawable(R.drawable.humus); break;}
+            default: { d = src.getDrawable(R.drawable.shadow); break; }
+        }
+        return  d;
     }
 
 
