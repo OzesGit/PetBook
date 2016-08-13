@@ -488,7 +488,9 @@ public class DbHandler extends SQLiteOpenHelper {
 
         if (cursor.getCount() > 0)
         {
-            return cursor.getString(0).toString();
+            String string = cursor.getString(0).toString();
+
+            return  string;
         }
         else
         {
