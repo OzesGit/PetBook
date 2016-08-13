@@ -2,6 +2,7 @@ package com.petbook.ido.petbook;
 
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.widget.Switch;
 
 import com.petbook.ido.petbook.BL.Pet;
 import com.petbook.ido.petbook.BL.SearchData;
@@ -99,6 +100,23 @@ public class GlobalData {
         return 0;
     }
 
+    public String getAreaString(int nKey)
+    {
+        return mpAreas.get(nKey);
+    }
+
+    public String getGender(int nEnum)
+    {
+        int nEnumNum = Enums.Gender.MALE.ordinal();
+        switch(nEnum)
+        {
+            case(0): return "זכר";
+            case(1): return "נקבה";
+        }
+
+        return "לא ידוע";
+    }
+
     public void setWhereSearch()
     {
         fromWhere = "search";
@@ -113,7 +131,6 @@ public class GlobalData {
     {
         return fromWhere;
     }
-
 
     public int getTypeID(String strName)
     {
