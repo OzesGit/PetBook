@@ -7,6 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import com.petbook.ido.petbook.Enums;
 
@@ -33,9 +34,10 @@ public class DbHandler extends SQLiteOpenHelper {
     private static Context mContext;
     private SQLiteDatabase db;
     private static String DROP_TABLES = "DROP TABLE `Pets`;";
+    private static String DROP_SEARCHES = "DROP TABLE 'SavedSearches'";
     private static String CREATE_PETS = "CREATE TABLE `Pets` (\n" +
             "\t`name`\tTEXT,\n" +
-            "\t`id`\tINTEGER NOT NULL,\n" +
+            "\t`id`\tINTEGER,\n" +
             "\t`androidid`\tTEXT,\n" +
             "\t`gender`\tINTEGER,\n" +
             "\t`type`\tINTEGER,\n" +
@@ -45,18 +47,20 @@ public class DbHandler extends SQLiteOpenHelper {
             "\t`email`\tTEXT,\n" +
             "\t`notes`\tTEXT,\n" +
             "\t`picture`\tBLOB,\n" +
-            "\t`age`\tINTEGER\n" +
-            //"\t`isvirgin`\tINTEGER\n" +
-            ");";
-    private static String CREATE_SAVED_SEARCHES = "CREATE TABLE `SavedSearches` (\n" +
-            "\t`androidid`\tTEXT,\n" +
-            "\t`phonenum`\tTEXT,\n" +
             "\t`age`\tINTEGER,\n" +
+            "\tPRIMARY KEY(id)\n" +
+            ") ";
+            //"\t`isvirgin`\tINTEGER\n" +;
+    private static String CREATE_SAVED_SEARCHES = "CREATE TABLE `SavedSearches` (\n" +
+            "\t`phonenum`\tTEXT,\n" +
+            "\t`id`\tINTEGER,\n" +
+            "\t`minage`\tINTEGER,\n" +
+            "\t`maxage`\tINTEGER,\n" +
             "\t`gender`\tINTEGER,\n" +
             "\t`areacode`\tINTEGER,\n" +
             "\t`animaltype`\tINTEGER,\n" +
             "\t`condition`\tTEXT,\n" +
-            "\tPRIMARY KEY(androidid,phonenum)\n" +
+            "\tPRIMARY KEY(phonenum, id)\n" +
             ");";
 
     private static String INSERT_PET = "INSERT INTO Pets Values ";
@@ -81,19 +85,17 @@ public class DbHandler extends SQLiteOpenHelper {
     private  void DropTables(){
         try {
             db.execSQL(this.DROP_TABLES);
-            commit(db);
+            db.execSQL(this.DROP_SEARCHES);
         }
         catch (Exception ex){
 
         }
         try {
             db.execSQL(this.CREATE_PETS);
-            commit(db);
             db.execSQL(this.CREATE_SAVED_SEARCHES);
-            commit(db);
         }
         catch (Exception ex){
-
+            ex.printStackTrace();
         }
     }
 
@@ -307,8 +309,19 @@ public class DbHandler extends SQLiteOpenHelper {
 
     public void addSearchSaved(SearchData searchData)
     {
-        String strQuery = "INSERT INTO Saved_Searches VALUES( ";
+        int nId = this.GetNextSeqForOz("id");
 
+        String strQuery = "INSERT INTO SavedSearches " +
+                          "VALUES( " + nId + ", " +
+                                 "'" + searchData.getStrPhonenum() + "', " +
+                                     + searchData.getnMinAge() + ", "
+                                     + searchData.getnMaxAge() + ", "
+                                     + searchData.getnGender() + ", "
+                                     + searchData.getnAreaCode() + ", "
+                                     + searchData.getnAnimalType() + ", '"
+                                     + searchData.getStrCondition() + "' );";
+
+        db.execSQL(strQuery);
     }
 
 
@@ -329,6 +342,14 @@ public class DbHandler extends SQLiteOpenHelper {
     }
     public int GetNextSeq(String strColName){
         String strCommand = "SELECT MAX(" + strColName + ") FROM Pets";
+        Cursor Res = db.rawQuery(strCommand,null);
+
+        Res.moveToFirst();
+        return Res.getInt(0) + 1;
+    }
+
+    public int GetNextSeqForOz(String strColName){
+        String strCommand = "SELECT MAX(" + strColName + ") FROM SavedSearches";
         Cursor Res = db.rawQuery(strCommand,null);
 
         Res.moveToFirst();
