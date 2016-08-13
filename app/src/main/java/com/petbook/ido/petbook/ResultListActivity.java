@@ -69,8 +69,14 @@ public class ResultListActivity extends Activity {
         {
             PetItemControl cont = new PetItemControl(this,ptPet);
             cont.SetSize(display.getWidth(),display.getHeight());
-            cont.requestLayout();
+            cont.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
+                }
+            });
+
+            cont.requestLayout();
             if(zebra)
             {
                 cont.setBackgroundColor(Color.LTGRAY);

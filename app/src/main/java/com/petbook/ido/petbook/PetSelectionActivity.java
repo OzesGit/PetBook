@@ -93,7 +93,7 @@ public class PetSelectionActivity extends Activity {
             }
         });
         // Read your drawable from somewhere
-        Drawable dr = GlobalData.getInstance().getImageByAnimalName(getResources(),strKey);
+        Drawable dr = GlobalData.getInstance().getImageByAnimalName(getResources(),GlobalData.getInstance().getTypeID(strText));
 
         Bitmap bitmap = ((BitmapDrawable) dr).getBitmap();
         // Scale it to 50 x 50

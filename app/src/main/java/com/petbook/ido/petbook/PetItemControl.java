@@ -40,7 +40,7 @@ public class PetItemControl extends LinearLayout{
 
     }
 
-    public PetItemControl(Context context,String name,Bitmap btmpImage)
+    public PetItemControl(Context context,String name,int type,Bitmap btmpImage)
     {
         this(context);
         String txt = "שם:" + name;
@@ -54,14 +54,14 @@ public class PetItemControl extends LinearLayout{
             this.imgPhoto.setBackground(img);// setImageBitmap(img);
         }
         else {
-            Drawable myIcon = getResources().getDrawable( R.drawable.shadow );
+            Drawable myIcon = GlobalData.getInstance().getImageByAnimalName(getResources(),type);
             this.imgPhoto.setImageDrawable(myIcon);
         }
     }
 
     public PetItemControl(Context context,Pet ptPet)
     {
-        this(context,ptPet.getName(),ptPet.getPicture());
+        this(context,ptPet.getName(),ptPet.getType(),ptPet.getPicture());
     }
 
     public void SetSize(int width,int height)
