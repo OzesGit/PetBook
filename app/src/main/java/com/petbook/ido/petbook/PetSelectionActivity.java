@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ScrollView;
@@ -64,9 +65,10 @@ public class PetSelectionActivity extends Activity {
         int width = display.getWidth() / itemsInRow;
         int height = (int) (display.getHeight() * btnHegihtPercent);
 
-        btn.setTextColor(Color.WHITE);
-        btn.setTextSize(20);
+        btn.setTextColor(Color.DKGRAY);
+        btn.setTextSize(30);
         btn.setText(strText);
+        btn.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL);
         btn.setHeight(height);
         btn.setWidth(width);
         btn.setOnClickListener(new View.OnClickListener() {
