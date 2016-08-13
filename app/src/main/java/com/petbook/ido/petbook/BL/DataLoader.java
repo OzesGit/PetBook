@@ -40,4 +40,5 @@ public class DataLoader {
 
         return dicAnimalTypes;
     }
+
 }

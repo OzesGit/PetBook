@@ -1,15 +1,10 @@
 package com.petbook.ido.petbook;
 
-import android.provider.CalendarContract;
-import android.support.annotation.NonNull;
+import com.petbook.ido.petbook.BL.Pet;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Dictionary;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
 
 /**
@@ -18,8 +13,9 @@ import java.util.Map;
 public class GlobalData {
 
     public static Map<Integer,String> mpAreas = new HashMap<Integer, String>();
+    public static Map<Integer,String> mpTypes = new HashMap<Integer, String>();
     private static GlobalData gldInstance;
-
+    public static List<Pet> lstChosenPets = new ArrayList<Pet>();
 
     public GlobalData(){
 
@@ -48,6 +44,16 @@ public class GlobalData {
         }
     }
 
+    public void setAnimalTypes()
+    {
+        if(mpTypes.size() == 0)
+        {
+            mpTypes.put(Enums.Type.DOG.ordinal(), "כלב");
+            mpTypes.put(Enums.Type.CAT.ordinal(), "חתול");
+            mpTypes.put(Enums.Type.TURTLE.ordinal(), "צב");
+        }
+    }
+
     public int getAreaID(String strName)
     {
         for ( Integer nKey : mpAreas.keySet() ) {
@@ -59,5 +65,27 @@ public class GlobalData {
 
         return 0;
     }
+
+    public int getTypeID(String strName)
+    {
+        for ( Integer nKey : mpTypes.keySet() ) {
+            if (mpTypes.get(nKey).equals(strName))
+            {
+                return nKey.intValue();
+            }
+        }
+
+        return 0;
+    }
+
+    public void setLstChosenPets(List<Pet> lstPet){
+        lstChosenPets = lstPet;
+    }
+
+    public List<Pet> getLstChosenPets()
+    {
+        return lstChosenPets;
+    }
+
 
 }

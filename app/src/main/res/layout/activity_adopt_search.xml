@@ -65,9 +65,20 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
+        android:hint="מגיל"
         android:id="@+id/etAge"
+        android:layout_above="@+id/textView3"
+        android:layout_alignStart="@+id/rbMale" />
+
+    <EditText
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:hint="עד גיל"
+        android:id="@+id/etMaxAge"
         android:layout_alignBottom="@+id/textView2"
-        android:layout_alignEnd="@+id/rbMale" />
+        android:layout_alignEnd="@+id/rbFemale" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -93,7 +104,8 @@
         android:text="כלבים"
         android:id="@+id/cbDogs"
         android:layout_below="@+id/cbKids"
-        android:layout_alignStart="@+id/cbKids" />
+        android:layout_alignStart="@+id/cbKids"
+        android:checked="false" />
 
     <CheckBox
         android:layout_width="wrap_content"
