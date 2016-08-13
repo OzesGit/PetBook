@@ -165,7 +165,12 @@ public class DbHandler extends SQLiteOpenHelper {
         preparedStatement.bindLong(8, pet.getLocation());
         preparedStatement.bindString(9, pet.getEmail());
         preparedStatement.bindString(10, pet.getNotes());
-        preparedStatement.bindBlob(11, pet.getPicture());
+        if(pet.getPicture() != null) {
+            preparedStatement.bindBlob(11, pet.getPicture());
+        }
+        else{
+            preparedStatement.bindBlob(11, new byte[5]);
+        }
         preparedStatement.bindLong(12, pet.getAge());
         preparedStatement.bindLong(13, nToSet);
         preparedStatement.bindString(14, pet.getDealsWith());

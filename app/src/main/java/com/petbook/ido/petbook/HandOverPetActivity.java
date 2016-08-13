@@ -271,7 +271,9 @@ public class HandOverPetActivity extends ActionBarActivity {
         pet.setLocation(currLocation);
         pet.setEmail(mailEditText.getText().toString());
         pet.setNotes(commentsEditText.getText().toString());
-        pet.setPicture(this.readFile(imagePath));
+        if(imagePath != null && !imagePath.equals("")) {
+            pet.setPicture(this.readFile(imagePath));
+        }
         pet.setAge(Integer.parseInt(this.txtAge.getText().toString()));
         pet.setIsVirgin(currVirgin);
 
