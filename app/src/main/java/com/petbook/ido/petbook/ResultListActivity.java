@@ -8,6 +8,7 @@ import android.widget.ScrollView;
 import com.petbook.ido.petbook.BL.DbHandler;
 import com.petbook.ido.petbook.BL.Pet;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ResultListActivity extends ActionBarActivity {
@@ -18,6 +19,7 @@ public class ResultListActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.petsControls = new ArrayList<PetItemControl>();
         List<Pet> pets = GlobalData.getInstance().getLstChosenPets();
         this.llLayout = new LinearLayout(this);
         this.scrlScrol = new ScrollView(this);
