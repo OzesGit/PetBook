@@ -284,6 +284,8 @@ public class HandOverPetActivity extends ActionBarActivity {
         pet.setDealsWith(dealsWith);
 
         DbHandler.getInstance(null).insertPet(pet);
+
+        finish();
     }
 
 }
