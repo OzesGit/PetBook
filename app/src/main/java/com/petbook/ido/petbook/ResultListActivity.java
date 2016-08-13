@@ -89,7 +89,7 @@ public class ResultListActivity extends Activity {
                     public void onClick(View v) {
 
                         Intent i = new Intent(getApplicationContext(),PetDetailsActivity.class);
-//                        i.putExtra("petId",);
+                        i.putExtra("petId",1);
                         startActivity(i);
                     }
                 }
