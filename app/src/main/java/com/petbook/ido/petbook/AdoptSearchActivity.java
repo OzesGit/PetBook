@@ -1,5 +1,6 @@
 package com.petbook.ido.petbook;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -22,7 +23,7 @@ import java.util.List;
 
 import javax.microedition.khronos.opengles.GL;
 
-public class AdoptSearchActivity extends ActionBarActivity {
+public class AdoptSearchActivity extends Activity {
 
     private Spinner spinner;
     private ArrayAdapter<CharSequence> adapter;
