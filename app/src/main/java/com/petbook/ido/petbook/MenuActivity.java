@@ -110,7 +110,8 @@ public class MenuActivity extends Activity {
         if(lstPet.size() > 0)
         {
             Intent intent = new Intent(this.getApplicationContext(), ResultListActivity.class);
-
+            intent.putExtra("perArea", true);
+            GlobalData.getInstance().setLstChosenPets(lstPet);
 
             this.startActivity(intent);
         }
