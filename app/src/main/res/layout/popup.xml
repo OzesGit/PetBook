@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:inputType="phone"
         android:ems="10"
-        android:id="@+id/editText5"
+        android:id="@+id/etPhone"
         android:hint="הכנס מס' טלפון"
         android:layout_above="@+id/btnBack"
         android:layout_alignEnd="@+id/btnSave"

@@ -49,6 +49,12 @@ public class GlobalData {
                                       nMaxAge);
     }
 
+    public SearchData getSdCurrSearch()
+    {
+        return sdCurrSearch;
+    }
+
+
 
     public void setAreasIfNotSet()
     {

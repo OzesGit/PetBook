@@ -11,6 +11,7 @@ public class SearchData {
     private int nAreaCode;
     private int nMinAge;
     private int nMaxAge;
+    private String strPhonenum;
 
     public SearchData(int nGender, int nAnimalType, String strCondition, int nAreaCode, int nMinAge, int nMaxAge) {
         this.nGender = nGender;
@@ -19,6 +20,14 @@ public class SearchData {
         this.nAreaCode = nAreaCode;
         this.nMinAge = nMinAge;
         this.nMaxAge = nMaxAge;
+    }
+
+    public String getStrPhonenum() {
+        return strPhonenum;
+    }
+
+    public void setStrPhonenum(String strPhonenum) {
+        this.strPhonenum = strPhonenum;
     }
 
     public int getnGender() {
