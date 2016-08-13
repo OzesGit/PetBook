@@ -118,22 +118,20 @@ public class GlobalData {
         return lstChosenPets;
     }
 
-    public Drawable getImageByAnimalName(Resources src, int strType)
+    public Drawable getImageByAnimalName(Resources src, int nType)
     {
         Drawable d = null;
-        switch (strType) {
-            case (1): { d = src.getDrawable(R.drawable.dog); break;}
-            case (2):{ d = src.getDrawable(R.drawable.cat); break;}
-            case (3):{ d = src.getDrawable(R.drawable.turkey); break;}
-//            case (4):{ d = src.getDrawable(R.drawable.turtle); break;}
-            case (5):{ d = src.getDrawable(R.drawable.donkey); break;}
+        switch (nType) {
+            case (0): { d = src.getDrawable(R.drawable.dog); break;}
+            case (1):{ d = src.getDrawable(R.drawable.cat); break;}
+//            case (2):{ d = src.getDrawable(R.drawable.turtle); break;}
+            case (3):{ d = src.getDrawable(R.drawable.donkey); break;}
+            case (4):{ d = src.getDrawable(R.drawable.peacock); break;}
+            case (5):{ d = src.getDrawable(R.drawable.turkey); break;}
             case (6):{ d = src.getDrawable(R.drawable.horse); break;}
-            case (7):{ d = src.getDrawable(R.drawable.peacock); break;}
-            case (8):{ d = src.getDrawable(R.drawable.humus); break;}
+            case (7):{ d = src.getDrawable(R.drawable.humus); break;}
             default: { d = src.getDrawable(R.drawable.shadow); break; }
         }
         return  d;
     }
-
-
 }
