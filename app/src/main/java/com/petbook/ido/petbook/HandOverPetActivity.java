@@ -274,11 +274,11 @@ public class HandOverPetActivity extends ActionBarActivity {
 
         String dealsWith = "";
         if(kidsCheckBox.isChecked())
-            dealsWith += Enums.DEALS_WITH.CHILDREN;
+            dealsWith += Enums.DEALS_WITH.CHILDREN.ordinal();
         if(catsCheckBox.isChecked())
-            dealsWith += Enums.DEALS_WITH.CATS;
+            dealsWith += Enums.DEALS_WITH.CATS.ordinal();
         if(dogsCheckBox.isChecked())
-            dealsWith += Enums.DEALS_WITH.DOGS;
+            dealsWith += Enums.DEALS_WITH.DOGS.ordinal();
         pet.setDealsWith(dealsWith);
 
         DbHandler.getInstance(null).insertPet(pet);
