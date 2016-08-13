@@ -25,7 +25,7 @@ import java.util.Random;
 public class DbHandler extends SQLiteOpenHelper {
     private static DbHandler Instance;
     private static String DATABASE_PATH = "/data/data/petbook/databases/";
-    private static String DATABASE_NAME = "pets1.db";
+    private static String DATABASE_NAME = "petss.db";
     private static SQLiteDatabase myDataBase;
     private static Context mContext;
     private SQLiteDatabase db;
@@ -50,8 +50,8 @@ public class DbHandler extends SQLiteOpenHelper {
     public DbHandler(Context context) {
         super(context, DATABASE_NAME, null, 1);
         mContext = context;
-        db = this.getWritableDatabase();
-        this.onCreate(db);
+        this.db = this.getWritableDatabase();
+        insertMUCHAnimals();
     }
 
     public static DbHandler getInstance(Context context)
@@ -78,8 +78,6 @@ public class DbHandler extends SQLiteOpenHelper {
         catch (Exception ex){
 
         }
-
-        insertMUCHAnimals();
     }
 
     private void insertMUCHAnimals(){
