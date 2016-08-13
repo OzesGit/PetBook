@@ -40,7 +40,7 @@ public class ResultListActivity extends Activity {
         if(!blPerarea)
         {
             btnSearch = new Button(this);
-            btnSearch.setBackgroundColor(Color.argb(255,19, 7, 58));
+            btnSearch.setBackgroundColor(Color.argb(170,19, 7, 58));
             btnSearch.setText("חיפוש");
             btnSearch.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -98,11 +98,11 @@ public class ResultListActivity extends Activity {
             cont.requestLayout();
             if(zebra)
             {
-                cont.setBackgroundColor(Color.argb(255,20, 115, 20));
+                cont.setBackgroundColor(Color.argb(170,20, 115, 20));
                 zebra = false;
             }
             else{
-                cont.setBackgroundColor(Color.argb(255,0, 60, 0));
+                cont.setBackgroundColor(Color.argb(170,0, 60, 0));
                 zebra = true;
             }
 
