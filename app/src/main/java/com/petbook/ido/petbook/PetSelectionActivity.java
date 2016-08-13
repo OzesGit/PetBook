@@ -72,6 +72,7 @@ public class PetSelectionActivity extends ActionBarActivity {
                 {
                     intent = new Intent(getApplicationContext(), ResultListActivity.class);
                     intent.putExtra("petType", strType);
+                    GlobalData.getInstance().setWhereSelection();
                 }
                 else
                 {

@@ -7,6 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import com.petbook.ido.petbook.Enums;
 
@@ -33,9 +34,10 @@ public class DbHandler extends SQLiteOpenHelper {
     private static Context mContext;
     private SQLiteDatabase db;
     private static String DROP_TABLES = "DROP TABLE `Pets`;";
+    private static String DROP_SEARCHES = "DROP TABLE 'SavedSearches'";
     private static String CREATE_PETS = "CREATE TABLE `Pets` (\n" +
             "\t`name`\tTEXT,\n" +
-            "\t`id`\tINTEGER NOT NULL,\n" +
+            "\t`id`\tINTEGER,\n" +
             "\t`androidid`\tTEXT,\n" +
             "\t`gender`\tINTEGER,\n" +
             "\t`type`\tINTEGER,\n" +
@@ -52,14 +54,15 @@ public class DbHandler extends SQLiteOpenHelper {
             ") ";
             //"\t`isvirgin`\tINTEGER\n" +;
     private static String CREATE_SAVED_SEARCHES = "CREATE TABLE `SavedSearches` (\n" +
-            "\t`androidid`\tTEXT,\n" +
             "\t`phonenum`\tTEXT,\n" +
-            "\t`age`\tINTEGER,\n" +
+            "\t`id`\tINTEGER,\n" +
+            "\t`minage`\tINTEGER,\n" +
+            "\t`maxage`\tINTEGER,\n" +
             "\t`gender`\tINTEGER,\n" +
             "\t`areacode`\tINTEGER,\n" +
             "\t`animaltype`\tINTEGER,\n" +
             "\t`condition`\tTEXT,\n" +
-            "\tPRIMARY KEY(androidid,phonenum)\n" +
+            "\tPRIMARY KEY(phonenum, id)\n" +
             ");";
 
     private static String INSERT_PET = "INSERT INTO Pets Values ";
@@ -81,22 +84,20 @@ public class DbHandler extends SQLiteOpenHelper {
         return (Instance);
     }
 
-    private void DropTables(){
+    private  void DropTables(){
         try {
             db.execSQL(this.DROP_TABLES);
-            commit(db);
+            db.execSQL(this.DROP_SEARCHES);
         }
         catch (Exception ex){
 
         }
         try {
             db.execSQL(this.CREATE_PETS);
-            commit(db);
             db.execSQL(this.CREATE_SAVED_SEARCHES);
-            commit(db);
         }
         catch (Exception ex){
-
+            ex.printStackTrace();
         }
     }
 
@@ -247,7 +248,7 @@ public class DbHandler extends SQLiteOpenHelper {
 
     public List<Pet> getSearchedPets(int nGender,
                                      int nType,
-                                     String strCond,
+                                     String strDealsWith,
                                      int nAreaID,
                                      int nMinAge,
                                      int nMaxAge)
@@ -277,33 +278,33 @@ public class DbHandler extends SQLiteOpenHelper {
                         "conditions = '02' OR conditions = '12' OR " +
                         "conditions = '1' OR conditions = '2' OR conditions = '0' )";
         }
-        else*/ if(strCond.length() == 1)
+        else*/ if(strDealsWith.length() == 1)
         {
-            if(strCond.equals("0")){
-                strQuery += " AND ( conditions = '012' OR conditions = '01' OR conditions = '02' OR conditions = '0' )";
+            if(strDealsWith.equals("0")){
+                strQuery += " AND ( dealswith = '012' OR dealswith = '01' OR dealswith = '02' OR dealswith = '0' )";
             }
-            else if(strCond.equals("1")){
-                strQuery += " AND ( conditions = '1' OR conditions = '012' OR conditions = '01' OR conditions = '12' )";
+            else if(strDealsWith.equals("1")){
+                strQuery += " AND ( dealswith = '1' OR dealswith = '012' OR dealswith = '01' OR dealswith = '12' )";
             }
-            else if(strCond.equals("2")){
-                strQuery += " AND ( conditions = '2' OR conditions = '12' OR conditions = '02' OR conditions = '012' )";
+            else if(strDealsWith.equals("2")){
+                strQuery += " AND ( dealswith = '2' OR dealswith = '12' OR dealswith = '02' OR dealswith = '012' )";
             }
         }
-        else if(strCond.length() == 2)
+        else if(strDealsWith.length() == 2)
         {
-            if(strCond.equals("01")){
-                strQuery += " AND ( conditions = '01' OR conditions = '012' )";
+            if(strDealsWith.equals("01")){
+                strQuery += " AND ( dealswith = '01' OR dealswith = '012' )";
             }
-            else if(strCond.equals("02")){
-                strQuery += " AND ( conditions = '02' OR conditions = '012' )";
+            else if(strDealsWith.equals("02")){
+                strQuery += " AND ( dealswith = '02' OR dealswith = '012' )";
             }
-            else if(strCond.equals("12")){
-                strQuery += " AND ( conditions = '12' OR conditions = '012' )";
+            else if(strDealsWith.equals("12")){
+                strQuery += " AND ( dealswith = '12' OR dealswith = '012' )";
             }
         }
-        else if(strCond.length() == 3)
+        else if(strDealsWith.length() == 3)
         {
-            strQuery += " AND ( conditions = '012' )";
+            strQuery += " AND ( dealswith = '012' )";
         }
 
         Cursor Res = db.rawQuery(strQuery, null);
@@ -339,6 +340,53 @@ public class DbHandler extends SQLiteOpenHelper {
         return lstRet;
     }
 
+    public List<Pet> getOwnedPet(String strAndroidID)
+    {
+        List<Pet> lstRet = new ArrayList<Pet>();
+        String strQuery = "SELECT * FROM Pets WHERE androidid = " + strAndroidID;
+
+        Cursor Res = db.rawQuery(strQuery, null);
+        Res.moveToFirst();
+
+        for(int nIndex = 0; nIndex < Res.getCount(); nIndex++)
+        {
+            Pet p = new Pet();
+            p.setName(Res.getString((0)));
+            p.setId(Res.getInt((1)));
+            p.setAndroidId(Res.getString((2)));
+            p.setGender(Res.getInt((3)));
+            p.setType(Res.getInt((4)));
+            p.setCondition(Res.getString((5)));
+            p.setPhoneNumber(Res.getString((6)));
+            p.setLocation(Res.getInt((7)));
+            p.setEmail(Res.getString((8)));
+            p.setNotes(Res.getString((9)));
+            p.setAge(Res.getInt((11)));
+
+            lstRet.add(p);
+        }
+
+        return lstRet;
+    }
+
+    public void addSearchSaved(SearchData searchData)
+    {
+        int nId = this.GetNextSeqForOz("id");
+
+        String strQuery = "INSERT INTO SavedSearches " +
+                          "VALUES( " + nId + ", " +
+                                 "'" + searchData.getStrPhonenum() + "', " +
+                                     + searchData.getnMinAge() + ", "
+                                     + searchData.getnMaxAge() + ", "
+                                     + searchData.getnGender() + ", "
+                                     + searchData.getnAreaCode() + ", "
+                                     + searchData.getnAnimalType() + ", '"
+                                     + searchData.getStrCondition() + "' );";
+
+        db.execSQL(strQuery);
+    }
+
+
     public void LoadDbFromDropBox()
     {
         String url="https://dl.dropboxusercontent.com/u/73386806/Prune%20Juice/Prune%20Juice.exe";
@@ -356,6 +404,14 @@ public class DbHandler extends SQLiteOpenHelper {
     }
     public int GetNextSeq(String strColName){
         String strCommand = "SELECT MAX(" + strColName + ") FROM Pets";
+        Cursor Res = db.rawQuery(strCommand,null);
+
+        Res.moveToFirst();
+        return Res.getInt(0) + 1;
+    }
+
+    public int GetNextSeqForOz(String strColName){
+        String strCommand = "SELECT MAX(" + strColName + ") FROM SavedSearches";
         Cursor Res = db.rawQuery(strCommand,null);
 
         Res.moveToFirst();

@@ -21,6 +21,7 @@ public class GlobalData {
     private static GlobalData gldInstance;
     public static List<Pet> lstChosenPets = new ArrayList<Pet>();
     public static SearchData sdCurrSearch;
+    private static String fromWhere;
 
     public GlobalData(){
         this.setAnimalTypes();
@@ -97,6 +98,22 @@ public class GlobalData {
 
         return 0;
     }
+
+    public void setWhereSearch()
+    {
+        fromWhere = "search";
+    }
+
+    public void setWhereSelection()
+    {
+        fromWhere = "select";
+    }
+
+    public String getFromWhere()
+    {
+        return fromWhere;
+    }
+
 
     public int getTypeID(String strName)
     {

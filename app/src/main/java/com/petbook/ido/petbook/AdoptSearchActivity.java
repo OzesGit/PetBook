@@ -105,7 +105,7 @@ public class AdoptSearchActivity extends Activity {
 
     public void onClickSearch(View view) {
 
-        String strCondition = "";
+        String strDealsWith = "";
 
         Boolean isKids = ((CheckBox) findViewById(R.id.cbKids)).isChecked();
         Boolean isDogs = ((CheckBox) findViewById(R.id.cbDogs)).isChecked();
@@ -136,30 +136,31 @@ public class AdoptSearchActivity extends Activity {
         }
 
         if (isKids) {
-            strCondition = "0";
+            strDealsWith = "0";
         }
 
         if (isDogs) {
-            strCondition += "1";
+            strDealsWith += "1";
         }
 
         if (isCats) {
-            strCondition += "2";
+            strDealsWith += "2";
         }
 
-        lstPet = DbHandler.getInstance(this.getApplicationContext()).getSearchedPets(nGender, nAnimalType, strCondition, nAreaCode, nMinAge, nMaxAge);
+        lstPet = DbHandler.getInstance(this.getApplicationContext()).getSearchedPets(nGender, nAnimalType, strDealsWith, nAreaCode, nMinAge, nMaxAge);
 
         if (lstPet.size() > 0)
         {
             GlobalData.getInstance().setLstChosenPets(lstPet);
             Intent intent = new Intent(getApplicationContext(), ResultListActivity.class);
             intent.putExtra("Filter",true);
+            GlobalData.getInstance().setWhereSearch();
             this.startActivity(intent);
         }
         else
         {
             Intent intent = new Intent(getApplicationContext(), Popup.class);
-            GlobalData.getInstance().setSearchData(nGender, nAnimalType, strCondition, nAreaCode, nMinAge, nMaxAge);
+            GlobalData.getInstance().setSearchData(nGender, nAnimalType, strDealsWith, nAreaCode, nMinAge, nMaxAge);
 
             this.startActivity(intent);
         }
