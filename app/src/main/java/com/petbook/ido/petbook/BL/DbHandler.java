@@ -72,7 +72,7 @@ public class DbHandler extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, 1);
         mContext = context;
         this.db = this.getWritableDatabase();
-        this.DropTables();
+        this.CreateTables();
         insertMUCHAnimals();
     }
 
@@ -84,10 +84,10 @@ public class DbHandler extends SQLiteOpenHelper {
         return (Instance);
     }
 
-    private  void DropTables(){
+    private  void CreateTables(){
         try {
-            db.execSQL(this.DROP_TABLES);
-            db.execSQL(this.DROP_SEARCHES);
+            //db.execSQL(this.DROP_TABLES);
+            //db.execSQL(this.DROP_SEARCHES);
         }
         catch (Exception ex){
 
@@ -97,7 +97,6 @@ public class DbHandler extends SQLiteOpenHelper {
             db.execSQL(this.CREATE_SAVED_SEARCHES);
         }
         catch (Exception ex){
-            ex.printStackTrace();
         }
     }
 
