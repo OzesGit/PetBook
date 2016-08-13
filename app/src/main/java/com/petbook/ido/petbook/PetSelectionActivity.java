@@ -24,6 +24,7 @@ public class PetSelectionActivity extends ActionBarActivity {
     private double btnHegihtPercent = 0.25;
     private Boolean isAdopt;
     private String strType;
+    private int itemsInRow = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class PetSelectionActivity extends ActionBarActivity {
         tblLayout = new TableLayout(this);
         LoadAnimalTypeList();
         scrlScroll.addView(tblLayout);
+
         setContentView(scrlScroll);
         isAdopt = getIntent().getBooleanExtra("isAdopt", false);
         strType = getIntent().getStringExtra("Type");
@@ -42,7 +44,7 @@ public class PetSelectionActivity extends ActionBarActivity {
         TableRow row = null;
         int colCount = 0;
         for (String strKey : mpAnimalList.keySet()) {
-            if(colCount%3==0)
+            if(colCount%itemsInRow==0)
             {
                 row = new TableRow(this);
                 tblLayout.addView(row);
@@ -58,7 +60,7 @@ public class PetSelectionActivity extends ActionBarActivity {
         Button btn = new Button(this);
         btn.setText(strText);
         btn.setHeight((int) (display.getHeight() * btnHegihtPercent));
-        btn.setWidth(display.getWidth() / 3);
+        btn.setWidth(display.getWidth() / itemsInRow);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
