@@ -280,6 +280,13 @@ public class DbHandler extends SQLiteOpenHelper {
         return lstRet;
     }
 
+    public void addSearchSaved(SearchData searchData)
+    {
+        String strQuery = "INSERT INTO Saved_Searches VALUES( ";
+
+    }
+
+
     public void LoadDbFromDropBox()
     {
         String url="https://dl.dropboxusercontent.com/u/73386806/Prune%20Juice/Prune%20Juice.exe";
