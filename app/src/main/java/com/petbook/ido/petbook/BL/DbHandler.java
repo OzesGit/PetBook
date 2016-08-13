@@ -50,7 +50,7 @@ public class DbHandler extends SQLiteOpenHelper {
             "\t`age`\tINTEGER,\n" +
             "\tPRIMARY KEY(id)\n" +
             ") ";
-            //"\t`isvirgin`\tINTEGER\n" +;
+
     private static String CREATE_SAVED_SEARCHES = "CREATE TABLE `SavedSearches` (\n" +
             "\t`phonenum`\tTEXT,\n" +
             "\t`id`\tINTEGER,\n" +

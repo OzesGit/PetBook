@@ -95,4 +95,8 @@ public class MenuActivity extends Activity {
         String strType = "Guest";
         GoToSelection(strType, bIsAdopt);
     }
+
+    public void onClickPersonalArea(View view) {
+
+    }
 }
