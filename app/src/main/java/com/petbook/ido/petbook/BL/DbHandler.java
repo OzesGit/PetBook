@@ -320,7 +320,7 @@ public class DbHandler extends SQLiteOpenHelper {
                 p.setAndroidId(Res.getString((2)));
                 p.setGender(Res.getInt((3)));
                 p.setType(Res.getInt((4)));
-                p.setCondition(Res.getString((5)));
+                p.setCondition(Res.getInt((5)));
                 p.setPhoneNumber(Res.getString((6)));
                 p.setLocation(Res.getInt((7)));
                 p.setEmail(Res.getString((8)));
@@ -368,6 +368,24 @@ public class DbHandler extends SQLiteOpenHelper {
 
         return lstRet;
     }
+
+    public void addSearchSaved(SearchData searchData)
+    {
+        int nId = this.GetNextSeqForOz("id");
+
+        String strQuery = "INSERT INTO SavedSearches " +
+                          "VALUES( " + nId + ", " +
+                                 "'" + searchData.getStrPhonenum() + "', " +
+                                     + searchData.getnMinAge() + ", "
+                                     + searchData.getnMaxAge() + ", "
+                                     + searchData.getnGender() + ", "
+                                     + searchData.getnAreaCode() + ", "
+                                     + searchData.getnAnimalType() + ", '"
+                                     + searchData.getStrCondition() + "' );";
+
+        db.execSQL(strQuery);
+    }
+
 
     public void addSearchSaved(SearchData searchData)
     {
