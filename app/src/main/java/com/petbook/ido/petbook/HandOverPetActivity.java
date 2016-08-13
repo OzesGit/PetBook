@@ -283,7 +283,7 @@ public class HandOverPetActivity extends ActionBarActivity {
             dealsWith += Enums.DEALS_WITH.DOGS;
         pet.setDealsWith(dealsWith);
 
-        DbHandler.getInstance(null).insertPet(new Pet());
+        DbHandler.getInstance(null).insertPet(pet);
     }
 
 }
