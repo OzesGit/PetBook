@@ -39,7 +39,7 @@ public class DbHandler extends SQLiteOpenHelper {
             "\t`androidid`\tTEXT,\n" +
             "\t`gender`\tINTEGER,\n" +
             "\t`type`\tINTEGER,\n" +
-            "\t`conditions`\tINTEGER,\n" +
+            "\t`conditions`\tTEXT,\n" +
             "\t`phonenumber`\tTEXT,\n" +
             "\t`location`\tINTEGER,\n" +
             "\t`email`\tTEXT,\n" +
@@ -47,8 +47,10 @@ public class DbHandler extends SQLiteOpenHelper {
             "\t`picture`\tBLOB,\n" +
             "\t`age`\tINTEGER,\n" +
             "\t`isvirgin`\tINTEGER,\n" +
-            "\t`dealswith`\tTEXT\n" +
-            ");";
+            "\t`dealswith`\tTEXT,\n" +
+            "\tPRIMARY KEY(id)\n" +
+            ") ";
+            //"\t`isvirgin`\tINTEGER\n" +;
     private static String CREATE_SAVED_SEARCHES = "CREATE TABLE `SavedSearches` (\n" +
             "\t`androidid`\tTEXT,\n" +
             "\t`phonenum`\tTEXT,\n" +
@@ -115,7 +117,7 @@ public class DbHandler extends SQLiteOpenHelper {
                 p.setAndroidId(Res.getString((2)));
                 p.setGender(Res.getInt((3)));
                 p.setType(Res.getInt((4)));
-                p.setCondition(Res.getInt((5)));
+                p.setCondition(Res.getString((5)));
                 p.setPhoneNumber(Res.getString((6)));
                 p.setLocation(Res.getInt((7)));
                 p.setEmail(Res.getString((8)));
@@ -145,29 +147,6 @@ public class DbHandler extends SQLiteOpenHelper {
 
         return ExecutePetQuery(command);
 
-    }
-
-    public void insertPet(Pet pet){
-        String values = "('%s', %d, '%s', %d, %d, %d, '%s', %d, '%s', '%s', %s, %d, %d, '%s')";
-        int nToSet = pet.isVirgin() ? 1 : 0;
-        values = String.format(values,
-                               pet.getName(),
-                               pet.getId(),
-                               pet.getAndroidId(),
-                               pet.getGender(),
-                               pet.getType(),
-                               pet.getCondition(),
-                               pet.getPhoneNumber(),
-                               pet.getLocation(),
-                               pet.getEmail(),
-                               pet.getNotes(),
-                               pet.getPicture(),
-                               pet.getAge(),
-                               nToSet,
-                               pet.getDealsWith());
-
-
-        db.execSQL(this.INSERT_PET + values);
     }
 
     private void insertMUCHAnimals(){
@@ -317,15 +296,12 @@ public class DbHandler extends SQLiteOpenHelper {
                 p.setAndroidId(Res.getString((2)));
                 p.setGender(Res.getInt((3)));
                 p.setType(Res.getInt((4)));
-                p.setCondition(Res.getInt((5)));
+                p.setCondition(Res.getString((5)));
                 p.setPhoneNumber(Res.getString((6)));
                 p.setLocation(Res.getInt((7)));
                 p.setEmail(Res.getString((8)));
                 p.setNotes(Res.getString((9)));
                 p.setAge(Res.getInt((11)));
-                boolean bToSet = Res.getInt(12) == 0 ? false : true;
-                p.setVirgin(bToSet);
-                p.setDealsWith(Res.getString((13)));
 
                 lstRet.add(p);
             }

@@ -23,21 +23,17 @@ public class ResultListActivity extends Activity {
     private List<PetItemControl> petsControls;
     ScrollView scrlScrol;
     LinearLayout llLayout;
-    RelativeLayout llLayoutBtn;
+    LinearLayout llLayoutBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Button btnSearch = new Button(this);
 
-        this.llLayoutBtn = new RelativeLayout(this);
+        this.llLayoutBtn = new LinearLayout(this);
         this.llLayout = new LinearLayout(this);
         this.scrlScrol = new ScrollView(this);
-//        llLayoutBtn.setOrientation(LinearLayout.VERTICAL);
-        //RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)btnSearch.getLayoutParams();
-        //params.addRule(RelativeLayout.ALIGN_RIGHT);
-        //params.addRule(RelativeLayout.ALIGN_BOTTOM);
-        //btnSearch.setLayoutParams(params); //causes layout update
+        llLayoutBtn.setOrientation(LinearLayout.VERTICAL);
 
         btnSearch.setText("חיפוש");
         btnSearch.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +59,6 @@ public class ResultListActivity extends Activity {
     }
 
     private void SetPetsView(List<Pet> pets){
-        //List<Pet> pets = GlobalData.getInstance().getLstChosenPets();
         petsControls = new ArrayList<PetItemControl>();
 
         Display display = getWindowManager().getDefaultDisplay();
