@@ -32,11 +32,11 @@ public class Pet {
     }
 
 
-    public boolean isVirgin() {
+    public boolean getIsVirgin() {
         return isVirgin;
     }
 
-    public void setVirgin(boolean virgin) {
+    public void setIsVirgin(boolean virgin) {
         isVirgin = virgin;
     }
 

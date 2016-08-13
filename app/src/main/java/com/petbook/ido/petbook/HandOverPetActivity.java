@@ -272,7 +272,7 @@ public class HandOverPetActivity extends ActionBarActivity {
         pet.setNotes(commentsEditText.getText().toString());
         pet.setPicture(BitmapFactory.decodeFile(imagePath));
         pet.setAge(currAge);
-        pet.setVirgin(currVirgin);
+        pet.setIsVirgin(currVirgin);
 
         String dealsWith = "";
         if(kidsCheckBox.isChecked())
