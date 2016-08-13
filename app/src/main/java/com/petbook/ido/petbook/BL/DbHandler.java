@@ -126,7 +126,7 @@ public class DbHandler extends SQLiteOpenHelper {
                 p.setAge(Res.getInt((11)));
 
                 boolean bToSet = Res.getInt(12) == 0 ? false : true;
-                p.setVirgin(bToSet);
+                p.setIsVirgin(bToSet);
                 p.setDealsWith(Res.getString((13)));
 
                 // FOR OZ !!!
@@ -152,7 +152,7 @@ public class DbHandler extends SQLiteOpenHelper {
 
     public void insertPet(Pet pet){
         String values = "('%s', %d, '%s', %d, %d, %d, '%s', %d, '%s', '%s', %s, %d, %d, '%s')";
-        int nToSet = pet.isVirgin() ? 1 : 0;
+        int nToSet = pet.getIsVirgin() ? 1 : 0;
         values = String.format(values,
                 pet.getName(),
                 pet.getId(),
@@ -327,7 +327,7 @@ public class DbHandler extends SQLiteOpenHelper {
                 p.setAge(Res.getInt((11)));
 
                 boolean bToSet = Res.getInt(12) == 0 ? false : true;
-                p.setVirgin(bToSet);
+                p.setIsVirgin(bToSet);
                 p.setDealsWith(Res.getString((13)));
 
                 lstRet.add(p);
@@ -339,10 +339,47 @@ public class DbHandler extends SQLiteOpenHelper {
         return lstRet;
     }
 
+    public void deletePetByID(int nPetID)
+    {
+        String strQuery = "DELETE FROM Pets " +
+                "WHERE id = " + nPetID;
+
+        db.execSQL(strQuery);
+    }
+
+    public void updatePetByPetObject(Pet updatedPet)
+    {
+        Boolean bool = updatedPet.getIsVirgin();
+        int nIsVirgin = 0;
+
+        if(bool)
+        {
+            nIsVirgin = 1;
+        }
+
+        String strQuery = "UPDATE Pets " +
+                          "SET name = '" + updatedPet.getName() +
+                            "', gender = " + updatedPet.getGender() +
+                             ", type = " + updatedPet.getType() +
+                             ", dealswith = " + updatedPet.getDealsWith() +
+                             ", conditions = " + updatedPet.getCondition() +
+                             ", phonenumber = " + updatedPet.getPhoneNumber() +
+                             ", location = " + updatedPet.getLocation() +
+                             ", email = " + updatedPet.getEmail() +
+                             ", notes = " + updatedPet.getNotes() +
+                             ", picture = " + updatedPet.getPicture() +
+                             ", age = " + updatedPet.getAge() +
+                             ", isvirgin = " + nIsVirgin +
+                          "WHERE id = " + updatedPet.getId();
+
+        db.execSQL(strQuery, null);
+    }
+
+
     public List<Pet> getOwnedPet(String strAndroidID)
     {
         List<Pet> lstRet = new ArrayList<Pet>();
-        String strQuery = "SELECT * FROM Pets WHERE androidid = " + strAndroidID;
+        String strQuery = "SELECT * FROM Pets WHERE androidid = '" + strAndroidID + "'";
 
         Cursor Res = db.rawQuery(strQuery, null);
         Res.moveToFirst();
