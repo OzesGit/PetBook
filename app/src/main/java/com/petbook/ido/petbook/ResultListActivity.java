@@ -40,6 +40,7 @@ public class ResultListActivity extends Activity {
         if(!blPerarea)
         {
             btnSearch = new Button(this);
+            btnSearch.setBackgroundColor(Color.argb(255,19, 7, 58));
             btnSearch.setText("חיפוש");
             btnSearch.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -87,7 +88,6 @@ public class ResultListActivity extends Activity {
             cont.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         Intent i = new Intent(getApplicationContext(),PetDetailsActivity.class);
                         i.putExtra("petId",1);
                         startActivity(i);
@@ -98,11 +98,11 @@ public class ResultListActivity extends Activity {
             cont.requestLayout();
             if(zebra)
             {
-                cont.setBackgroundColor(Color.LTGRAY);
+                cont.setBackgroundColor(Color.argb(255,20, 115, 20));
                 zebra = false;
             }
             else{
-                cont.setBackgroundColor(Color.GRAY);
+                cont.setBackgroundColor(Color.argb(255,0, 60, 0));
                 zebra = true;
             }
 
