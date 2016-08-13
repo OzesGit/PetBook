@@ -10,22 +10,24 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".SplashActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MenuActivity" />
-        <activity android:name=".PetSelectionActivity" />
+        <activity android:name=".MenuActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".PetSelectionActivity" android:screenOrientation="portrait"/>
         <activity
             android:name=".AdoptSearchActivity"
-            android:label="@string/title_activity_adopt" />
-        <activity android:name=".HandOverPetActivity" />
-        <activity android:name=".ResultListActivity" />
-        <activity android:name=".Popup" />
-        <activity android:name=".PetDetailsActivity"></activity>
+            android:label="@string/title_activity_adopt"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".HandOverPetActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ResultListActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".Popup" android:screenOrientation="portrait"/>
+        <activity android:name=".PetDetailsActivity" android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
