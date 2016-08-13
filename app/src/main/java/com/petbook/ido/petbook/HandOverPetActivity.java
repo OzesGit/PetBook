@@ -31,7 +31,11 @@ import android.widget.Toast;
 import com.petbook.ido.petbook.BL.DbHandler;
 import com.petbook.ido.petbook.BL.Pet;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class HandOverPetActivity extends ActionBarActivity {
     private RadioButton radioMale;
@@ -236,6 +240,24 @@ public class HandOverPetActivity extends ActionBarActivity {
         }
     }
 
+    private byte[] readFile(String file) {
+        ByteArrayOutputStream bos = null;
+        try {
+            File f = new File(file);
+            FileInputStream fis = new FileInputStream(f);
+            byte[] buffer = new byte[1024];
+            bos = new ByteArrayOutputStream();
+            for (int len; (len = fis.read(buffer)) != -1;) {
+                bos.write(buffer, 0, len);
+            }
+        } catch (FileNotFoundException e) {
+            System.err.println(e.getMessage());
+        } catch (IOException e2) {
+            System.err.println(e2.getMessage());
+        }
+        return bos != null ? bos.toByteArray() : null;
+    }
+
 
     public void submit(View view) {
         Pet pet = new Pet();
@@ -249,13 +271,9 @@ public class HandOverPetActivity extends ActionBarActivity {
         pet.setLocation(currLocation);
         pet.setEmail(mailEditText.getText().toString());
         pet.setNotes(commentsEditText.getText().toString());
+        pet.setPicture(this.readFile(imagePath));
         pet.setAge(Integer.parseInt(this.txtAge.getText().toString()));
         pet.setIsVirgin(currVirgin);
-
-        if(imagePath != null && !imagePath.equals("")) {
-            File flImg = new File(imagePath);
-        }
-
 
         String dealsWith = "";
         if(kidsCheckBox.isChecked())
@@ -272,7 +290,7 @@ public class HandOverPetActivity extends ActionBarActivity {
 
         if(!strPhoneNumber.equals("NOT_FOUND"))
         {
-            sendSMS(strPhoneNumber, "שלום :) החיה שחיפשת באפליקציית PetBook נמצאה. אנא חפש שוב");
+            sendSMS("+972" + strPhoneNumber, "שלום :) החיה שחיפשת באפליקציית PetBook נמצאה. אנא חפש שוב");
         }
 
         finish();

@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import com.petbook.ido.petbook.BL.Pet;
 
+import java.io.ByteArrayInputStream;
+
 /**
  * Created by Ido on 8/13/2016.
  */
@@ -40,18 +42,21 @@ public class PetItemControl extends LinearLayout{
 
     }
 
-    public PetItemControl(Context context,String name,int type,Bitmap btmpImage)
+    public PetItemControl(Context context,String name,int type,byte[] imageBytes)
     {
         this(context);
         String txt = "שם:" + name;
         int radius = 45;
         this.txtName.setText(txt);
 
-        if(btmpImage != null) {
-            RoundedBitmapDrawable img = RoundedBitmapDrawableFactory.create(getResources(),btmpImage);
-            img.setCornerRadius(radius);
+        Drawable drw = null;
+        if (imageBytes != null) {
+            ByteArrayInputStream stream = new ByteArrayInputStream(imageBytes);
+            drw = Drawable.createFromStream(stream, "articleImage");
+        }
 
-            this.imgPhoto.setBackground(img);// setImageBitmap(img);
+        if(drw != null) {
+            this.imgPhoto.setBackground(drw);// setImageBitmap(img);
         }
         else {
             Drawable myIcon = GlobalData.getInstance().getImageByAnimalName(getResources(),type);
