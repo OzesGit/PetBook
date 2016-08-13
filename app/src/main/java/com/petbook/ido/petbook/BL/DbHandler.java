@@ -307,6 +307,25 @@ public class DbHandler extends SQLiteOpenHelper {
         return lstRet;
     }
 
+    public void deletePetByID(int nPetID)
+    {
+        String strQuery = "DELETE FROM Pets " +
+                "WHERE id = " + nPetID;
+
+        db.execSQL(strQuery);
+    }
+
+    public void updatePetByPetObject(Pet updatedPet)
+    {
+        String strQuery = "UPDATE Pets " +
+                          "SET name = '" + updatedPet.getName() +
+                            "' gender = " + updatedPet.getGender() +
+                             " type = " + updatedPet.getType() +
+                             " condition"
+                          "WHERE some_column=some_value;"
+    }
+
+
     public List<Pet> getOwnedPet(String strAndroidID)
     {
         List<Pet> lstRet = new ArrayList<Pet>();
