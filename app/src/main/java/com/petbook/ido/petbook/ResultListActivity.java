@@ -10,6 +10,7 @@ import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 
 import com.petbook.ido.petbook.BL.DbHandler;
@@ -22,18 +23,22 @@ public class ResultListActivity extends Activity {
     private List<PetItemControl> petsControls;
     ScrollView scrlScrol;
     LinearLayout llLayout;
-    LinearLayout llLayoutBtn;
+    RelativeLayout llLayoutBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Button btnSearch = new Button(this);
 
-        this.llLayoutBtn = new LinearLayout(this);
+        this.llLayoutBtn = new RelativeLayout(this);
         this.llLayout = new LinearLayout(this);
         this.scrlScrol = new ScrollView(this);
-        llLayoutBtn.setOrientation(LinearLayout.VERTICAL);
-        
+//        llLayoutBtn.setOrientation(LinearLayout.VERTICAL);
+        //RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)btnSearch.getLayoutParams();
+        //params.addRule(RelativeLayout.ALIGN_RIGHT);
+        //params.addRule(RelativeLayout.ALIGN_BOTTOM);
+        //btnSearch.setLayoutParams(params); //causes layout update
+
         btnSearch.setText("חיפוש");
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +88,7 @@ public class ResultListActivity extends Activity {
                 zebra = false;
             }
             else{
-                cont.setBackgroundColor(Color.DKGRAY);
+                cont.setBackgroundColor(Color.GRAY);
                 zebra = true;
             }
 
