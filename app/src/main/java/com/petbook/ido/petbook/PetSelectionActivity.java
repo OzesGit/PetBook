@@ -23,7 +23,7 @@ public class PetSelectionActivity extends ActionBarActivity {
     private ScrollView scrlScroll;
     private double btnHegihtPercent = 0.25;
     private Boolean isAdopt;
-    private String strType;
+    private String userType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class PetSelectionActivity extends ActionBarActivity {
         scrlScroll.addView(tblLayout);
         setContentView(scrlScroll);
         isAdopt = getIntent().getBooleanExtra("isAdopt", false);
-        strType = getIntent().getStringExtra("Type");
+        userType = getIntent().getStringExtra("Type");
     }
 
     private void LoadAnimalTypeList() {
@@ -64,21 +64,22 @@ public class PetSelectionActivity extends ActionBarActivity {
             public void onClick(View v) {
                 Button clickedBtn = (Button)v;
 
-                String strType = clickedBtn.getText().toString();
+                String petType = clickedBtn.getText().toString();
                 Intent intent;
 
                 if (isAdopt)
                 {
                     intent = new Intent(getApplicationContext(), ResultListActivity.class);
-                    intent.putExtra("petType", strType);
+                    intent.putExtra("petType", petType);
                 }
                 else
                 {
                     intent = new Intent(getApplicationContext(), HandOverPetActivity.class);
-                    intent.putExtra("petType", strType);
+                    intent.putExtra("petType", petType);
                     intent.putExtra("petEnum", strKey);
                 }
 
+                intent.putExtra("userType", userType);
                 startActivity(intent);
             }
         });

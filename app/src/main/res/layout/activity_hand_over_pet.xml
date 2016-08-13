@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/scrollView" >
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -82,13 +86,40 @@
         android:layout_alignTop="@+id/textView4"
         android:layout_alignRight="@+id/radioMale" />
 
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/agesSpinner"
+        android:layout_alignParentRight="true"
+        android:id="@+id/imageArea">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="תמונה"
+        android:id="@+id/pickImagebutton"
+        android:layout_alignParentRight="true"
+        android:onClick="pickImage" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageButton"
+        android:layout_alignParentRight="true"
+        android:visibility="gone"
+        android:onClick="pickImage" />
+    </RelativeLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="עבר סירוס/עברה עיקור?"
         android:id="@+id/surgeryTextView"
-        android:layout_below="@+id/agesSpinner"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/imageArea"
         android:layout_alignParentRight="true" />
 
     <RadioButton
@@ -109,5 +140,157 @@
         android:layout_toLeftOf="@+id/surgeryYes"
         android:onClick="onClickSurgery" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="מסתדר עם"
+        android:id="@+id/dealsWithTextView"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/surgeryTextView"
+        android:layout_alignParentRight="true" />
 
-</RelativeLayout>
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ילדים"
+        android:id="@+id/kidsCheckBox"
+        android:layout_alignTop="@+id/dealsWithTextView"
+        android:layout_alignRight="@+id/radioFemale" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="כלבים"
+        android:id="@+id/dogsCheckBox"
+        android:layout_below="@+id/kidsCheckBox"
+        android:layout_alignRight="@+id/kidsCheckBox" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="חתולים"
+        android:id="@+id/catsCheckBox"
+        android:layout_below="@+id/dogsCheckBox"
+        android:layout_alignRight="@+id/dogsCheckBox" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="תנאים"
+        android:id="@+id/conditionsTextView"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/catsCheckBox"
+        android:layout_alignParentRight="true" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="דירה סגורה בלבד"
+        android:id="@+id/closedApartmentRadio"
+        android:layout_alignTop="@+id/conditionsTextView"
+        android:layout_alignRight="@+id/radioFemale"
+        android:onClick="onClickConditions" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="דירה פתוחה"
+        android:id="@+id/openApartmentRadio"
+        android:layout_below="@+id/closedApartmentRadio"
+        android:layout_alignRight="@+id/closedApartmentRadio"
+        android:onClick="onClickConditions" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="חדר"
+        android:id="@+id/roomRadio"
+        android:layout_below="@+id/openApartmentRadio"
+        android:layout_alignRight="@+id/closedApartmentRadio"
+        android:onClick="onClickConditions" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="לא משנה"
+        android:id="@+id/notMatterRadio"
+        android:layout_below="@+id/roomRadio"
+        android:layout_alignRight="@+id/closedApartmentRadio"
+        android:onClick="onClickConditions" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="מיקום"
+        android:id="@+id/locationsTextView"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/notMatterRadio"
+        android:layout_alignParentRight="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/locationsSpinner"
+        android:layout_alignTop="@+id/locationsTextView"
+        android:layout_alignRight="@+id/radioFemale" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="צור קשר"
+        android:id="@+id/contactTextView"
+        android:layout_below="@+id/locationsSpinner"
+        android:layout_alignParentRight="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/contactEditText"
+        android:layout_alignTop="@+id/contactTextView"
+        android:layout_alignRight="@+id/locationsSpinner" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="מייל"
+        android:id="@+id/mailTextView"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/contactTextView"
+        android:layout_alignParentRight="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/mailEditText"
+        android:layout_alignTop="@+id/mailTextView"
+        android:layout_alignRight="@+id/locationsSpinner" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="הערות"
+        android:id="@+id/commentsTextView"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/mailTextView"
+        android:layout_alignParentRight="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/commentsEditText"
+        android:layout_alignTop="@+id/commentsTextView"
+        android:layout_alignRight="@+id/locationsSpinner" />
+
+</RelativeLayout></ScrollView>
