@@ -37,8 +37,7 @@ public class HandOverPetActivity extends ActionBarActivity {
     private RadioButton radioMale;
     private RadioButton radioFemale;
     private RadioButton radioUnknown;
-    private Spinner agesSpinner;
-    private ArrayAdapter<CharSequence> agesAdapter;
+    private EditText txtAge;
     private RadioButton surgeryYes;
     private RadioButton surgeryNo;
     private RadioButton closedApartmentRadio;
@@ -86,12 +85,9 @@ public class HandOverPetActivity extends ActionBarActivity {
         openApartmentRadio = (RadioButton) findViewById(R.id.openApartmentRadio);
         roomRadio = (RadioButton) findViewById(R.id.roomRadio);
         notMatterRadio = (RadioButton) findViewById(R.id.notMatterRadio);
-        agesSpinner = (Spinner) findViewById(R.id.agesSpinner);
+        txtAge = (EditText) findViewById(R.id.txtAge);
         locationsSpinner = (Spinner) findViewById(R.id.locationsSpinner);
-        agesAdapter = ArrayAdapter.createFromResource(this, R.array.Ages, R.layout.support_simple_spinner_dropdown_item);
         locationsAdapter = ArrayAdapter.createFromResource(this, R.array.Areas, R.layout.support_simple_spinner_dropdown_item);
-        agesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        agesSpinner.setAdapter(agesAdapter);
         locationsSpinner.setAdapter(locationsAdapter);
 
         nameEditText = (EditText) findViewById(R.id.nameEditText);
@@ -107,31 +103,7 @@ public class HandOverPetActivity extends ActionBarActivity {
         currConditions = Enums.CONDITIONS.CLOSEDAPPARTMENT.ordinal();
         currVirgin = true;
 
-        currAge = 0;
         currLocation = 0;
-
-        agesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                currAge = position;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        locationsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                currLocation = position;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
     }
 
     public void onClickGender(View view) {
@@ -277,7 +249,7 @@ public class HandOverPetActivity extends ActionBarActivity {
         pet.setLocation(currLocation);
         pet.setEmail(mailEditText.getText().toString());
         pet.setNotes(commentsEditText.getText().toString());
-        pet.setAge(currAge);
+        pet.setAge(Integer.parseInt(this.txtAge.getText().toString()));
         pet.setIsVirgin(currVirgin);
 
         if(imagePath != null && !imagePath.equals("")) {
