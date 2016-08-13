@@ -1,5 +1,8 @@
 package com.petbook.ido.petbook;
 
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+
 import com.petbook.ido.petbook.BL.Pet;
 
 import java.util.ArrayList;
@@ -87,5 +90,20 @@ public class GlobalData {
         return lstChosenPets;
     }
 
-
+    public Drawable getImageByAnimalName(Resources src, String strName)
+    {
+        Drawable d = null;
+        switch (strName) {
+            case ("dog"): { d = src.getDrawable(R.drawable.dog); break;}
+            case ("cat"):{ d = src.getDrawable(R.drawable.cat); break;}
+            case ("turkey"):{ d = src.getDrawable(R.drawable.turkey); break;}
+//            case ("turtle"):{ d = src.getDrawable(R.drawable.turtle); break;}
+            case ("donkey"):{ d = src.getDrawable(R.drawable.donkey); break;}
+            case ("horse"):{ d = src.getDrawable(R.drawable.horse); break;}
+            case ("peacock"):{ d = src.getDrawable(R.drawable.peacock); break;}
+            case ("humus"):{ d = src.getDrawable(R.drawable.humus); break;}
+            default: { d = src.getDrawable(R.drawable.shadow); break; }
+        }
+        return  d;
+    }
 }
