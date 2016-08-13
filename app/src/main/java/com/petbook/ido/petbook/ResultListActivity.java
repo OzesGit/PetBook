@@ -24,35 +24,42 @@ public class ResultListActivity extends Activity {
     ScrollView scrlScrol;
     LinearLayout llLayout;
     LinearLayout llLayoutBtn;
+    Boolean blPerarea = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Button btnSearch = new Button(this);
+        Button btnSearch = null;
+        blPerarea = getIntent().getBooleanExtra("petArea",false);
 
         this.llLayoutBtn = new LinearLayout(this);
         this.llLayout = new LinearLayout(this);
         this.scrlScrol = new ScrollView(this);
         llLayoutBtn.setOrientation(LinearLayout.VERTICAL);
 
-        btnSearch.setText("חיפוש");
-        btnSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(GlobalData.getInstance().getFromWhere().equals("search"))
-                {
-                    finish();
+        if(!blPerarea)
+        {
+            btnSearch = new Button(this);
+            btnSearch.setText("חיפוש");
+            btnSearch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(GlobalData.getInstance().getFromWhere().equals("search"))
+                    {
+                        finish();
+                    }
+                    else
+                    {
+                        Intent t = new Intent(getApplicationContext(),AdoptSearchActivity.class);
+                        t.putExtra("petType",getIntent().getStringExtra("petType"));
+                        startActivity(t);
+                    }
                 }
-                else
-                {
-                    Intent t = new Intent(getApplicationContext(),AdoptSearchActivity.class);
-                    t.putExtra("petType",getIntent().getStringExtra("petType"));
-                    startActivity(t);
-                }
-            }
-        });
+            });
+            llLayoutBtn.addView(btnSearch);
+        }
+
         scrlScrol.addView(llLayout);
-        llLayoutBtn.addView(btnSearch);
         llLayoutBtn.addView(scrlScrol);
         setContentView(llLayoutBtn);
 
