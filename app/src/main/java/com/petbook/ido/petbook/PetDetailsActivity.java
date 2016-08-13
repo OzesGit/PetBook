@@ -32,6 +32,9 @@ public class PetDetailsActivity extends Activity {
         ((TextView) findViewById(R.id.txtType)).setText((((TextView) findViewById(R.id.txtType))).getText() +" "+ GlobalData.getInstance().getTypeName(this.CurrPet.getType()));
         ((TextView) findViewById(R.id.txtLocation)).setText((((TextView) findViewById(R.id.txtLocation))).getText() +" " + GlobalData.getInstance().getAreaString(this.CurrPet.getLocation()));
         ((TextView) findViewById(R.id.txtGender)).setText((((TextView) findViewById(R.id.txtGender))).getText() +" "+ GlobalData.getInstance().getGender(this.CurrPet.getGender()));
+
+        ImageView iv = (ImageView) findViewById(R.id.imvPetImage);
+        iv.setImageBitmap(DataLoader.getImage(this.CurrPet.getPicture()));
     }
 
 }
