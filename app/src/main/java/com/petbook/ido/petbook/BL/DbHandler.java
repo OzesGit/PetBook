@@ -202,7 +202,7 @@ public class DbHandler extends SQLiteOpenHelper {
         String newPetInsertCommand;
 
         for(int i = 0; i < 100; i++){
-            newPetInsertCommand = this.INSERT_PET;
+            newPetInsertCommand = new String(this.INSERT_PET);
             String Values = "(";
 
             Values += "'OzOmDi" + i + "',";
