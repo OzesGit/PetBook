@@ -30,7 +30,7 @@ public class ResultListActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Button btnSearch = null;
-        blPerarea = getIntent().getBooleanExtra("petArea",false);
+        blPerarea = getIntent().getBooleanExtra("perArea",false);
 
         this.llLayoutBtn = new LinearLayout(this);
         this.llLayout = new LinearLayout(this);
@@ -63,7 +63,8 @@ public class ResultListActivity extends Activity {
         llLayoutBtn.addView(scrlScrol);
         setContentView(llLayoutBtn);
 
-        if (getIntent().getBooleanExtra("Filter",false) == true){
+        if (getIntent().getBooleanExtra("Filter",false)||
+            blPerarea){
             SetPetsView(GlobalData.getInstance().getLstChosenPets());
         }
         else {
