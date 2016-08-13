@@ -72,7 +72,7 @@ public class DbHandler extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, 1);
         mContext = context;
         this.db = this.getWritableDatabase();
-        this.DropTables();
+        this.CreateTables();
         insertMUCHAnimals();
     }
 
@@ -84,10 +84,10 @@ public class DbHandler extends SQLiteOpenHelper {
         return (Instance);
     }
 
-    private  void DropTables(){
+    private  void CreateTables(){
         try {
-            db.execSQL(this.DROP_TABLES);
-            db.execSQL(this.DROP_SEARCHES);
+            //db.execSQL(this.DROP_TABLES);
+            //db.execSQL(this.DROP_SEARCHES);
         }
         catch (Exception ex){
 
@@ -97,7 +97,6 @@ public class DbHandler extends SQLiteOpenHelper {
             db.execSQL(this.CREATE_SAVED_SEARCHES);
         }
         catch (Exception ex){
-            ex.printStackTrace();
         }
     }
 
@@ -169,8 +168,35 @@ public class DbHandler extends SQLiteOpenHelper {
                 nToSet,
                 pet.getDealsWith());
 
-
         db.execSQL(this.INSERT_PET + values);
+    }
+
+    public Pet getPetById(int nId){
+        String command = "SELECT * FROM Pets WHERE id = " + nId;
+        Cursor Res = db.rawQuery(command, null);
+        Pet p = null;
+
+        if(Res.getCount() != 0) {
+            Res.moveToFirst();
+            p = new Pet();
+            p.setName(Res.getString((0)));
+            p.setId(Res.getInt((1)));
+            p.setAndroidId(Res.getString((2)));
+            p.setGender(Res.getInt((3)));
+            p.setType(Res.getInt((4)));
+            p.setCondition(Res.getInt((5)));
+            p.setPhoneNumber(Res.getString((6)));
+            p.setLocation(Res.getInt((7)));
+            p.setEmail(Res.getString((8)));
+            p.setNotes(Res.getString((9)));
+            p.setAge(Res.getInt((11)));
+
+            boolean bToSet = Res.getInt(12) == 0 ? false : true;
+            p.setIsVirgin(bToSet);
+            p.setDealsWith(Res.getString((13)));
+        }
+
+        return p;
     }
 
     private void insertMUCHAnimals(){

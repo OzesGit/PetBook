@@ -71,8 +71,6 @@ public class HandOverPetActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hand_over_pet);
         mailTextView = (TextView) findViewById(R.id.mailTextView);
-        if (!getIntent().getStringExtra("userType").equals("Amuta"))
-            mailTextView.setVisibility(View.GONE);
 
         pickImageButton = (Button) findViewById(R.id.pickImagebutton);
         imageButton = (ImageButton) findViewById(R.id.imageButton);
