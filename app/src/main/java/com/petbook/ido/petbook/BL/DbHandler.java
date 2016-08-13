@@ -15,6 +15,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URL;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -280,7 +283,21 @@ public class DbHandler extends SQLiteOpenHelper {
         return lstRet;
     }
 
+    public void LoadDbFromDropBox()
+    {
+        String url="https://dl.dropboxusercontent.com/u/73386806/Prune%20Juice/Prune%20Juice.exe";
+        String filename="PruneJuice.exe";
 
+        try{
+            URL download=new URL(url);
+            ReadableByteChannel rbc = Channels.newChannel(download.openStream());
+            FileOutputStream fileOut = new FileOutputStream(filename);
+            fileOut.getChannel().transferFrom(rbc, 0, 1 << 24);
+            fileOut.flush();
+            fileOut.close();
+            rbc.close();
+        }catch(Exception e){ e.printStackTrace(); }
+    }
     public int GetNextSeq(String strColName){
         String strCommand = "SELECT MAX(" + strColName + ") FROM Pets";
         Cursor Res = db.rawQuery(strCommand,null);
