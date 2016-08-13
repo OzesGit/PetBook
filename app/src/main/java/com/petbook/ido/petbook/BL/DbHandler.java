@@ -376,6 +376,57 @@ public class DbHandler extends SQLiteOpenHelper {
         db.execSQL(strQuery, null);
     }
 
+    public String CheckForWaiters(Pet pet)
+    {
+        String strDealsWith = pet.getDealsWith();
+
+        String strQuery = "SELECT SINGLE * FROM SavedSearches "+
+                          "WHERE minage <= "+ pet.getAge() +
+                          " AND maxage >= " + pet.getAge() +
+                          " AND gender = " +  pet.getGender() +
+                          " AND animaltype = " + pet.getType();
+
+        if(strDealsWith.length() == 1)
+        {
+            if(strDealsWith.equals("0")){
+                strQuery += " AND ( dealswith = '012' OR dealswith = '01' OR dealswith = '02' OR dealswith = '0' )";
+            }
+            else if(strDealsWith.equals("1")){
+                strQuery += " AND ( dealswith = '1' OR dealswith = '012' OR dealswith = '01' OR dealswith = '12' )";
+            }
+            else if(strDealsWith.equals("2")){
+                strQuery += " AND ( dealswith = '2' OR dealswith = '12' OR dealswith = '02' OR dealswith = '012' )";
+            }
+        }
+        else if(strDealsWith.length() == 2)
+        {
+            if(strDealsWith.equals("01")){
+                strQuery += " AND ( dealswith = '01' OR dealswith = '012' )";
+            }
+            else if(strDealsWith.equals("02")){
+                strQuery += " AND ( dealswith = '02' OR dealswith = '012' )";
+            }
+            else if(strDealsWith.equals("12")){
+                strQuery += " AND ( dealswith = '12' OR dealswith = '012' )";
+            }
+        }
+        else if(strDealsWith.length() == 3)
+        {
+            strQuery += " AND ( dealswith = '012' )";
+        }
+
+        Cursor cursor = db.rawQuery(strQuery, null);
+
+        if (cursor.getCount() > 0)
+        {
+            return cursor.getString(0);
+        }
+        else
+        {
+            return "NOT_FOUND";
+        }
+    }
+
 
     public List<Pet> getOwnedPet(String strAndroidID)
     {
