@@ -20,7 +20,8 @@
         android:id="@+id/btnSave"
         android:layout_marginTop="82dp"
         android:layout_below="@+id/textView4"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="onClickSignToNotification"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -28,7 +29,8 @@
         android:text="חזור למסך חיפוש"
         android:id="@+id/btnBack"
         android:layout_alignTop="@+id/btnSave"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:onClick="onClickBack"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -40,4 +42,5 @@
         android:layout_above="@+id/btnBack"
         android:layout_alignEnd="@+id/btnSave"
         android:layout_alignParentStart="true" />
+
 </RelativeLayout>
