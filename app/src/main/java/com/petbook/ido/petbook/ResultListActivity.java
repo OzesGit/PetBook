@@ -85,15 +85,8 @@ public class ResultListActivity extends Activity {
         {
             PetItemControl cont = new PetItemControl(this,ptPet);
             cont.SetSize(display.getWidth(),display.getHeight());
-            cont.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent i = new Intent(getApplicationContext(),PetDetailsActivity.class);
-                        i.putExtra("petId",1);
-                        startActivity(i);
-                    }
-                }
-            );
+
+            cont.setOnClickListener(new listen(ptPet));
 
             cont.requestLayout();
             if(zebra)
@@ -111,5 +104,20 @@ public class ResultListActivity extends Activity {
         }
 
         this.llLayout.setOrientation(LinearLayout.VERTICAL);
+    }
+    private class listen implements View.OnClickListener {
+        private Pet ptPet;
+
+        public listen(Pet iptPet)
+        {
+            this.ptPet = iptPet;
+        }
+
+        @Override
+        public void onClick(View v) {
+            Intent i = new Intent(getApplicationContext(),PetDetailsActivity.class);
+            i.putExtra("petId",this.ptPet.getId());
+            startActivity(i);
+        }
     }
 }

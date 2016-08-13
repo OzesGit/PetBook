@@ -102,6 +102,7 @@ public class GlobalData {
 
     public String getAreaString(int nKey)
     {
+        setAreasIfNotSet();
         return mpAreas.get(nKey);
     }
 
