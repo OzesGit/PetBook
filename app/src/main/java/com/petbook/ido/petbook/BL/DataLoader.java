@@ -1,10 +1,13 @@
 package com.petbook.ido.petbook.BL;
 
 import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import org.xml.sax.XMLReader;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -33,6 +36,20 @@ public class DataLoader {
         dicAnimalTypes.put("peacock","טווס");
         dicAnimalTypes.put("humus","חמוס");
         return dicAnimalTypes;
+    }
+
+    public static byte[] getBytes(Bitmap bitmap) {
+        if(bitmap != null) {
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
+            return stream.toByteArray();
+        }
+            return null;
+    }
+
+    // convert from byte array to bitmap
+    public static Bitmap getImage(byte[] image) {
+        return BitmapFactory.decodeByteArray(image, 0, image.length);
     }
 
 }
