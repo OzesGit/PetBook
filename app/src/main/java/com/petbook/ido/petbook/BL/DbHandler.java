@@ -7,6 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteStatement;
 import android.widget.Toast;
 
 import com.petbook.ido.petbook.Enums;
@@ -41,7 +42,7 @@ public class DbHandler extends SQLiteOpenHelper {
             "\t`androidid`\tTEXT,\n" +
             "\t`gender`\tINTEGER,\n" +
             "\t`type`\tINTEGER,\n" +
-            "\t`conditions`\tTEXT,\n" +
+            "\t`conditions`\tINTEGER,\n" +
             "\t`phonenumber`\tTEXT,\n" +
             "\t`location`\tINTEGER,\n" +
             "\t`email`\tTEXT,\n" +
@@ -61,7 +62,7 @@ public class DbHandler extends SQLiteOpenHelper {
             "\t`gender`\tINTEGER,\n" +
             "\t`areacode`\tINTEGER,\n" +
             "\t`animaltype`\tINTEGER,\n" +
-            "\t`condition`\tTEXT,\n" +
+            "\t`conditions`\tINTEGER,\n" +
             "\tPRIMARY KEY(id)\n" +
             ");";
 
@@ -122,6 +123,7 @@ public class DbHandler extends SQLiteOpenHelper {
                 p.setLocation(Res.getInt((7)));
                 p.setEmail(Res.getString((8)));
                 p.setNotes(Res.getString((9)));
+                p.setPicture(Res.getBlob((10)));
                 p.setAge(Res.getInt((11)));
 
                 boolean bToSet = Res.getInt(12) == 0 ? false : true;
@@ -150,24 +152,25 @@ public class DbHandler extends SQLiteOpenHelper {
     }
 
     public void insertPet(Pet pet){
+        String sql = this.INSERT_PET + "(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        SQLiteStatement preparedStatement = this.db.compileStatement(sql);
         int nToSet = pet.getIsVirgin() ? 1 : 0;
-        String values = "('" +
-                pet.getName()+"',"+
-                pet.getId()+",'"+
-                pet.getAndroidId()+"',"+
-                pet.getGender()+","+
-                pet.getType()+","+
-                pet.getCondition()+",'"+
-                pet.getPhoneNumber()+"',"+
-                pet.getLocation()+",'"+
-                pet.getEmail()+"','"+
-                pet.getNotes()+"',"+
-                DataLoader.getBytes(pet.getPicture())+","+
-                pet.getAge()+","+
-                nToSet+",'"+
-                pet.getDealsWith() + "');";
+        preparedStatement.bindString(1, pet.getName());
+        preparedStatement.bindLong(2, pet.getId());
+        preparedStatement.bindString(3, pet.getAndroidId());
+        preparedStatement.bindLong(4, pet.getGender());
+        preparedStatement.bindLong(5, pet.getType());
+        preparedStatement.bindLong(6, pet.getCondition());
+        preparedStatement.bindString(7, pet.getPhoneNumber());
+        preparedStatement.bindLong(8, pet.getLocation());
+        preparedStatement.bindString(9, pet.getEmail());
+        preparedStatement.bindString(10, pet.getNotes());
+        preparedStatement.bindBlob(11, pet.getPicture());
+        preparedStatement.bindLong(12, pet.getAge());
+        preparedStatement.bindLong(13, nToSet);
+        preparedStatement.bindString(14, pet.getDealsWith());
 
-        db.execSQL(this.INSERT_PET + values);
+        preparedStatement.execute();
     }
 
     public Pet getPetById(int nId){
@@ -215,7 +218,7 @@ public class DbHandler extends SQLiteOpenHelper {
             Values += (int)(Math.random() * 8) + ",";
             Values += "'ozomdi" + i + "/@gmail.com'" + ",";
             Values +=  i + ",";
-            Values +=  i + ",";
+            Values +=  "NULL,";
             Values += (int)(Math.random() * 10) + ",";
             Values += (int)(Math.random() * 2) + ",";
             Values += (int)(Math.random() * 4);
@@ -235,7 +238,7 @@ public class DbHandler extends SQLiteOpenHelper {
                 Values += 0 + ",";
                 Values += "'ozomdi" + i + "/@gmail.com'" + ",";
                 Values +=  i + ",";
-                Values +=  i + ",";
+                Values +=  "NULL,";
                 Values += 10 + ",";
                 Values += (int)(Math.random() * 2) + ",";
                 Values += (int)(Math.random() * 4);
@@ -255,7 +258,7 @@ public class DbHandler extends SQLiteOpenHelper {
                 Values += 0 + ",";
                 Values += "'ozomdi" + i + "/@gmail.com'" + ",";
                 Values +=  i + ",";
-                Values +=  i + ",";
+                Values +=  "NULL,";
                 Values += 10 + ",";
                 Values += (int)(Math.random() * 2) +",";
                 Values += (int)(Math.random() * 4);
@@ -403,6 +406,7 @@ public class DbHandler extends SQLiteOpenHelper {
 
     public String CheckForWaiters(Pet pet)
     {
+        String string;
         String strDealsWith = pet.getDealsWith();
         int nAge = pet.getAge();
         int nMinAge = 0;
@@ -488,12 +492,14 @@ public class DbHandler extends SQLiteOpenHelper {
 
         if (cursor.getCount() > 0)
         {
-            return cursor.getString(0).toString();
+            string = cursor.getString(1).toString();
+
+            return string;
         }
         else
         {
             return "NOT_FOUND";
-        }
+    }
     }
 
 
