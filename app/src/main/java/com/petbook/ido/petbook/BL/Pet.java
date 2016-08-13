@@ -18,7 +18,7 @@ public class Pet {
     private int Location;
     private String Email;
     private String Notes;
-    private Bitmap Picture;
+    private byte[] Picture;
     private int Age;
     private int Areacode;
     private boolean isVirgin;
@@ -54,11 +54,11 @@ public class Pet {
     public void setAge(int age) {
         Age = age;
     }
-    public Bitmap getPicture() {
+    public byte[] getPicture() {
         return Picture;
     }
 
-    public void setPicture(Bitmap picture) {
+    public void setPicture(byte[] picture) {
         Picture = picture;
     }
 
