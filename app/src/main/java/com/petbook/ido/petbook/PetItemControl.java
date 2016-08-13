@@ -2,7 +2,15 @@ package com.petbook.ido.petbook;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.view.Display;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,6 +30,8 @@ public class PetItemControl extends LinearLayout{
 
         this.imgPhoto = new ImageView(context);
         this.txtName = new TextView(context);
+        this.imgPhoto.setLeft(0);
+        this.txtName.setTextAlignment(TEXT_ALIGNMENT_CENTER);
 
         this.addView(this.imgPhoto);
         this.addView(this.txtName);
@@ -30,10 +40,15 @@ public class PetItemControl extends LinearLayout{
     public PetItemControl(Context context,String name,Bitmap btmpImage)
     {
         this(context);
+        String txt = "שם:" + name;
+        int radius = 45;
+        this.txtName.setText(txt);
 
-        this.txtName.setText(name);
         if(btmpImage != null) {
-            this.imgPhoto.setImageBitmap(btmpImage);
+            RoundedBitmapDrawable img = RoundedBitmapDrawableFactory.create(getResources(),btmpImage);
+            img.setCornerRadius(radius);
+
+            this.imgPhoto.setBackground(img);// setImageBitmap(img);
         }
         else {
             Drawable myIcon = getResources().getDrawable( R.drawable.shadow );
@@ -46,4 +61,12 @@ public class PetItemControl extends LinearLayout{
         this(context,ptPet.getName(),ptPet.getPicture());
     }
 
+    public void SetSize(int width,int height)
+    {
+        this.imgPhoto.setLayoutParams(new LinearLayout.LayoutParams((width*40)/100,height/6));
+        this.imgPhoto.requestLayout();
+        this.txtName.setLayoutParams(new LinearLayout.LayoutParams((width*60)/100,height/6));
+        this.txtName.setLeft((width*40)/100);
+        this.txtName.requestLayout();
+    }
 }

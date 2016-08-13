@@ -1,8 +1,10 @@
 package com.petbook.ido.petbook;
 
+import android.graphics.Color;
 import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.Display;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
@@ -26,21 +28,37 @@ public class ResultListActivity extends ActionBarActivity {
     }
 
     private void SetPetsView(List<Pet> pets){
-        this.petsControls = new ArrayList<PetItemControl>();
         //List<Pet> pets = GlobalData.getInstance().getLstChosenPets();
+        petsControls = new ArrayList<PetItemControl>();
+
+        Display display = getWindowManager().getDefaultDisplay();
         this.llLayout = new LinearLayout(this);
         this.scrlScrol = new ScrollView(this);
+        boolean zebra = false;
 
-        // Create all the pets controls
+        // Create all the pets controls`
         for(Pet ptPet : pets)
         {
-            this.petsControls.add(new PetItemControl(this,ptPet));
-            llLayout.addView(new PetItemControl(this,ptPet));
+            PetItemControl cont = new PetItemControl(this,ptPet);
+            cont.SetSize(display.getWidth(),display.getHeight());
+            cont.requestLayout();
+
+            if(zebra)
+            {
+                cont.setBackgroundColor(Color.LTGRAY);
+                zebra = false;
+            }
+            else{
+                cont.setBackgroundColor(Color.DKGRAY);
+                zebra = true;
+            }
+
+            this.petsControls.add(cont);
+            llLayout.addView(cont);
         }
 
         this.llLayout.setOrientation(LinearLayout.VERTICAL);
         scrlScrol.addView(llLayout);
-
         setContentView(scrlScrol);
     }
 }

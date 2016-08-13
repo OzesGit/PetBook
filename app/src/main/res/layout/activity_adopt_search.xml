@@ -129,8 +129,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
-        android:layout_alignTop="@+id/tvArea"
-        android:layout_alignParentStart="true" />
+        android:layout_alignBottom="@+id/tvArea"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/rbMale" />
 
     <Button
         android:layout_width="wrap_content"

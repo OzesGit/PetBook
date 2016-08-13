@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="מצטערים אך אין חיה לאימוץ שתואמת את החיפוש שלך .. האם אתה מעוניין להשאיר מספר ונעדכן כשתגיע חיה מתאימה ?"
+        android:textSize="20dp"
+        android:id="@+id/textView4"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="43dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="הרשם להמתנה"
+        android:id="@+id/btnSave"
+        android:layout_marginTop="82dp"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="חזור למסך חיפוש"
+        android:id="@+id/btnBack"
+        android:layout_alignTop="@+id/btnSave"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/editText5"
+        android:hint="הכנס מס' טלפון"
+        android:layout_above="@+id/btnBack"
+        android:layout_alignEnd="@+id/btnSave"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>
