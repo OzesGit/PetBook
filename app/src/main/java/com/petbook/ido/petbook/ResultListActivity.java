@@ -1,5 +1,6 @@
 package com.petbook.ido.petbook;
 
+import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.widget.LinearLayout;
@@ -19,8 +20,14 @@ public class ResultListActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // By default - get all pets
+        SetPetsView(DbHandler.getInstance(this.getApplicationContext()).GetPetsByTypes(GlobalData.getInstance().getTypeID(getIntent().getStringExtra("Type"))));
+    }
+
+    private void SetPetsView(List<Pet> pets){
         this.petsControls = new ArrayList<PetItemControl>();
-        List<Pet> pets = GlobalData.getInstance().getLstChosenPets();
+        //List<Pet> pets = GlobalData.getInstance().getLstChosenPets();
         this.llLayout = new LinearLayout(this);
         this.scrlScrol = new ScrollView(this);
 

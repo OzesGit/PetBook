@@ -80,6 +80,46 @@ public class DbHandler extends SQLiteOpenHelper {
         }
     }
 
+    private List<Pet> ExecutePetQuery(String command){
+        Cursor Res = db.rawQuery(command,null);
+        List<Pet> lstRet = new ArrayList<Pet>();
+        if(Res.getCount() != 0) {
+            Res.moveToFirst();
+            for (int nIndex = 0; nIndex < Res.getCount(); nIndex++){
+                Pet p = new Pet();
+                p.setName(Res.getString((0)));
+                p.setId(Res.getInt((1)));
+                p.setAndroidId(Res.getString((2)));
+                p.setGender(Res.getInt((3)));
+                p.setType(Res.getInt((4)));
+                p.setCondition(Res.getString((5)));
+                p.setPhoneNumber(Res.getString((6)));
+                p.setLocation(Res.getInt((7)));
+                p.setEmail(Res.getString((8)));
+                p.setNotes(Res.getString((9)));
+                p.setAge(Res.getInt((11)));
+
+                // FOR OZ !!!
+                if(nIndex == 0 || nIndex == 7){
+                    p.setAndroidId("28cdf996ff8a378f");
+                }
+
+                lstRet.add(p);
+
+                Res.moveToNext();
+            }
+        }
+
+        return lstRet;
+    }
+
+    public List<Pet> GetPetsByTypes(int type){
+        String command = "SELECT * FROM Pets WHERE type = " + type;
+
+        return ExecutePetQuery(command);
+
+    }
+
     private void insertMUCHAnimals(){
         String newPetInsertCommand;
 
@@ -144,36 +184,7 @@ public class DbHandler extends SQLiteOpenHelper {
     }
 
     public List<Pet> getAllPets(){
-        Cursor Res = db.rawQuery(this.GET_ALL_PETS,null);
-        List<Pet> lstRet = new ArrayList<Pet>();
-        if(Res.getCount() != 0) {
-            Res.moveToFirst();
-            for (int nIndex = 0; nIndex < Res.getCount(); nIndex++){
-                Pet p = new Pet();
-                p.setName(Res.getString((0)));
-                p.setId(Res.getInt((1)));
-                p.setAndroidId(Res.getString((2)));
-                p.setGender(Res.getInt((3)));
-                p.setType(Res.getInt((4)));
-                p.setCondition(Res.getString((5)));
-                p.setPhoneNumber(Res.getString((6)));
-                p.setLocation(Res.getInt((7)));
-                p.setEmail(Res.getString((8)));
-                p.setNotes(Res.getString((9)));
-                p.setAge(Res.getInt((11)));
-
-                // FOR OZ !!!
-                if(nIndex == 0 || nIndex == 7){
-                    p.setAndroidId("28cdf996ff8a378f");
-                }
-
-                lstRet.add(p);
-
-                Res.moveToNext();
-            }
-        }
-
-        return lstRet;
+        return ExecutePetQuery(this.GET_ALL_PETS);
     }
 
     public List<Pet> getSearchedPets(String strAndroidID,

@@ -69,7 +69,7 @@ public class PetSelectionActivity extends ActionBarActivity {
 
                 if (isAdopt)
                 {
-                    intent = new Intent(getApplicationContext(), AdoptSearchActivity.class);
+                    intent = new Intent(getApplicationContext(), ResultListActivity.class);
                     intent.putExtra("petType", strType);
                 }
                 else
