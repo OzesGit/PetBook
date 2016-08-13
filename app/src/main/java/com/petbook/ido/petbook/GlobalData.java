@@ -1,6 +1,10 @@
 package com.petbook.ido.petbook;
 
+import com.petbook.ido.petbook.BL.Pet;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -11,6 +15,7 @@ public class GlobalData {
     public static Map<Integer,String> mpAreas = new HashMap<Integer, String>();
     public static Map<Integer,String> mpTypes = new HashMap<Integer, String>();
     private static GlobalData gldInstance;
+    public static List<Pet> lstChosenPets = new ArrayList<Pet>();
 
     public GlobalData(){
 
@@ -72,5 +77,15 @@ public class GlobalData {
 
         return 0;
     }
+
+    public void setLstChosenPets(List<Pet> lstPet){
+        lstChosenPets = lstPet;
+    }
+
+    public List<Pet> getLstChosenPets()
+    {
+        return lstChosenPets;
+    }
+
 
 }

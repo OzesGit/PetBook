@@ -18,7 +18,7 @@ public class ResultListActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        List<Pet> pets = DbHandler.getInstance(this).getAllPets();
+        List<Pet> pets = GlobalData.getInstance().getLstChosenPets();
         this.llLayout = new LinearLayout(this);
         this.scrlScrol = new ScrollView(this);
 

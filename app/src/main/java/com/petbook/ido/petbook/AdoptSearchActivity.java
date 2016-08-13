@@ -1,5 +1,6 @@
 package com.petbook.ido.petbook;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
@@ -146,6 +147,9 @@ public class AdoptSearchActivity extends ActionBarActivity {
         }
 
         lstPet = DbHandler.getInstance(this.getApplicationContext()).getSearchedPets(android_id,nGender,nAnimalType,strCondition,nAreaCode,nMinAge,nMaxAge);
+        GlobalData.getInstance().setLstChosenPets(lstPet);
+        Intent intent = new Intent(getApplicationContext(), ResultListActivity.class);
 
+        this.startActivity(intent);
     }
 }

@@ -103,6 +103,43 @@ public class DbHandler extends SQLiteOpenHelper {
             Values += (int)(Math.random() * 10);
 
             Values += ")";
+
+            if(i == 2 ){
+                Values = "(";
+
+                Values += "'Idogi" + i + "',";
+                Values += GetNextSeq("id") + ",";
+                Values += "'28cdf996ff8a378f'" + ",";
+                Values += 0 + ",";
+                Values += 0 + ",";
+                Values += "'01'" + ",";
+                Values += "'05284932" + (int)(Math.random() * 10) + "',";
+                Values += 0 + ",";
+                Values += "'ozomdi" + i + "/@gmail.com'" + ",";
+                Values +=  i + ",";
+                Values +=  i + ",";
+                Values += 10;
+
+                Values += ")";
+            }
+            else if (i == 5){
+                Values = "(";
+
+                Values += "'Idogi" + i + "',";
+                Values += GetNextSeq("id") + ",";
+                Values += "'28cdf996ff8a378f'" + ",";
+                Values += 0 + ",";
+                Values += 0 + ",";
+                Values += "'012'" + ",";
+                Values += "'05284932" + (int)(Math.random() * 10) + "',";
+                Values += 0 + ",";
+                Values += "'ozomdi" + i + "/@gmail.com'" + ",";
+                Values +=  i + ",";
+                Values +=  i + ",";
+                Values += 10;
+
+                Values += ")";
+            }
             newPetInsertCommand += Values;
             db.execSQL(newPetInsertCommand);
         }
@@ -130,33 +167,6 @@ public class DbHandler extends SQLiteOpenHelper {
                 // FOR OZ !!!
                 if(nIndex == 0 || nIndex == 7){
                     p.setAndroidId("28cdf996ff8a378f");
-                }
-
-                if(nIndex == 2 ){
-                    p.setAndroidId("f1acb85ca5dd31f5");
-                    p.setName("Ido Ido");
-                    p.setId(Res.getInt((1)));
-                    p.setGender(Enums.Gender.MALE.ordinal());
-                    p.setType(Enums.Type.DOG.ordinal());
-                    p.setCondition("012");
-                    p.setPhoneNumber(Res.getString((6)));
-                    p.setLocation(Enums.LOCATIONS.NORTH.ordinal());
-                    p.setEmail(Res.getString((8)));
-                    p.setNotes(Res.getString((9)));
-                    p.setAge(10);
-                }
-                else if (nIndex == 5){
-                    p.setAndroidId("f1acb85ca5dd31f5");
-                    p.setName("Idog");
-                    p.setId(Res.getInt((1)));
-                    p.setGender(Enums.Gender.MALE.ordinal());
-                    p.setType(Enums.Type.DOG.ordinal());
-                    p.setCondition("01");
-                    p.setPhoneNumber(Res.getString((6)));
-                    p.setLocation(Enums.LOCATIONS.NORTH.ordinal());
-                    p.setEmail(Res.getString((8)));
-                    p.setNotes(Res.getString((9)));
-                    p.setAge(10);
                 }
 
                 lstRet.add(p);
