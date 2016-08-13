@@ -14,6 +14,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.petbook.ido.petbook.BL.DbHandler;
+import com.petbook.ido.petbook.BL.Pet;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.microedition.khronos.opengles.GL;
 
@@ -30,6 +34,7 @@ public class AdoptSearchActivity extends ActionBarActivity {
     private int nAge;
     private String android_id;
     private int nAnimalType;
+    private List<Pet> lstPet = new ArrayList<Pet>();
 
 
     @Override
@@ -140,7 +145,7 @@ public class AdoptSearchActivity extends ActionBarActivity {
             strCondition += "2";
         }
 
-        DbHandler.getInstance(this.getApplicationContext()).getSearchedPets(android_id,nGender,nAnimalType,strCondition,nAreaCode,nMinAge,nMaxAge);
+        lstPet = DbHandler.getInstance(this.getApplicationContext()).getSearchedPets(android_id,nGender,nAnimalType,strCondition,nAreaCode,nMinAge,nMaxAge);
 
     }
 }

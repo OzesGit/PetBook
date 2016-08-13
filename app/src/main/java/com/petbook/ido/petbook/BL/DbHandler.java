@@ -36,7 +36,7 @@ public class DbHandler extends SQLiteOpenHelper {
             "\t`androidid`\tTEXT,\n" +
             "\t`gender`\tINTEGER,\n" +
             "\t`type`\tINTEGER,\n" +
-            "\t`conditions`\tSTRING,\n" +
+            "\t`conditions`\tTEXT,\n" +
             "\t`phonenumber`\tTEXT,\n" +
             "\t`location`\tINTEGER,\n" +
             "\t`email`\tTEXT,\n" +
@@ -126,8 +126,31 @@ public class DbHandler extends SQLiteOpenHelper {
                     p.setAndroidId("28cdf996ff8a378f");
                 }
 
-                if(nIndex == 2 || nIndex == 5){
+                if(nIndex == 2 ){
                     p.setAndroidId("f1acb85ca5dd31f5");
+                    p.setName("Ido Ido");
+                    p.setId(Res.getInt((1)));
+                    p.setGender(Enums.Gender.MALE.ordinal());
+                    p.setType(Enums.Type.DOG.ordinal());
+                    p.setCondition("012");
+                    p.setPhoneNumber(Res.getString((6)));
+                    p.setLocation(Enums.LOCATIONS.NORTH.ordinal());
+                    p.setEmail(Res.getString((8)));
+                    p.setNotes(Res.getString((9)));
+                    p.setAge(10);
+                }
+                else if (nIndex == 5){
+                    p.setAndroidId("f1acb85ca5dd31f5");
+                    p.setName("Idog");
+                    p.setId(Res.getInt((1)));
+                    p.setGender(Enums.Gender.MALE.ordinal());
+                    p.setType(Enums.Type.DOG.ordinal());
+                    p.setCondition("01");
+                    p.setPhoneNumber(Res.getString((6)));
+                    p.setLocation(Enums.LOCATIONS.NORTH.ordinal());
+                    p.setEmail(Res.getString((8)));
+                    p.setNotes(Res.getString((9)));
+                    p.setAge(10);
                 }
 
                 lstRet.add(p);
