@@ -219,7 +219,7 @@ public class DbHandler extends SQLiteOpenHelper {
 
     public List<Pet> getSearchedPets(int nGender,
                                      int nType,
-                                     String strCond,
+                                     String strDealsWith,
                                      int nAreaID,
                                      int nMinAge,
                                      int nMaxAge)
@@ -249,33 +249,33 @@ public class DbHandler extends SQLiteOpenHelper {
                         "conditions = '02' OR conditions = '12' OR " +
                         "conditions = '1' OR conditions = '2' OR conditions = '0' )";
         }
-        else*/ if(strCond.length() == 1)
+        else*/ if(strDealsWith.length() == 1)
         {
-            if(strCond.equals("0")){
-                strQuery += " AND ( conditions = '012' OR conditions = '01' OR conditions = '02' OR conditions = '0' )";
+            if(strDealsWith.equals("0")){
+                strQuery += " AND ( dealswith = '012' OR dealswith = '01' OR dealswith = '02' OR dealswith = '0' )";
             }
-            else if(strCond.equals("1")){
-                strQuery += " AND ( conditions = '1' OR conditions = '012' OR conditions = '01' OR conditions = '12' )";
+            else if(strDealsWith.equals("1")){
+                strQuery += " AND ( dealswith = '1' OR dealswith = '012' OR dealswith = '01' OR dealswith = '12' )";
             }
-            else if(strCond.equals("2")){
-                strQuery += " AND ( conditions = '2' OR conditions = '12' OR conditions = '02' OR conditions = '012' )";
+            else if(strDealsWith.equals("2")){
+                strQuery += " AND ( dealswith = '2' OR dealswith = '12' OR dealswith = '02' OR dealswith = '012' )";
             }
         }
-        else if(strCond.length() == 2)
+        else if(strDealsWith.length() == 2)
         {
-            if(strCond.equals("01")){
-                strQuery += " AND ( conditions = '01' OR conditions = '012' )";
+            if(strDealsWith.equals("01")){
+                strQuery += " AND ( dealswith = '01' OR dealswith = '012' )";
             }
-            else if(strCond.equals("02")){
-                strQuery += " AND ( conditions = '02' OR conditions = '012' )";
+            else if(strDealsWith.equals("02")){
+                strQuery += " AND ( dealswith = '02' OR dealswith = '012' )";
             }
-            else if(strCond.equals("12")){
-                strQuery += " AND ( conditions = '12' OR conditions = '012' )";
+            else if(strDealsWith.equals("12")){
+                strQuery += " AND ( dealswith = '12' OR dealswith = '012' )";
             }
         }
-        else if(strCond.length() == 3)
+        else if(strDealsWith.length() == 3)
         {
-            strQuery += " AND ( conditions = '012' )";
+            strQuery += " AND ( dealswith = '012' )";
         }
 
         Cursor Res = db.rawQuery(strQuery, null);
