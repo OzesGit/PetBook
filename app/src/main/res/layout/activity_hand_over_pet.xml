@@ -49,7 +49,8 @@
         android:id="@+id/radioMale"
         android:layout_alignBottom="@+id/genderTextView"
         android:layout_alignRight="@id/nameEditText"
-        android:onClick="onClickGender" />
+        android:onClick="onClickGender"
+        android:checked="true" />
 
     <RadioButton
         android:layout_width="wrap_content"
@@ -104,12 +105,13 @@
         android:onClick="pickImage" />
 
     <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:id="@+id/imageButton"
         android:layout_alignParentRight="true"
         android:visibility="gone"
-        android:onClick="pickImage" />
+        android:onClick="pickImage"
+        android:scaleType="fitXY" />
     </RelativeLayout>
 
     <TextView
@@ -129,7 +131,8 @@
         android:id="@+id/surgeryYes"
         android:layout_alignBottom="@+id/surgeryTextView"
         android:layout_toLeftOf="@+id/surgeryTextView"
-        android:onClick="onClickSurgery" />
+        android:onClick="onClickSurgery"
+        android:checked="true" />
 
     <RadioButton
         android:layout_width="wrap_content"
@@ -191,7 +194,8 @@
         android:id="@+id/closedApartmentRadio"
         android:layout_alignTop="@+id/conditionsTextView"
         android:layout_alignRight="@+id/radioFemale"
-        android:onClick="onClickConditions" />
+        android:onClick="onClickConditions"
+        android:checked="true" />
 
     <RadioButton
         android:layout_width="wrap_content"
@@ -292,5 +296,15 @@
         android:id="@+id/commentsEditText"
         android:layout_alignTop="@+id/commentsTextView"
         android:layout_alignRight="@+id/locationsSpinner" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="שליחה"
+        android:id="@+id/submitbutton"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/commentsTextView"
+        android:layout_alignParentRight="true"
+        android:onClick="submit" />
 
 </RelativeLayout></ScrollView>

@@ -35,7 +35,7 @@ public class PetSelectionActivity extends ActionBarActivity {
         scrlScroll.addView(tblLayout);
         setContentView(scrlScroll);
         isAdopt = getIntent().getBooleanExtra("isAdopt", false);
-        strType = getIntent().getStringExtra("Type");
+        userType = getIntent().getStringExtra("Type");
     }
 
     private void LoadAnimalTypeList() {
@@ -80,6 +80,7 @@ public class PetSelectionActivity extends ActionBarActivity {
                     intent.putExtra("petEnum", strKey);
                 }
 
+                intent.putExtra("userType", userType);
                 startActivity(intent);
             }
         });

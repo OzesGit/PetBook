@@ -12,12 +12,17 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.petbook.ido.petbook.BL.DbHandler;
+import com.petbook.ido.petbook.BL.Pet;
 
 public class HandOverPetActivity extends ActionBarActivity {
     private RadioButton radioMale;
@@ -36,6 +41,19 @@ public class HandOverPetActivity extends ActionBarActivity {
     private TextView mailTextView;
     private Button pickImageButton;
     private ImageButton imageButton;
+    private String imagePath = null;
+
+    private EditText nameEditText;
+    private EditText contactEditText;
+    private EditText mailEditText;
+    private EditText commentsEditText;
+
+    private CheckBox kidsCheckBox;
+    private CheckBox catsCheckBox;
+    private CheckBox dogsCheckBox;
+
+    int currGender;
+    int currConditions;
 
 
     @Override
@@ -65,6 +83,18 @@ public class HandOverPetActivity extends ActionBarActivity {
         agesSpinner.setAdapter(agesAdapter);
         locationsSpinner.setAdapter(locationsAdapter);
 
+        nameEditText = (EditText) findViewById(R.id.nameEditText);
+        contactEditText = (EditText) findViewById(R.id.contactEditText);
+        mailEditText = (EditText) findViewById(R.id.mailEditText);
+        commentsEditText = (EditText) findViewById(R.id.commentsEditText);
+
+        kidsCheckBox = (CheckBox) findViewById(R.id.kidsCheckBox);
+        catsCheckBox = (CheckBox) findViewById(R.id.catsCheckBox);
+        dogsCheckBox = (CheckBox) findViewById(R.id.dogsCheckBox);
+
+        currGender = Enums.Gender.MALE.ordinal();
+        currConditions = Enums.CONDITIONS.CLOSEDAPPARTMENT.ordinal();
+
         agesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -84,6 +114,7 @@ public class HandOverPetActivity extends ActionBarActivity {
         {
             case(R.id.radioFemale):
             {
+                currGender = Enums.Gender.FEMALE.ordinal();
                 radioMale.setChecked(false);
                 radioUnknown.setChecked(false);
 
@@ -91,6 +122,7 @@ public class HandOverPetActivity extends ActionBarActivity {
             }
             case(R.id.radioMale):
             {
+                currGender = Enums.Gender.MALE.ordinal();
                 radioFemale.setChecked(false);
                 radioUnknown.setChecked(false);
 
@@ -98,6 +130,7 @@ public class HandOverPetActivity extends ActionBarActivity {
             }
             case(R.id.radioUnknown):
             {
+                currGender = Enums.Gender.UNKNOWN.ordinal();
                 radioMale.setChecked(false);
                 radioFemale.setChecked(false);
 
@@ -133,6 +166,7 @@ public class HandOverPetActivity extends ActionBarActivity {
         {
             case(R.id.closedApartmentRadio):
             {
+                currConditions = Enums.CONDITIONS.CLOSEDAPPARTMENT.ordinal();
                 openApartmentRadio.setChecked(false);
                 roomRadio.setChecked(false);
                 notMatterRadio.setChecked(false);
@@ -141,6 +175,7 @@ public class HandOverPetActivity extends ActionBarActivity {
             }
             case(R.id.openApartmentRadio):
             {
+                currConditions = Enums.CONDITIONS.OPENAPPARTMENT.ordinal();
                 closedApartmentRadio.setChecked(false);
                 roomRadio.setChecked(false);
                 notMatterRadio.setChecked(false);
@@ -149,6 +184,7 @@ public class HandOverPetActivity extends ActionBarActivity {
             }
             case(R.id.roomRadio):
             {
+                currConditions = Enums.CONDITIONS.YARD.ordinal();
                 closedApartmentRadio.setChecked(false);
                 openApartmentRadio.setChecked(false);
                 notMatterRadio.setChecked(false);
@@ -157,6 +193,7 @@ public class HandOverPetActivity extends ActionBarActivity {
             }
             case(R.id.notMatterRadio):
             {
+                currConditions = Enums.CONDITIONS.NO_MATTER.ordinal();
                 closedApartmentRadio.setChecked(false);
                 openApartmentRadio.setChecked(false);
                 roomRadio.setChecked(false);
@@ -190,14 +227,41 @@ public class HandOverPetActivity extends ActionBarActivity {
             cursor.moveToFirst();
 
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
+            imagePath = cursor.getString(columnIndex);
             cursor.close();
 
             pickImageButton.setVisibility(View.GONE);
             imageButton.setVisibility(View.VISIBLE);
             imageButton.setImageURI(selectedImage);
-
         }
+    }
+
+
+    public void submit(View view) {
+        Pet pet = new Pet();
+        pet.setName(nameEditText.getText().toString());
+        pet.setId(Res.getInt((1)));
+        pet.setAndroidId(Res.getString((2)));
+        pet.setGender(currGender);
+        pet.setType(GlobalData.getInstance().getTypeID(getIntent().getStringExtra("petType")));
+
+        /*String dealsWith = "";
+        if(kidsCheckBox.isChecked())
+            dealsWith += Enums.DEALS_WITH.CHILDREN;
+        if(catsCheckBox.isChecked())
+            dealsWith += Enums.DEALS_WITH.CATS;
+        if(dogsCheckBox.isChecked())
+            dealsWith += Enums.DEALS_WITH.DOGS;
+        pet.setCondition(dealsWith);*/
+
+        pet.setCondition(currConditions);
+        pet.setPhoneNumber(contactEditText.getText().toString());
+        pet.setLocation(Res.getInt((7)));
+        pet.setEmail(mailEditText.getText().toString());
+        pet.setNotes(commentsEditText.getText().toString());
+        pet.setPicture();
+        pet.setAge(Res.getInt((11)));
+        DbHandler.getInstance().insertPet(new Pet());
     }
 
 }

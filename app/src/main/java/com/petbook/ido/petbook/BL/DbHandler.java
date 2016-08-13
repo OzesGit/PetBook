@@ -123,6 +123,25 @@ public class DbHandler extends SQLiteOpenHelper {
 
     }
 
+    public void insertPet(Pet pet){
+        String values = "('%s', %s, '%s', %s, %s, '%s', '%s', %s, '%s', '%s', %s, %s)";
+        values = String.format(values,
+                               pet.getName(),
+                               pet.getId(),
+                               pet.getAndroidId(),
+                               pet.getGender(),
+                               pet.getType(),
+                               pet.getCondition(),
+                               pet.getPhoneNumber(),
+                               pet.getLocation(),
+                               pet.getEmail(),
+                               pet.getNotes(),
+                               pet.getPicture(),
+                               pet.getAge());
+
+        db.execSQL(this.INSERT_PET + values);
+    }
+
     private void insertMUCHAnimals(){
         String newPetInsertCommand;
 
