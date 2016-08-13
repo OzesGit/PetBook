@@ -3,6 +3,8 @@ package com.petbook.ido.petbook;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBarActivity;
@@ -43,6 +45,7 @@ public class PetSelectionActivity extends Activity {
     private void LoadAnimalTypeList() {
         Map<String, String> mpAnimalList = DataLoader.GetAnimalTypeList();
         TableRow row = null;
+
         int colCount = 0;
         for (String strKey : mpAnimalList.keySet()) {
             if(colCount%itemsInRow==0)
@@ -50,7 +53,6 @@ public class PetSelectionActivity extends Activity {
                 row = new TableRow(this);
                 tblLayout.addView(row);
             }
-
             row.addView(CreateAnimalTypeButton(mpAnimalList.get(strKey),strKey));
             colCount++;
         }
@@ -59,9 +61,14 @@ public class PetSelectionActivity extends Activity {
     private Button CreateAnimalTypeButton(final String strText, final String strKey){
         Display display = getWindowManager().getDefaultDisplay();
         Button btn = new Button(this);
+        int width = display.getWidth() / itemsInRow;
+        int height = (int) (display.getHeight() * btnHegihtPercent);
+
+        btn.setTextColor(Color.WHITE);
+        btn.setTextSize(20);
         btn.setText(strText);
-        btn.setHeight((int) (display.getHeight() * btnHegihtPercent));
-        btn.setWidth(display.getWidth() / itemsInRow);
+        btn.setHeight(height);
+        btn.setWidth(width);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,18 +92,13 @@ public class PetSelectionActivity extends Activity {
                 startActivity(intent);
             }
         });
+        // Read your drawable from somewhere
+        Drawable dr = GlobalData.getInstance().getImageByAnimalName(getResources(),strKey);
 
-        try {
-            AssetManager asmMng = getAssets();
-            InputStream f = asmMng.open(strKey);
-            Drawable d = BitmapDrawable.createFromStream(f, strKey);
-
-            btn.setBackground(d);
-        }
-        catch (Exception ex)
-        {
-
-        }
+        Bitmap bitmap = ((BitmapDrawable) dr).getBitmap();
+        // Scale it to 50 x 50
+        Drawable d = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap,width, height,false));
+        btn.setBackground(d);
         return (btn);
     }
 
