@@ -54,6 +54,10 @@ public class HandOverPetActivity extends ActionBarActivity {
 
     int currGender;
     int currConditions;
+    boolean currVirgin;
+
+    int currAge;
+    int currLocation;
 
 
     @Override
@@ -94,11 +98,26 @@ public class HandOverPetActivity extends ActionBarActivity {
 
         currGender = Enums.Gender.MALE.ordinal();
         currConditions = Enums.CONDITIONS.CLOSEDAPPARTMENT.ordinal();
+        currVirgin = true;
+
+        currAge = 0;
+        currLocation = 0;
 
         agesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(HandOverPetActivity.this, "" + id, 1).show();
+                currAge = position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        locationsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                currLocation = position;
             }
 
             @Override
@@ -146,12 +165,14 @@ public class HandOverPetActivity extends ActionBarActivity {
         {
             case(R.id.surgeryYes):
             {
+                currVirgin = true;
                 surgeryNo.setChecked(false);
 
                 break;
             }
             case(R.id.surgeryNo):
             {
+                currVirgin = false;
                 surgeryYes.setChecked(false);
 
                 break;
@@ -240,28 +261,29 @@ public class HandOverPetActivity extends ActionBarActivity {
     public void submit(View view) {
         Pet pet = new Pet();
         pet.setName(nameEditText.getText().toString());
-        pet.setId(Res.getInt((1)));
-        pet.setAndroidId(Res.getString((2)));
+        pet.setId(DbHandler.getInstance(null).GetNextSeq("id"));
+        pet.setAndroidId(Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID));
         pet.setGender(currGender);
         pet.setType(GlobalData.getInstance().getTypeID(getIntent().getStringExtra("petType")));
+        pet.setCondition(currConditions);
+        pet.setPhoneNumber(contactEditText.getText().toString());
+        pet.setLocation(currLocation);
+        pet.setEmail(mailEditText.getText().toString());
+        pet.setNotes(commentsEditText.getText().toString());
+        pet.setPicture(BitmapFactory.decodeFile(imagePath));
+        pet.setAge(currAge);
+        pet.setVirgin(currVirgin);
 
-        /*String dealsWith = "";
+        String dealsWith = "";
         if(kidsCheckBox.isChecked())
             dealsWith += Enums.DEALS_WITH.CHILDREN;
         if(catsCheckBox.isChecked())
             dealsWith += Enums.DEALS_WITH.CATS;
         if(dogsCheckBox.isChecked())
             dealsWith += Enums.DEALS_WITH.DOGS;
-        pet.setCondition(dealsWith);*/
+        pet.setDealsWith(dealsWith);
 
-        pet.setCondition(currConditions);
-        pet.setPhoneNumber(contactEditText.getText().toString());
-        pet.setLocation(Res.getInt((7)));
-        pet.setEmail(mailEditText.getText().toString());
-        pet.setNotes(commentsEditText.getText().toString());
-        pet.setPicture();
-        pet.setAge(Res.getInt((11)));
-        DbHandler.getInstance().insertPet(new Pet());
+        DbHandler.getInstance(null).insertPet(new Pet());
     }
 
 }
