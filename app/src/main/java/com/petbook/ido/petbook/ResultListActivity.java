@@ -84,11 +84,15 @@ public class ResultListActivity extends Activity {
             PetItemControl cont = new PetItemControl(this,ptPet);
             cont.SetSize(display.getWidth(),display.getHeight());
             cont.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                    @Override
+                    public void onClick(View v) {
 
+                        Intent i = new Intent(getApplicationContext(),PetDetailsActivity.class);
+//                        i.putExtra("petId",);
+                        startActivity(i);
+                    }
                 }
-            });
+            );
 
             cont.requestLayout();
             if(zebra)

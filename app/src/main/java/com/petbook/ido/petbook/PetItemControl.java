@@ -72,4 +72,9 @@ public class PetItemControl extends LinearLayout{
         this.txtName.setLeft((width*40)/100);
         this.txtName.requestLayout();
     }
+    // Returns the current pet
+    public Pet getCurrPet()
+    {
+        return  (this.currPet);
+    }
 }
