@@ -1,5 +1,6 @@
 package com.petbook.ido.petbook;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.drawable.BitmapDrawable;
@@ -18,7 +19,7 @@ import com.petbook.ido.petbook.BL.DataLoader;
 import java.io.InputStream;
 import java.util.Map;
 
-public class PetSelectionActivity extends ActionBarActivity {
+public class PetSelectionActivity extends Activity {
     private TableLayout tblLayout;
     private ScrollView scrlScroll;
     private double btnHegihtPercent = 0.25;

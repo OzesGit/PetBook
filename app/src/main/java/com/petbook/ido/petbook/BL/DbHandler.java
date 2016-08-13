@@ -187,7 +187,7 @@ public class DbHandler extends SQLiteOpenHelper {
         return ExecutePetQuery(this.GET_ALL_PETS);
     }
 
-    public List<Pet> getSearchedPets(String strAndroidID,
+    public List<Pet> getSearchedPets(
                                      int nGender,
                                      int nType,
                                      String strCond,
@@ -198,8 +198,7 @@ public class DbHandler extends SQLiteOpenHelper {
         List<Pet> lstRet = new ArrayList<Pet>();
         String strQuery = GET_ALL_PETS;
 
-        strQuery += " WHERE androidid = '"+ strAndroidID + "' AND " +
-                    "type = "+ nType + " AND " +
+        strQuery += " WHERE type = "+ nType + " AND " +
                     "location = "+ nAreaID + " AND ";
 
         if (nGender != Enums.Gender.UNKNOWN.ordinal())

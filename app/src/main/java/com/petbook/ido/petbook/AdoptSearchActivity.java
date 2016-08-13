@@ -103,9 +103,9 @@ public class AdoptSearchActivity extends ActionBarActivity {
 
         String strCondition = "";
 
-        Boolean isKids = ((CheckBox)findViewById(R.id.cbKids)).isChecked();
-        Boolean isDogs = ((CheckBox)findViewById(R.id.cbDogs)).isChecked();
-        Boolean isCats = ((CheckBox)findViewById(R.id.cbCats)).isChecked();
+        Boolean isKids = ((CheckBox) findViewById(R.id.cbKids)).isChecked();
+        Boolean isDogs = ((CheckBox) findViewById(R.id.cbDogs)).isChecked();
+        Boolean isCats = ((CheckBox) findViewById(R.id.cbCats)).isChecked();
 
         EditText edMinAge = (EditText) findViewById(R.id.etAge);
         EditText edMaxAge = (EditText) findViewById(R.id.etMaxAge);
@@ -115,41 +115,47 @@ public class AdoptSearchActivity extends ActionBarActivity {
         int nMinAge = 999;
         int nMaxAge = 999;
 
-        if(!edMinAge.getText().toString().equals("")){
+        if (!edMinAge.getText().toString().equals("")) {
             nMinAge = Integer.parseInt(edMinAge.getText().toString());
         }
 
-        if(!edMaxAge.getText().toString().equals("")){
+        if (!edMaxAge.getText().toString().equals("")) {
             nMaxAge = Integer.parseInt(edMaxAge.getText().toString());
         }
 
         if (!rbMale.isChecked() &&
-            !rbFemale.isChecked()) {
+                !rbFemale.isChecked()) {
             nGender = Enums.Gender.UNKNOWN.ordinal();
-        }
-        else if(rbMale.isChecked()) {
+        } else if (rbMale.isChecked()) {
             nGender = Enums.Gender.MALE.ordinal();
-        }
-        else {
+        } else {
             nGender = Enums.Gender.FEMALE.ordinal();
         }
 
-        if(isKids){
+        if (isKids) {
             strCondition = "0";
         }
 
-        if(isDogs){
+        if (isDogs) {
             strCondition += "1";
         }
 
-        if(isCats){
+        if (isCats) {
             strCondition += "2";
         }
 
-        lstPet = DbHandler.getInstance(this.getApplicationContext()).getSearchedPets(android_id,nGender,nAnimalType,strCondition,nAreaCode,nMinAge,nMaxAge);
-        GlobalData.getInstance().setLstChosenPets(lstPet);
-        Intent intent = new Intent(getApplicationContext(), ResultListActivity.class);
+        lstPet = DbHandler.getInstance(this.getApplicationContext()).getSearchedPets(nGender, nAnimalType, strCondition, nAreaCode, nMinAge, nMaxAge);
 
-        this.startActivity(intent);
+        if (lstPet.size() > 0)
+        {
+            GlobalData.getInstance().setLstChosenPets(lstPet);
+            Intent intent = new Intent(getApplicationContext(), ResultListActivity.class);
+
+            this.startActivity(intent);
+        }
+        else
+        {
+
+        }
     }
 }

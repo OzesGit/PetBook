@@ -5,21 +5,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
 public class MenuActivity extends Activity {
 
-    RadioButton rbGive;
-    RadioButton rbAdopt;
+    Button btnAdopt;
+    Button btnDeliver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        rbGive = (RadioButton) findViewById(R.id.rbGive);
-        rbAdopt = (RadioButton) findViewById(R.id.rbAdopt);
+        btnAdopt = (Button) findViewById(R.id.btnAdopt);
+        btnDeliver = (Button) findViewById(R.id.btnDeliver);
     }
 
     @Override
@@ -39,8 +40,8 @@ public class MenuActivity extends Activity {
 
     public void onClickAmuta(View view) {
 
-        rbAdopt.setVisibility(RadioButton.INVISIBLE);
-        rbGive.setVisibility (RadioButton.INVISIBLE);
+        btnAdopt.setVisibility(RadioButton.INVISIBLE);
+        btnDeliver.setVisibility (RadioButton.INVISIBLE);
 
         String strType = "Amuta";
         GoToSelection(strType, false);
@@ -49,32 +50,17 @@ public class MenuActivity extends Activity {
 
     public void onClickGuest(View view) {
 
-        if (rbAdopt.isShown() &&
-                rbGive.isShown())
+        if (!btnAdopt.isShown())
         {
-            if (!rbAdopt.isChecked() && !rbGive.isChecked())
-            {
-                Toast.makeText(MenuActivity.this, "עליך לבחור אחת מהאופציות", Toast.LENGTH_SHORT).show();
-            }
-            else
-            {
-                // TODO: Redirect to amuta screen
-                String strType = "Guest";
-                GoToSelection(strType, rbAdopt.isChecked());
-            }
+            btnAdopt.setVisibility(RadioButton.VISIBLE);
+            btnDeliver.setVisibility (RadioButton.VISIBLE);
         }
-        else
-        {
-            rbAdopt.setVisibility(RadioButton.VISIBLE);
-            rbGive.setVisibility (RadioButton.VISIBLE);
-        }
-
     }
 
     public void onClickVet(View view) {
 
-        rbAdopt.setVisibility(RadioButton.INVISIBLE);
-        rbGive.setVisibility (RadioButton.INVISIBLE);
+        btnAdopt.setVisibility(RadioButton.INVISIBLE);
+        btnDeliver.setVisibility (RadioButton.INVISIBLE);
 
         String strType = "Vet";
         GoToSelection(strType, false);
@@ -82,8 +68,8 @@ public class MenuActivity extends Activity {
     }
 
     public void onClickStore(View view) {
-        rbAdopt.setVisibility(RadioButton.INVISIBLE);
-        rbGive.setVisibility (RadioButton.INVISIBLE);
+        btnAdopt.setVisibility(RadioButton.INVISIBLE);
+        btnDeliver.setVisibility(RadioButton.INVISIBLE);
 
         String strType = "Store";
         GoToSelection(strType, false);
@@ -99,28 +85,13 @@ public class MenuActivity extends Activity {
 
     }
 
-    public void onClickRadio(View view) {
-
-        switch (view.getId())
+    public void onClickSelectionType(View view) {
+        boolean bIsAdopt = false;
+        if(view.getId() == R.id.btnAdopt)
         {
-            case(R.id.rbAdopt):
-            {
-                if (rbGive.isChecked())
-                {
-                    rbGive.setChecked(false);
-                }
-
-                break;
-            }
-            case(R.id.rbGive):
-            {
-                if (rbAdopt.isChecked())
-                {
-                    rbAdopt.setChecked(false);
-                }
-
-                break;
-            }
+            bIsAdopt = true;
         }
+        String strType = "Guest";
+        GoToSelection(strType, bIsAdopt);
     }
 }

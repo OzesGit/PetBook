@@ -105,28 +105,26 @@
         android:layout_alignEnd="@+id/ibStore"
         android:textSize="20dp" />
 
-    <RadioButton
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="רוצה למסור"
-        android:id="@+id/rbGive"
-        android:visibility="invisible"
-        android:layout_above="@+id/rbAdopt"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:onClick="onClickRadio"/>
-
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="רוצה לאמץ"
-        android:id="@+id/rbAdopt"
+        android:text="מוסר"
+        android:id="@+id/btnDeliver"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:visibility="invisible"
-        android:layout_alignParentRight="true"
-        android:onClick="onClickRadio"/>
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/ibStore"
+        android:onClick="onClickSelectionType"
+        android:visibility="invisible" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="מאמץ"
+        android:id="@+id/btnAdopt"
+        android:layout_alignTop="@+id/btnDeliver"
+        android:layout_alignStart="@+id/ibVet"
+        android:layout_alignEnd="@+id/ibVet"
+        android:onClick="onClickSelectionType"
+        android:visibility="invisible" />
 
 </RelativeLayout>
