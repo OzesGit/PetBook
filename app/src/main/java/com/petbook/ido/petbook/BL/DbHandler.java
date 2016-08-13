@@ -66,14 +66,20 @@ public class DbHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         try {
             db.execSQL(this.DROP_TABLES);
+            commit(db);
+        }
+        catch (Exception ex){
+
+        }
+        try {
             db.execSQL(this.CREATE_TABLES);
             commit(db);
         }
         catch (Exception ex){
 
         }
+
         insertMUCHAnimals();
-        getAllPets();
     }
 
     private void insertMUCHAnimals(){
