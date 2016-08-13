@@ -300,7 +300,7 @@ public class HandOverPetActivity extends ActionBarActivity {
 
         if(!strPhoneNumber.equals("NOT_FOUND"))
         {
-            sendSMS(strPhoneNumber, "שלום :) החיה שחיפשת באפליקציית PetBook נמצאה. אנא חפש שוב");
+            sendSMS("+972" + strPhoneNumber, "שלום :) החיה שחיפשת באפליקציית PetBook נמצאה. אנא חפש שוב");
         }
 
         finish();

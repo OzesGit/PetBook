@@ -403,6 +403,7 @@ public class DbHandler extends SQLiteOpenHelper {
 
     public String CheckForWaiters(Pet pet)
     {
+        String string;
         String strDealsWith = pet.getDealsWith();
         int nAge = pet.getAge();
         int nMinAge = 0;
@@ -488,14 +489,14 @@ public class DbHandler extends SQLiteOpenHelper {
 
         if (cursor.getCount() > 0)
         {
-            String string = cursor.getString(0).toString();
+            string = cursor.getString(1).toString();
 
-            return  string;
+            return string;
         }
         else
         {
             return "NOT_FOUND";
-        }
+    }
     }
 
 
