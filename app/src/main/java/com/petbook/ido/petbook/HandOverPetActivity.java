@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -29,6 +30,8 @@ import android.widget.Toast;
 
 import com.petbook.ido.petbook.BL.DbHandler;
 import com.petbook.ido.petbook.BL.Pet;
+
+import java.io.File;
 
 public class HandOverPetActivity extends ActionBarActivity {
     private RadioButton radioMale;
@@ -274,9 +277,13 @@ public class HandOverPetActivity extends ActionBarActivity {
         pet.setLocation(currLocation);
         pet.setEmail(mailEditText.getText().toString());
         pet.setNotes(commentsEditText.getText().toString());
-        pet.setPicture(BitmapFactory.decodeFile(imagePath));
         pet.setAge(currAge);
         pet.setIsVirgin(currVirgin);
+
+        if(imagePath != null && !imagePath.equals("")) {
+            File flImg = new File(imagePath);
+        }
+
 
         String dealsWith = "";
         if(kidsCheckBox.isChecked())

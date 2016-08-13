@@ -40,6 +40,7 @@ public class ResultListActivity extends Activity {
         if(!blPerarea)
         {
             btnSearch = new Button(this);
+            btnSearch.setBackgroundColor(Color.argb(170,19, 7, 58));
             btnSearch.setText("חיפוש");
             btnSearch.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -84,21 +85,17 @@ public class ResultListActivity extends Activity {
         {
             PetItemControl cont = new PetItemControl(this,ptPet);
             cont.SetSize(display.getWidth(),display.getHeight());
-            cont.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
 
-                }
-            });
+            cont.setOnClickListener(new listen(ptPet));
 
             cont.requestLayout();
             if(zebra)
             {
-                cont.setBackgroundColor(Color.LTGRAY);
+                cont.setBackgroundColor(Color.argb(170,20, 115, 20));
                 zebra = false;
             }
             else{
-                cont.setBackgroundColor(Color.GRAY);
+                cont.setBackgroundColor(Color.argb(170,0, 60, 0));
                 zebra = true;
             }
 
@@ -107,5 +104,20 @@ public class ResultListActivity extends Activity {
         }
 
         this.llLayout.setOrientation(LinearLayout.VERTICAL);
+    }
+    private class listen implements View.OnClickListener {
+        private Pet ptPet;
+
+        public listen(Pet iptPet)
+        {
+            this.ptPet = iptPet;
+        }
+
+        @Override
+        public void onClick(View v) {
+            Intent i = new Intent(getApplicationContext(),PetDetailsActivity.class);
+            i.putExtra("petId",this.ptPet.getId());
+            startActivity(i);
+        }
     }
 }

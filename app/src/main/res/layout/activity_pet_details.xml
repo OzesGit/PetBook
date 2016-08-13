@@ -10,16 +10,61 @@
     tools:context="com.petbook.ido.petbook.PetDetailsActivity">
 
     <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="200dp"
-        android:id="@+id/imgPetImage"
-        android:layout_alignParentStart="true" />
-
-    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView3"
-        android:layout_alignTop="@+id/imgPetImage"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="אין שם"
+        android:id="@+id/txtName"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="גיל: "
+        android:id="@+id/txtAge"
+        android:layout_below="@+id/txtName"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="45dp"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="מין: "
+        android:id="@+id/txtGender"
+        android:layout_marginTop="34dp"
+        android:layout_below="@+id/txtAge"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/txtAge" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="מיקום: "
+        android:id="@+id/txtLocation"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/txtGender"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="סוג: "
+        android:id="@+id/txtType"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/txtLocation"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

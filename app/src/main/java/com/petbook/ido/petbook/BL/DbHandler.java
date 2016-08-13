@@ -150,23 +150,22 @@ public class DbHandler extends SQLiteOpenHelper {
     }
 
     public void insertPet(Pet pet){
-        String values = "('%s', %d, '%s', %d, %d, %d, '%s', %d, '%s', '%s', '%s', %d, %d, '%s')";
         int nToSet = pet.getIsVirgin() ? 1 : 0;
-        values = String.format(values,
-                pet.getName(),
-                pet.getId(),
-                pet.getAndroidId(),
-                pet.getGender(),
-                pet.getType(),
-                pet.getCondition(),
-                pet.getPhoneNumber(),
-                pet.getLocation(),
-                pet.getEmail(),
-                pet.getNotes(),
-                pet.getPicture(),
-                pet.getAge(),
-                nToSet,
-                pet.getDealsWith());
+        String values = "('" +
+                pet.getName()+"',"+
+                pet.getId()+",'"+
+                pet.getAndroidId()+"',"+
+                pet.getGender()+","+
+                pet.getType()+","+
+                pet.getCondition()+",'"+
+                pet.getPhoneNumber()+"',"+
+                pet.getLocation()+",'"+
+                pet.getEmail()+"','"+
+                pet.getNotes()+"',"+
+                DataLoader.getBytes(pet.getPicture())+","+
+                pet.getAge()+","+
+                nToSet+",'"+
+                pet.getDealsWith() + "');";
 
         db.execSQL(this.INSERT_PET + values);
     }
