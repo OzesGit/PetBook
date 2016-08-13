@@ -37,6 +37,8 @@ public class Popup extends Activity {
         DbHandler.getInstance(getApplicationContext()).addSearchSaved(GlobalData.getInstance().getSdCurrSearch());
 
         Toast.makeText(Popup.this, "נכנסת לרשימת המתנה בהצלחה ! :)", Toast.LENGTH_SHORT).show();
+
+        finish();
     }
 
     public void onClickBack(View view) {

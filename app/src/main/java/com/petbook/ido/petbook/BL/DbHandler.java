@@ -35,7 +35,7 @@ public class DbHandler extends SQLiteOpenHelper {
     private SQLiteDatabase db;
     private static String DROP_TABLES = "DROP TABLE `Pets`;";
     private static String DROP_SEARCHES = "DROP TABLE 'SavedSearches'";
-    private static String CREATE_PETS = "CREATE TABLE `Pets` (\n" +
+    private static String CREATE_PETS = "CREATE TABLE IF NOT EXISTS `Pets` (\n" +
             "\t`name`\tTEXT,\n" +
             "\t`id`\tINTEGER,\n" +
             "\t`androidid`\tTEXT,\n" +
@@ -53,7 +53,7 @@ public class DbHandler extends SQLiteOpenHelper {
             "\tPRIMARY KEY(id)\n" +
             ") ";
             //"\t`isvirgin`\tINTEGER\n" +;
-    private static String CREATE_SAVED_SEARCHES = "CREATE TABLE `SavedSearches` (\n" +
+    private static String CREATE_SAVED_SEARCHES = "CREATE TABLE IF NOT EXISTS `SavedSearches` (\n" +
             "\t`phonenum`\tTEXT,\n" +
             "\t`id`\tINTEGER,\n" +
             "\t`minage`\tINTEGER,\n" +
@@ -62,7 +62,7 @@ public class DbHandler extends SQLiteOpenHelper {
             "\t`areacode`\tINTEGER,\n" +
             "\t`animaltype`\tINTEGER,\n" +
             "\t`condition`\tTEXT,\n" +
-            "\tPRIMARY KEY(phonenum, id)\n" +
+            "\tPRIMARY KEY(id)\n" +
             ");";
 
     private static String INSERT_PET = "INSERT INTO Pets Values ";
@@ -87,7 +87,7 @@ public class DbHandler extends SQLiteOpenHelper {
     private  void CreateTables(){
         try {
             //db.execSQL(this.DROP_TABLES);
-            //db.execSQL(this.DROP_SEARCHES);
+            db.execSQL(this.DROP_SEARCHES);
         }
         catch (Exception ex){
 
@@ -404,47 +404,91 @@ public class DbHandler extends SQLiteOpenHelper {
     public String CheckForWaiters(Pet pet)
     {
         String strDealsWith = pet.getDealsWith();
+        int nAge = pet.getAge();
+        int nMinAge = 0;
+        int nMaxAge = 0;
 
-        String strQuery = "SELECT SINGLE * FROM SavedSearches "+
-                          "WHERE minage <= "+ pet.getAge() +
-                          " AND maxage >= " + pet.getAge() +
+        switch (nAge)
+        {
+            case(1):
+            {
+                nMinAge = 0;
+                nMaxAge = 0;
+
+                break;
+            }
+            case(2):
+            {
+                nMinAge = 0;
+                nMaxAge = 0;
+
+                break;
+            }
+            case(3):
+            {
+                nMinAge = 1;
+                nMaxAge = 5;
+
+                break;
+            }
+            case(4):
+            {
+                nMinAge = 6;
+                nMaxAge = 10;
+
+                break;
+            }
+            case(5):
+            {
+                nMaxAge = 999999;
+                nMinAge = 10;
+
+                break;
+            }
+
+        }
+
+        String strQuery = "SELECT * FROM SavedSearches "+
+                          "WHERE minage >= "+ nMinAge +
+                          " AND maxage <= " + nMaxAge +
                           " AND gender = " +  pet.getGender() +
                           " AND animaltype = " + pet.getType();
 
         if(strDealsWith.length() == 1)
         {
             if(strDealsWith.equals("0")){
-                strQuery += " AND ( dealswith = '012' OR dealswith = '01' OR dealswith = '02' OR dealswith = '0' )";
+                strQuery += " AND ( condition = '012' OR condition = '01' OR condition = '02' OR condition = '0' )";
             }
             else if(strDealsWith.equals("1")){
-                strQuery += " AND ( dealswith = '1' OR dealswith = '012' OR dealswith = '01' OR dealswith = '12' )";
+                strQuery += " AND ( condition = '1' OR condition = '012' OR condition = '01' OR condition = '12' )";
             }
             else if(strDealsWith.equals("2")){
-                strQuery += " AND ( dealswith = '2' OR dealswith = '12' OR dealswith = '02' OR dealswith = '012' )";
+                strQuery += " AND ( condition = '2' OR condition = '12' OR condition = '02' OR condition = '012' )";
             }
         }
         else if(strDealsWith.length() == 2)
         {
             if(strDealsWith.equals("01")){
-                strQuery += " AND ( dealswith = '01' OR dealswith = '012' )";
+                strQuery += " AND ( condition = '01' OR condition = '012' )";
             }
             else if(strDealsWith.equals("02")){
-                strQuery += " AND ( dealswith = '02' OR dealswith = '012' )";
+                strQuery += " AND ( condition = '02' OR condition = '012' )";
             }
             else if(strDealsWith.equals("12")){
-                strQuery += " AND ( dealswith = '12' OR dealswith = '012' )";
+                strQuery += " AND ( condition = '12' OR condition = '012' )";
             }
         }
         else if(strDealsWith.length() == 3)
         {
-            strQuery += " AND ( dealswith = '012' )";
+            strQuery += " AND ( condition = '012' )";
         }
 
         Cursor cursor = db.rawQuery(strQuery, null);
+        cursor.moveToFirst();
 
         if (cursor.getCount() > 0)
         {
-            return cursor.getString(0);
+            return cursor.getString(0).toString();
         }
         else
         {
