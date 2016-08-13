@@ -26,7 +26,7 @@ public class MenuActivity extends Activity {
 
         rbGive = (RadioButton) findViewById(R.id.rbGive);
         rbAdopt = (RadioButton) findViewById(R.id.rbAdopt);
-        DbHandler hnd = new DbHandler(this);
+        //DbHandler hnd = new DbHandler(this);
     }
 
     @Override

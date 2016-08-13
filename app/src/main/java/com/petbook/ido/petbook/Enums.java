@@ -16,6 +16,15 @@ public class Enums {
         TURTLE
     }
 
+    public enum Age {
+        UNKNOWN,
+        ZERO_TO_FIVE_MONTHS,
+        SIX_MONTHS_TO_YEAR,
+        ONE_TO_FIVE_YEARS,
+        SIX_TO_TEN_YEARS,
+        MORE_THAN_TEN_YEARS
+    }
+
     public enum DEALS_WITH {
         CHILDREN,
         DOGS,

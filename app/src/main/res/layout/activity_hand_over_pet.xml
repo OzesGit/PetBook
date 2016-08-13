@@ -14,28 +14,100 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="שם"
-        android:id="@+id/NameTextView"
+        android:id="@+id/nameTextView"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentRight="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="מין"
-        android:id="@+id/GenderTextView"
+        android:id="@+id/genderTextView"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/NameTextView"
-        android:layout_alignParentEnd="true" />
+        android:layout_below="@+id/nameTextView"
+        android:layout_alignRight="@+id/nameTextView" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
         android:ems="10"
-        android:id="@+id/editText5"
+        android:id="@+id/nameEditText"
         android:layout_alignParentTop="true"
         android:layout_marginRight="20dp"
-        android:layout_toStartOf="@+id/NameTextView" />
+        android:layout_toLeftOf="@+id/nameTextView" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="זכר"
+        android:id="@+id/radioMale"
+        android:layout_alignBottom="@+id/genderTextView"
+        android:layout_alignRight="@id/nameEditText"
+        android:onClick="onClickGender" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="נקבה"
+        android:id="@+id/radioFemale"
+        android:layout_alignBottom="@+id/genderTextView"
+        android:layout_toLeftOf="@+id/radioMale"
+        android:onClick="onClickGender" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="לא ידוע"
+        android:id="@+id/radioUnknown"
+        android:layout_alignBottom="@+id/genderTextView"
+        android:layout_toLeftOf="@+id/radioFemale"
+        android:onClick="onClickGender" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="גיל"
+        android:id="@+id/textView4"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/genderTextView"
+        android:layout_alignParentRight="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/agesSpinner"
+        android:layout_alignTop="@+id/textView4"
+        android:layout_alignRight="@+id/radioMale" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="עבר סירוס/עברה עיקור?"
+        android:id="@+id/surgeryTextView"
+        android:layout_below="@+id/agesSpinner"
+        android:layout_alignParentRight="true" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="כן"
+        android:id="@+id/surgeryYes"
+        android:layout_alignBottom="@+id/surgeryTextView"
+        android:layout_toLeftOf="@+id/surgeryTextView"
+        android:onClick="onClickSurgery" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="לא"
+        android:id="@+id/surgeryNo"
+        android:layout_alignBottom="@+id/surgeryTextView"
+        android:layout_toLeftOf="@+id/surgeryYes"
+        android:onClick="onClickSurgery" />
+
+
 </RelativeLayout>

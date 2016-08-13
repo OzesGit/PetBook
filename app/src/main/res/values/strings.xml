@@ -18,4 +18,15 @@
 
     </string-array>
 
+    <string-array name="Ages">
+
+        <item>לא ידוע</item>
+        <item>0-6 חודשים</item>
+        <item>6-11 חודשים</item>
+        <item>1-5 שנים</item>
+        <item>6-10 שנים</item>
+        <item>מעל 10 שנים</item>
+
+    </string-array>
+
 </resources>
