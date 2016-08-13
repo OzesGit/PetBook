@@ -226,10 +226,10 @@ public class DbHandler extends SQLiteOpenHelper {
         else*/ if(strCond.length() == 1)
         {
             if(strCond.equals("0")){
-                strQuery += " AND ( conditions = '012' OR conditions = '01' OR condition = '02' OR condition = '0' )";
+                strQuery += " AND ( conditions = '012' OR conditions = '01' OR conditions = '02' OR conditions = '0' )";
             }
             else if(strCond.equals("1")){
-                strQuery += " AND ( conditions = '1' OR conditions = '012' OR conditions = '01' OR condition = '12' )";
+                strQuery += " AND ( conditions = '1' OR conditions = '012' OR conditions = '01' OR conditions = '12' )";
             }
             else if(strCond.equals("2")){
                 strQuery += " AND ( conditions = '2' OR conditions = '12' OR conditions = '02' OR conditions = '012' )";

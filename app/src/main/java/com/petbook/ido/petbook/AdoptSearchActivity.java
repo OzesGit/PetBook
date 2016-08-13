@@ -30,6 +30,7 @@ public class AdoptSearchActivity extends ActionBarActivity {
     private String strSelectedAnimal;
     private RadioButton rbMale;
     private RadioButton rbFemale;
+    private RadioButton rbUnkown;
     private int nAreaCode;
     private int nGender;
     private int nAge;
@@ -57,6 +58,9 @@ public class AdoptSearchActivity extends ActionBarActivity {
 
         rbMale = (RadioButton) findViewById(R.id.rbMale);
         rbFemale = (RadioButton) findViewById(R.id.rbFemale);
+        rbUnkown = (RadioButton) findViewById(R.id.rbUnknown);
+
+        rbUnkown.setChecked(true);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -79,22 +83,21 @@ public class AdoptSearchActivity extends ActionBarActivity {
         {
             case(R.id.rbFemale):
             {
-                if(rbMale.isChecked())
-                {
                     rbMale.setChecked(false);
-                }
+                    rbUnkown.setChecked(false);
 
                 break;
             }
             case(R.id.rbMale):
             {
-                if(rbFemale.isChecked())
-                {
                     rbFemale.setChecked(false);
-                }
+                    rbUnkown.setChecked(false);
 
                 break;
             }
+            default:
+                rbFemale.setChecked(false);
+                rbMale.setChecked(false);
         }
 
     }
@@ -123,8 +126,7 @@ public class AdoptSearchActivity extends ActionBarActivity {
             nMaxAge = Integer.parseInt(edMaxAge.getText().toString());
         }
 
-        if (!rbMale.isChecked() &&
-                !rbFemale.isChecked()) {
+        if (rbUnkown.isChecked()) {
             nGender = Enums.Gender.UNKNOWN.ordinal();
         } else if (rbMale.isChecked()) {
             nGender = Enums.Gender.MALE.ordinal();
